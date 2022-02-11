@@ -1,0 +1,26 @@
+% include("header_log_sign", title="Signup")
+
+<main>   
+    <h1>Signup</h1>
+    
+    <form action="/signup" method="POST">
+
+        <label>First name:</label> <input name="user_first_name" type="text" placeholder="First name">
+        <label>Last name:</label> <input name="user_last_name" type="text" placeholder="Last name">
+        <label>Email:</label> <input name="user_email" type="text" placeholder="Email">
+        <label>Password:</label> <input name="user_password" type="text" placeholder="Password">
+        <label>Repeat password:</label> <input name="user_password" type="text" placeholder="Repeat password">
+
+        <button>Sign up</button>
+
+    </form>
+
+    <div>
+        <h3>Already have an account? <a href="/login"> Log in</a></h3>
+    </div>
+    
+</main> 
+
+% include("footer")
+
+    
