@@ -13,7 +13,7 @@ def _():
 
     user_password = request.forms.get("user_password")
     user_session_id = str(uuid.uuid4())
-    encoded_jwt =jwt.encode({"uuid4": user_session_id, "user_email":user_email, "user_password":user_password}, "secret key", algorithm="HS256")
+    encoded_jwt =jwt.encode({"uuid4": user_session_id, "user_email":user_email}, "secret key", algorithm="HS256")
 
 
 

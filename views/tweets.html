@@ -1,5 +1,60 @@
 % include("header_in_system", title="Tweets")
 
-<h2>Tweet page</h2>
+<main>
+
+    % if tweets == []:
+    <div>
+        Sorry there is no tweets, create one ...
+    </div>
+% end
+
+<div >
+<div class="tweet">
+
+    <h1>Create a tweet</h1>
+    <form action="/create_tweet" method="post">
+        <input name="tweet_id" type="hidden" >
+        <input name="tweet_title" type="text" placeholder="Title">
+        <input name="tweet_description" type="text" placeholder="Description">
+        <!--get a creation date from the db-->
+        <button>Create a tweet</button>
+        
+    </form>
+
+</div>
+
+<div>
+
+
+    
+
+    % for tweet in tweets:
+    <div class="tweet">
+        <form action="/delete_tweet/<tweet_id>" method="post">
+            <input name="tweet_id" type="hidden" value='{{ tweet["tweet_id"] }}'>
+            <div> Title: {{ tweet["tweet_title"] }}</div>
+            <div> Description: {{ tweet["tweet_description"] }}</div>
+            <button>Delete</button>    
+        </form>
+        <form action="/update_tweet/<tweet_id>" method="post">
+            <input name="tweet_id" type="hidden" value='{{ tweet["tweet_id"] }}'>
+            <div> Title: {{ tweet["tweet_title"] }}</div>
+            <div> Description: {{ tweet["tweet_description"] }}</div>
+            <button>Update</button>    
+        </form>
+    </div>
+
+  
+    % end
+
+
+</div>
+</div>
+
+</main>
+
+
 
 % include("footer")
+
+

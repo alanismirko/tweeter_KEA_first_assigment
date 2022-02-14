@@ -11,6 +11,8 @@ import logout_get  #GET
 
 import signup_post    #POST
 import login_post     #POST
+import tweet_post     #POST
+import tweet_delete   #POST
 
 #################################
 run ( host="127.0.0.1", port=8888, debug=True, reloader=True )
