@@ -1,15 +1,25 @@
 % include("header_log_sign", title="Signup")
 
 <main>   
+    <div>
+        % if error == "user_email":
+           <p> The email is not in a validat format</p>
+        </div> 
+        % end
+    
+        % if error == "user_password":
+        <p>Please enter a valid password</p>
+         % end
+    </div>
+   
     <h1>Signup</h1>
     
-    <form action="/signup" method="POST">
+    <form action="/signup" method="post">
 
-        <label>First name:</label> <input name="user_first_name" type="text" placeholder="First name">
-        <label>Last name:</label> <input name="user_last_name" type="text" placeholder="Last name">
-        <label>Email:</label> <input name="user_email" type="text" placeholder="Email">
-        <label>Password:</label> <input name="user_password" type="text" placeholder="Password">
-        <label>Repeat password:</label> <input name="user_password" type="text" placeholder="Repeat password">
+        <label>First name:</label> <input name="user_first_name" type="text" placeholder="First name" value="{{user_first_name or ''}}">
+        <label>Last name:</label> <input name="user_last_name" type="text" placeholder="Last name"  value="{{user_last_name or ''}}">
+        <label>Email:</label> <input name="user_email" type="text" placeholder="Email"  value="{{user_email or ''}}">
+        <label>Password (min 6 characters max 50):</label> <input name="user_password" type="password" placeholder="Password">
 
         <button>Sign up</button>
 
