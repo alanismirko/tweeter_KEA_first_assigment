@@ -1,4 +1,4 @@
-from bottle import run, get, post, view
+from bottle import run, get, post, view, static_file
 
 #########  IMPORTS VIEWS ##############
 import g           
@@ -13,6 +13,13 @@ import signup_post    #POST
 import login_post     #POST
 import tweet_post     #POST
 import tweet_delete   #POST
+import tweet_update   #POST
+
+#########  CSS ##############
+
+@get("/app.css")
+def _():
+    return static_file("app.css", root=".")
 
 #################################
 run ( host="127.0.0.1", port=8888, debug=True, reloader=True )

@@ -34,19 +34,39 @@
             <input name="tweet_id" type="hidden" value='{{ tweet["tweet_id"] }}'>
             <div> Title: {{ tweet["tweet_title"] }}</div>
             <div> Description: {{ tweet["tweet_description"] }}</div>
-            <button>Delete</button>    
+            <button>Delete</button>  
+             
         </form>
-        <form action="/update_tweet/<tweet_id>" method="post">
+
+
+        <div class="button-div">
+        <a href="#popup" class="button">
+          <button>Update</button>
+        </a>
+      </div>
+  
+      <div class="content" id="popup">
+        <a href="#">close</a>
+        <br>
+        <form action="tweet_update/<tweet_id>" method="post">
             <input name="tweet_id" type="hidden" value='{{ tweet["tweet_id"] }}'>
-            <div> Title: {{ tweet["tweet_title"] }}</div>
-            <div> Description: {{ tweet["tweet_description"] }}</div>
-            <button>Update</button>    
+            <input name="tweet_tittle" value='{{tweet["tweet_title"]}}'>
+            <input name="tweet_description" value='{{tweet["tweet_description"]}}'>
+            <button>Update</button>
         </form>
+       
+
+      </div>
+
     </div>
+
+ 
 
   
     % end
 
+    
+    
 
 </div>
 </div>
