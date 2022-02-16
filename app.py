@@ -1,11 +1,11 @@
-from bottle import run, get, view, static_file, error
+from bottle import run, get, view, static_file,request
 
 #########  IMPORTS VIEWS ##############
 import g           
 
 import login_get   #GET
 import signup_get  #GET
-import tweets_get  #GET
+import tweet_get  #GET
 import home_get    #GET
 import logout_get  #GET
 
@@ -25,13 +25,8 @@ def _():
 def _():
     return static_file("style.css", root=".")
 
-#########  ERROR #################
 
-@error(404)
-@view("404")
-def _(error):
-    print(error)
-    return 
+
 
 #################################
 run ( host="127.0.0.1", port=8888, debug=True, reloader=True )

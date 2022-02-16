@@ -154,6 +154,12 @@ button{
     color: white;
 }
 
+.error{
+    padding-bottom: 20px;
+    color: rgb(206, 124, 124);
+    font-weight: 700;
+}
+
 
 /* POPUP */
 .overlay {
@@ -206,5 +212,6 @@ button{
     max-height: 30%;
     overflow: auto;
 }
+
 
 

@@ -1,0 +1,35 @@
+
+<head>
+    <link rel="stylesheet" href="/app.css">
+</head>
+
+<div id="popup" class="overlay">
+    <div class="popup">
+            <div class="content">
+
+
+            <h1>Create a tweet</h1>
+
+            
+            <div class="error">
+                % if error == "tweet_title":
+                <p>Please enter longer title</p>
+                % end
+
+                % if error == "tweet_description":
+                    <p>Please enter longer description</p>
+                % end
+            </div>
+
+
+            <form action="/create_tweet" method="post">
+                <input name="tweet_id" type="hidden" >
+                <input name="tweet_title" type="text" placeholder="Title" value="{{ tweet_title or '' }}" >
+                <input name="tweet_description" type="text" placeholder="Description" value="{{ tweet_description or ''}}">
+                <button>Create</button>
+                
+            </form>
+            </div>           
+        <a class="close" href="#">&times;</a>
+    </div>
+</div>
