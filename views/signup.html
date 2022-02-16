@@ -1,33 +1,55 @@
 % include("header_log_sign", title="Signup")
 
 <main>   
-    <div>
-        % if error == "user_email":
-           <p> The email is not in a validat format</p>
-        </div> 
-        % end
+
+    <div class="container">
+            % if error == "user_email":
+            <div class="error">
+            <p> The email is not in a validat format</p>
+            </div> 
+            % end
+        
+            % if error == "user_password":
+            <div class="error">
+                <p>Please enter a valid password</p>
+            </div>
+            % end
+
+
+            % if error == "user_first_name":
+            <div class="error">
+                <p>First name is too short</p>
+            </div>
+            % end
+
+            % if error == "user_last_name":
+            <div class="error">
+                <p>Last name is too short</p>
+            </div>
+            % end
+
+        <h1>Signup</h1>
+        
+        <form action="/signup" method="post">
+            
+            <label>First name:</label>
+            <input name="user_first_name" type="text" placeholder="First name" value="{{user_first_name or ''}}">            
+            <label>Last name:</label>
+            <input name="user_last_name" type="text" placeholder="Last name"  value="{{user_last_name or ''}}">
+            <label>Email:</label> 
+            <input name="user_email" type="text" placeholder="Email"  value="{{user_email or ''}}">
+            <label>Password (6-50 characters):</label> 
+            <input name="user_password" type="password" placeholder="Password">
     
-        % if error == "user_password":
-        <p>Please enter a valid password</p>
-         % end
-    </div>
-   
-    <h1>Signup</h1>
+            <button>Sign up</button>
     
-    <form action="/signup" method="post">
-
-        <label>First name:</label> <input name="user_first_name" type="text" placeholder="First name" value="{{user_first_name or ''}}">
-        <label>Last name:</label> <input name="user_last_name" type="text" placeholder="Last name"  value="{{user_last_name or ''}}">
-        <label>Email:</label> <input name="user_email" type="text" placeholder="Email"  value="{{user_email or ''}}">
-        <label>Password (min 6 characters max 50):</label> <input name="user_password" type="password" placeholder="Password">
-
-        <button>Sign up</button>
-
-    </form>
-
-    <div>
-        <h3>Already have an account? <a href="/login"> Log in</a></h3>
+        </form>
+    
+        <div>
+            <h3>Already have an account? <a href="/login"> Log in</a></h3>
+        </div>
     </div>
+    
     
 </main> 
 

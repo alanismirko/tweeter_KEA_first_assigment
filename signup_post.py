@@ -25,7 +25,10 @@ def _():
     if len(user_password) > 50:
         return redirect(f"/signup?error=user_password&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}")
 
-
+    if len(user_first_name) < 2:
+        return redirect(f"/signup?error=user_first_name&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}")
+    if len(user_last_name) < 2:
+        return redirect(f"/signup?error=user_last_name&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}")
    
 
     user = {"user_id":user_id, "user_first_name":user_first_name, "user_last_name":user_last_name, "user_email": user_email, "user_password":user_password}

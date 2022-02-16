@@ -1,0 +1,97 @@
+/*CSS FOR LOGIN AND SIGNUP*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:Georgia, 'Times New Roman', Times, serif
+}
+
+body{
+    background: linear-gradient(
+        to right,
+        #1DA1F2 50%,
+        #AAB8C2 50%
+    ) fixed;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.container{
+    background-color: #14171A;
+    width: 600px;
+    padding: 50px;
+    position: absolute;
+    top: 50% ;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    box-shadow: 15px 30px 35px rgba(0,0,0,5);
+    -webkit-perspective: 300px;
+    perspective: 300px;
+    color: white;
+}
+
+.container h1{
+    text-align: center;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 28px;
+    padding-bottom: 22px;
+}
+
+.container h3{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.container a{
+    color: #1DA1F2;
+    text-decoration: none;
+}
+
+
+input{
+    width: 300px;
+    height: 35px;
+    background-color: #F5F8FA;
+    border: 1px solid #828282;
+    border-radius: 20px;
+    padding-left: 10px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 15px;
+
+}
+
+button{
+    background-color: #1DA1F2;
+    margin-top: 20px;
+    width: 300px;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    height: 40px;
+    font-size: 20px;
+    border: 1px solid #828282;
+    color: white;
+    font-weight: 600;
+}
+
+label{
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.error{
+    padding-bottom: 20px;
+    color: red;
+    font-weight: 700;
+}
+

@@ -1,3 +1,5 @@
+/*GENERAL*/
+
 *{
     margin: 0;
     padding: 0;
@@ -15,17 +17,8 @@ body{
     background: rgba(0,0,0,0.1);
 }
 
-
-.content {
-    background-color: pink;
-    width: 40%;
-    padding: 30px;
-    opacity: 0;
-    visibility: hidden;
-}
-
-.content:target {
-    opacity: 1;
-    visibility: visible;
+main{
+    margin-top: 5rem;
+    padding: 0 1rem;
 }
 

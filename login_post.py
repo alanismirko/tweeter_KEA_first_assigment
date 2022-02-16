@@ -26,5 +26,5 @@ def _():
     for user  in g.USERS:
         if user["user_email"] == user_email and user["user_password"] == user_password  :
             return redirect(f"/home")
-    return redirect(f"/signup")
+    return redirect(f"/login?error=wrong_credentials")
 
