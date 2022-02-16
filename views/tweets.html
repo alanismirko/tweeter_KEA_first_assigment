@@ -2,31 +2,20 @@
 
 <main>
 
-    % if tweets == []:
+    <div class="container">
+
+        <h1>List of all tweets</h1>
+
+        % if tweets == []:
     <div>
         Sorry there is no tweets, create one ...
     </div>
 % end
 
-<div >
-<div class="tweet">
 
-    <h1>Create a tweet</h1>
-    <form action="/create_tweet" method="post">
-        <input name="tweet_id" type="hidden" >
-        <input name="tweet_title" type="text" placeholder="Title">
-        <input name="tweet_description" type="text" placeholder="Description">
-        <!--get a creation date from the db-->
-        <button>Create a tweet</button>
-        
-    </form>
 
-</div>
 
 <div>
-
-
-    
 
     % for tweet in tweets:
     <div class="tweet">
@@ -49,12 +38,13 @@
 
     % end
 
-    
-    
-
 </div>
 </div>
 
+
+    </div>
+
+    
 </main>
 
 

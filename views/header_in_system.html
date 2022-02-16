@@ -5,12 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{{get('title', 'ups...')}}</title>
 </head>
 <body>
     <nav>
-        <a href="/home">Home</a>
-        <a href="/tweets">Tweets</a>
-        <a href="/logout">Logout</a>
+        <a href="/home"> <i class="fa fa-home"></i>Home</a>
+        <a href="/tweets"> <i class="fa fa-list-alt" aria-hidden="true"></i>Tweets</a>
+        <a href="/logout"> <i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+        <a class="create_tweet_button" href="#popup1">Create a tweet</a>
     </nav>
 
+    
+    <!--POPUP FOR CREATION OF THE TWEET-->
+    
+    <div id="popup1" class="overlay">
+        <div class="popup">
+            <div class="tweet">
+                <div class="content">
+                <h1>Create a tweet</h1>
+                <form action="/create_tweet" method="post">
+                    <input name="tweet_id" type="hidden" >
+                    <input name="tweet_title" type="text" placeholder="Title">
+                    <input name="tweet_description" type="text" placeholder="Description">
+                    <button>Create a tweet</button>
+                    
+                </form>
+                </div>
+            
+            </div>
+            <a class="close" href="#">&times;</a>
+        </div>
+</div>
+        
+    

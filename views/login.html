@@ -10,12 +10,12 @@
             </div>
             % end
 
-        
+            <i class="fa fa-twitter" aria-hidden="true"></i>
 
             <h1>Login</h1>
             
             <form action="/login" method="post">
-                <input name="user_email" type="text" placeholder="Email" value="{{user_email or ''}}">
+                <input name="user_email" type="text" placeholder="Email" value="{{user_email or ''}}"> 
                 <input name="user_password" type="password" placeholder="Password">
                 <button>Log in</button>
             </form>
