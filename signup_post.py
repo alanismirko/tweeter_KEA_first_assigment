@@ -5,7 +5,6 @@ import uuid
 
 @post("/signup")
 def _():
-    #VALIDATE
 
     user_id = str(uuid.uuid4())
     user_first_name = request.forms.get("user_first_name")

@@ -23,7 +23,6 @@ body{
 }
 
 
-
 nav{
     list-style-type: none;
     margin: 0;
@@ -48,8 +47,10 @@ nav a, i{
 
 
 nav a:hover {
-    background-color: #1DA1F2;
+    background-color:#1DA1F2;
     border-radius: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .create_tweet_button{
@@ -77,6 +78,82 @@ i{
     padding-right: 10px;
 }
 
+input{
+    width: 300px;
+    height: 35px;
+    background-color: #F5F8FA;
+    border: 1px solid #828282;
+    border-radius: 20px;
+    padding-left: 10px;
+    margin-top: 10px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 15px;
+}
+
+button{
+    background-color: #1DA1F2;
+    margin-top: 20px;
+    width: 300px;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    height: 40px;
+    font-size: 20px;
+    border: 1px solid #828282;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.tweet{
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #999;
+    background-color: #26282A;
+    border: 1px solid #14171A;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 30fr 100fr 100fr ;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tweet i{
+    font-size: 90px;
+    color: #1DA1F2;
+}
+
+.tweet_button{
+    width: 150px;
+    cursor: pointer;
+}
+
+.delete_button{
+    margin-top: -37px;
+    margin-left: 50%;
+}
+
+.tweet_button i{
+    font-size: 20px;
+    color: white;
+}
+
+.tweet:hover{
+    background-color: #8A8D8F;
+}
+
+.tweet input{
+    background-color: #14171A;
+    color: white;
+}
+
 
 /* POPUP */
 .overlay {
@@ -101,9 +178,13 @@ i{
     padding: 20px;
     background: #14171A;
     border-radius: 5px;
-    width: 30%;
+    width: 500px;
     position: relative;
     transition: all 5s ease-in-out;
+}
+
+.popup h1{
+    text-align: center;
 }
 
 .popup .close {
@@ -125,3 +206,5 @@ i{
     max-height: 30%;
     overflow: auto;
 }
+
+

@@ -7,33 +7,39 @@
         <h1>List of all tweets</h1>
 
         % if tweets == []:
-    <div>
-        Sorry there is no tweets, create one ...
-    </div>
-% end
+        <div>
+            <p>Nothing to see here yet, you have to create a tweet! </p>
+        </div>
+        % end
+
+        
 
 
 
 
 <div>
-
     % for tweet in tweets:
     <div class="tweet">
-        <form action="/delete_tweet/<tweet_id>" method="post">
-            <input name="tweet_id" type="hidden" value='{{ tweet["tweet_id"] }}'>
-            <div> Title: {{ tweet["tweet_title"] }}</div>
-            <div> Description: {{ tweet["tweet_description"] }}</div>
-            <button>Delete</button>  
-        </form>
-        <form action="tweet_update/<tweet_id>" method="post">
-            <input name="tweet_id" type="hidden" value='{{ tweet["tweet_id"] }}'>
-            <input name="tweet_tittle" value='{{tweet["tweet_title"]}}'>
-            <input name="tweet_description" value='{{tweet["tweet_description"]}}'>
-            <button>Update</button>
-        </form>
 
+        <i class="fa fa-circle" aria-hidden="true"></i>
+
+        <div class="delete_tweet">
+            <form action="/delete_tweet/<tweet_id>" method="post">
+                <input name="tweet_id" type="hidden" value='{{ tweet["tweet_id"] }}'>
+                <div> Title: {{ tweet["tweet_title"] }}</div>
+                <div> Description: {{ tweet["tweet_description"] }}</div>
+                <button class="tweet_button delete_button"> <i class="fa fa-trash-o" aria-hidden="true"></i>Delete</button>  
+            </form>
+        </div>
         
-
+        <div class="update_tweet">
+            <form action="tweet_update/<tweet_id>" method="post">
+                <input name="tweet_id" type="hidden" value='{{ tweet["tweet_id"] }}'>
+                <input name="tweet_title" value='{{tweet["tweet_title"]}}'>
+                <input name="tweet_description" value='{{tweet["tweet_description"]}}'>
+                <button class="tweet_button"> <i class="fa fa-pencil" aria-hidden="true"></i>Update</button>
+            </form>
+        </div>        
     </div>
 
     % end
