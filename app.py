@@ -19,11 +19,11 @@ import tweet_update   #POST
 
 @get("/app.css")
 def _():
-    return static_file("app.css", root=".")
+    return static_file("app.css", root="./style")
 
 @get("/style.css")
 def _():
-    return static_file("style.css", root=".")
+    return static_file("style.css", root="./style")
 
 
 
