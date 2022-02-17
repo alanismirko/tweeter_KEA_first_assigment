@@ -16,6 +16,3 @@ COOKIE_SECRET = "secret key"
 TWEETS =  []
 
 
-
-#{"tweet_title":"aaa", "tweet_description":"bb", "tweet_creation_date": "ccc"}
-
