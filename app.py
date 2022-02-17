@@ -25,8 +25,5 @@ def _():
 def _():
     return static_file("style.css", root="./style")
 
-
-
-
 #################################
 run ( host="127.0.0.1", port=8888, debug=True, reloader=True )
