@@ -23,7 +23,7 @@ body{
 }
 
 
-nav{
+nav {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -34,7 +34,7 @@ nav{
     box-shadow: 2px 0px 0px rgba(245, 248, 250, 0.25);
 }
 
-nav a, i{
+nav a, i {
     display: block;
     padding: 8px 16px;
     text-decoration: none;
@@ -51,6 +51,19 @@ nav a:hover {
     border-radius: 20px;
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.user_account{
+    bottom: 0;
+    color: white;
+    text-align: center;    
+}
+
+.row{
+    bottom: 0;
+    position: absolute;
+    height: 60px;
+    width: 300px;
 }
 
 .create_tweet_button{
@@ -212,6 +225,8 @@ button{
     max-height: 30%;
     overflow: auto;
 }
+
+
 
 
 
