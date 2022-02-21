@@ -9,11 +9,16 @@ def _():
     tweet_title = request.forms.get("tweet_title")
     tweet_description = request.forms.get("tweet_description")
     tweet_id = request.forms.get("tweet_description")
+    user_session_id = request.get_cookie("uuid4")
+
 
     if len(tweet_title) < 1:
         return redirect(f"tweets?error=tweet_title_create&tweet_description={tweet_description}&tweet_title={tweet_title}")
     if len(tweet_description) < 1:
         return redirect(f"tweets?error=tweet_description_create&tweet_title={tweet_title}&tweet_description={tweet_description}")
+    
+    if user_session_id not in g.SESSIONS:
+        return redirect("/login")
 
     tweet = {"tweet_id": tweet_id, "tweet_title": tweet_title, "tweet_description":tweet_description}
     g.TWEETS.append(tweet)
