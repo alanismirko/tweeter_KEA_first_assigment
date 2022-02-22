@@ -59,6 +59,11 @@ nav a:hover {
     text-align: center;    
 }
 
+.user_account a{
+    text-decoration: none;
+    color: white;
+}
+
 .row{
     bottom: 0;
     position: absolute;
@@ -90,6 +95,8 @@ span{
 i{
     padding-right: 10px;
 }
+
+
 
 input{
     width: 300px;

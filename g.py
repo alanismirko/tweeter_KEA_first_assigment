@@ -1,3 +1,4 @@
+
 USERS=[
     {
         "user_first_name": "a",
@@ -15,4 +16,5 @@ COOKIE_SECRET = "secret key"
 
 TWEETS =  []
 
+USER_NAME_MIN_MAX  = '^[a-zA-Z]{2,50}$'
 

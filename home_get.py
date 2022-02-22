@@ -15,7 +15,5 @@ def _():
     if user_session_id not in g.SESSIONS:
         return redirect("/login")
     
-
-
     return dict( error=error, tweet_description=tweet_description, user_first_name=user_first_name, user_last_name=user_last_name, tweet_title=tweet_title, user_email=user_email)
     
