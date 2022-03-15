@@ -11,6 +11,8 @@ from mysql.connector import MySQLConnection, Error
 @post("/signup")
 def _():
     try:
+
+############### DEFINING THE USER #######################################
         user_id = str(uuid.uuid4())
         user_first_name = request.forms.get("user_first_name")
         user_last_name = request.forms.get("user_last_name")
@@ -29,6 +31,9 @@ def _():
             "user_updated_at": user_updated_at
         }
 
+
+############### VALIDATION #######################################
+
         if not request.forms.get("user_email"):
             return redirect(f"/signup?error=user_email&user_first_name={user_first_name}&user_last_name={user_last_name}")
         if not re.match(g.REGEX_EMAIL,user_email):
@@ -46,14 +51,15 @@ def _():
         if len(user_last_name) < 2:
             return redirect(f"/signup?error=user_last_name&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}")
     
+############### DB CONNECTION AND EXECUTION #####################
+
         db_config = {
         "host": "localhost",
         "user":"root",
-         "database": "tweeterdb",
-        "password": "1234",
+        "database": "tweeterdb",
+        "password": "1234"
         }
 
-        #################################
         db = mysql.connector.connect(**db_config)
         cursor = db.cursor()
         sql = """INSERT INTO users (user_id, user_first_name, user_last_name, user_email, user_password, user_created_at, user_updated_at) VALUES (%s, %s, %s, %s, %s, %s, %s)"""

@@ -31,19 +31,6 @@ def _():
 
 #################################
 
-
-db_config = {
-        "host": "localhost",
-        "user":"root",
-         "database": "tweeterdb",
-        "password": "1234",
-    }
-
-#################################
-db = mysql.connector.connect(**db_config)
-cursor = db.cursor()
-
-
 try:
     import production
     application = default_app()
