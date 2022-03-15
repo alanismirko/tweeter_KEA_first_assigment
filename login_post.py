@@ -8,6 +8,9 @@ import jwt
 @post("/login")
 def _():
 
+    user_first_name = request.params.get("user_first_name")
+    user_last_name = request.params.get("user_last_name")
+
     user_email = request.forms.get("user_email")
     response.set_cookie("user_email", user_email, secret=g.COOKIE_SECRET)
 
@@ -17,7 +20,6 @@ def _():
 
     response.set_cookie("encoded_jwt", encoded_jwt)
     response.set_cookie("uuid4", user_session_id)
-
 
     g.SESSIONS.append(user_session_id)
 
