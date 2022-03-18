@@ -3,10 +3,9 @@ import g
 import re
 import uuid
 import time
-import db_connect
 from datetime import datetime
 import mysql.connector
-from mysql.connector import MySQLConnection, Error
+
 
 @post("/signup")
 def _():

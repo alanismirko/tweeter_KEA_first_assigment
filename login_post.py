@@ -41,19 +41,12 @@ def _login():
         user = cursor.fetchone()
         db.commit()
         
-        
     except Exception as ex:
         print(ex)
     finally:
         db.close()
     if not user: 
             return redirect(f"/login?error=wrong_credentials") 
-    return redirect(f"/home")  
-    
-
-    # for user in g.USERS:
-    #     if user["user_email"] == user_email and user["user_password"] == user_password  :
-    #         return redirect(f"/home")
-    # return redirect(f"/login?error=wrong_credentials")
+    return redirect(f"/index")  
     
     

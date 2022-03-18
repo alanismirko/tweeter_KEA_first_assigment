@@ -1,15 +1,15 @@
-from bottle import default_app, run, get, static_file
+from bottle import default_app, run, get, static_file, view
 import json
 import mysql.connector
 
 #########  IMPORTS VIEWS ##############
-import g           
+import g      
 
+import index_get
 import login_get   #GET
 import signup_get  #GET
-import tweet_get  #GET
-import home_get    #GET
 import logout_get  #GET
+import tweet_get  #GET
 import profile_get  #GET
 
 import signup_post    #POST
@@ -28,6 +28,16 @@ def _():
 @get("/style.css")
 def _():
     return static_file("style.css", root="./style")
+
+@get("/app.css")
+def _():
+  return static_file("app.css", root=".")
+
+#############  JS  #################
+@get("/app.js")
+def _():
+  return static_file("app.js", root=".")
+
 
 #################################
 
