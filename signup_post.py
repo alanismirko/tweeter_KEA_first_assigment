@@ -18,7 +18,6 @@ def _():
         user_email = request.forms.get("user_email")
         user_password = request.forms.get("user_password")
         user_created_at = str(int(time.time()))
-        user_updated_at = ""
 
         user = {
             "user_id":user_id,
@@ -61,8 +60,8 @@ def _():
 
         db = mysql.connector.connect(**db_config)
         cursor = db.cursor()
-        sql = """INSERT INTO users (user_id, user_first_name, user_last_name, user_email, user_password, user_created_at, user_updated_at) VALUES (%s, %s, %s, %s, %s, %s, %s)"""
-        val = (user_id,user_first_name,user_last_name, user_email, user_password, user_created_at, user_updated_at)
+        sql = """INSERT INTO users (user_id, user_first_name, user_last_name, user_email, user_password, user_created_at) VALUES (%s, %s, %s, %s, %s, %s)"""
+        val = (user_id,user_first_name,user_last_name, user_email, user_password, user_created_at)
         
         cursor.execute(sql, val)
         db.commit()

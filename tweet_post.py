@@ -6,6 +6,7 @@ from datetime import datetime
 import mysql.connector
 
 @post("/create_tweet")
+@view("index")
 def _():
     
     try:

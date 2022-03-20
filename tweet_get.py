@@ -19,4 +19,3 @@ def _():
 
     return dict(error=error, user_email=user_email,tweet_title=tweet_title, tweet_description=tweet_description,  user_session_email = user_session_email)
 
-

@@ -86,83 +86,18 @@
         </button>
       </form>
     </div>
-    <div class="voices">
+    <div class="tweets">
       <div class="p-4 border-t border-slate-200">
         <div class="flex">
           <img class="flex-none w-12 h-12 rounded-full" src="/images/1.jpg" alt="">
+          % for tweet in tweets:
           <div class="pl-4">
             <p class="font-bold">
-              @supertwo
+              {{ tweet }}
             </p>
-            <div class="pt-2">
-              Drawing on her own story as a refugee, 2018 Obama Fellow @ZarlashtH started the Refugee Trauma Initiative to care for displaced refugees in Greece. Now, @RefugeeTraumaUK is providing lifesaving support to Ukrainians who need help
-            </div>
+
           </div>
-        </div>
-      </div>
-      <div class="p-4 border-t border-slate-200">
-        <div class="flex">
-          <img class="flex-none w-12 h-12 rounded-full" src="/images/2.jpg" alt="">
-          <div class="pl-4">
-            <p class="font-bold">
-              @mmthree
-            </p>
-            <div class="pt-2">
-              Over the last few weeks, we’ve seen people, organizations, and companies around the world stepping up to support the people of Ukraine. Here are some examples I’ve been tracking:
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="p-4 border-t border-slate-200">
-        <div class="flex">
-          <img class="flex-none w-12 h-12 rounded-full" src="/images/3.jpg" alt="">
-          <div class="pl-4">
-            <p class="font-bold">
-              @peterfour
-            </p>
-            <div class="pt-2">
-              I just tested positive for COVID. I’ve had a scratchy throat for a couple days, but am feeling fine otherwise. Michelle and I are grateful to be vaccinated and boosted, and she has tested negative
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="p-4 border-t border-slate-200">
-        <div class="flex">
-          <img class="flex-none w-12 h-12 rounded-full" src="/images/4.jpg" alt="">
-          <div class="pl-4">
-            <p class="font-bold">
-              @mafifive
-            </p>
-            <div class="pt-2">
-              I just tested positive for COVID. I’ve had a scratchy throat for a couple days, but am feeling fine otherwise. Michelle and I are grateful to be vaccinated and boosted, and she has tested negative
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="p-4 border-t border-slate-200">
-        <div class="flex">
-          <img class="flex-none w-12 h-12 rounded-full" src="/images/5.jpg" alt="">
-          <div class="pl-4">
-            <p class="font-bold">
-              @sixsence
-            </p>
-            <div class="pt-2">
-              I just tested positive for COVID. I’ve had a scratchy throat for a couple days, but am feeling fine otherwise. Michelle and I are grateful to be vaccinated and boosted, and she has tested negative
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="p-4 border-t border-slate-200">
-        <div class="flex">
-          <img class="flex-none w-12 h-12 rounded-full" src="/images/6.jpg" alt="">
-          <div class="pl-4">
-            <p class="font-bold">
-              @sevennew
-            </p>
-            <div class="pt-2">
-              I just tested positive for COVID. I’ve had a scratchy throat for a couple days, but am feeling fine otherwise. Michelle and I are grateful to be vaccinated and boosted, and she has tested negative
-            </div>
-          </div>
+          % end
         </div>
       </div>
     </div>
