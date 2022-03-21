@@ -19,6 +19,7 @@ def _():
         tweet_title = request.forms.get("tweet_title")
 
 
+
 ###################### CONNECTING TO THE DATABASE ########################
         db_config = {
         "host": "localhost",

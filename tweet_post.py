@@ -19,12 +19,14 @@ def _():
         tweet_created_at = str(int(time.time()))
         tweet_updated_at = ""
 
+   
+
 
         tweet = {
             "tweet_id": tweet_id, 
             "tweet_title": tweet_title, 
             "tweet_description":tweet_description,
-            "tweet_created_at": tweet_created_at,
+            "tweet_created_at": item_created_at_date,
             "tweet_updated_at": tweet_updated_at,
             "tweet_user_email": tweet_user_email
             }
