@@ -25,10 +25,10 @@ def _():
         }
 
         db = mysql.connector.connect(**db_config)
-        cursor = db.cursor()
+        cursor = db.cursor(buffered=True)
         sql = """SELECT * FROM tweets  WHERE tweet_user_email =%s """
         cursor.execute(sql, (user_email,))
-        tweets = cursor.fetchone() 
+        tweets = cursor.fetchall() 
         db.commit()
         print("Inserted",cursor.rowcount,"row(s) of data.")
 
