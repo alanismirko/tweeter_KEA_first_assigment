@@ -102,6 +102,8 @@
                   <i class="ml-3 fa-solid fa-circle"></i>
                   Updated: {{tweet[4]}}
                 </div>
+                <button id="delete_tweet" class="ml-10 cursor-pointer"><i  class="fa-solid fa-trash"></i></button>
+
               </div>  
               <div   class="hidden pt-2 font-bold tweet_id_update" >
                 {{tweet[0]}}
@@ -112,7 +114,6 @@
               <div id="tweet_description_update" class="pt-2 ">
                 {{tweet[1]}}
               </div>
-              <button class="cursor-pointer"><i  class="fa-solid fa-trash"></i></button>
             </form>
               
               
@@ -132,7 +133,6 @@
                 <input  class="mt-2 font-bold text-white bg-black" name="tweet_title_update" type="text" value="{{tweet[2]}}">
                 <input class="block mt-2 text-white bg-black" name="tweet_description_update" type="text" value="{{tweet[1]}}">
               <button class="flex float-right mb-2">Save</button>
-
             </form>  
             <button id="discard_update" class="flex hidden float-right mb-2 mr-5 border-solid" onclick="updateTweet()">Discard</button>
             
