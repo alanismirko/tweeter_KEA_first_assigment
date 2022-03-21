@@ -18,6 +18,7 @@ def _():
         tweet_description = request.forms.get("tweet_description")
         tweet_title = request.forms.get("tweet_title")
 
+
 ###################### CONNECTING TO THE DATABASE ########################
         db_config = {
         "host": "localhost",
@@ -32,7 +33,7 @@ def _():
         cursor.execute(sql, (user_email,))
         tweets = cursor.fetchall() 
         db.commit()
-        print("Inserted",cursor.rowcount,"row(s) of data.")
+        print("All the tweets are listed")
 
 
     except Exception as ex:

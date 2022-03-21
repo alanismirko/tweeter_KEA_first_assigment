@@ -9,7 +9,6 @@ import index_get
 import login_get   #GET
 import signup_get  #GET
 import logout_get  #GET
-import tweet_get  #GET
 import profile_get  #GET
 
 import signup_post    #POST
