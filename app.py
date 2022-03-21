@@ -14,7 +14,7 @@ import profile_get  #GET
 import signup_post    #POST
 import login_post     #POST
 import tweet_post     #POST
-import tweet_delete   #POST
+import tweet_delete_by_id   #POST
 import tweet_update   #POST
 import profile_update  #POST
 

@@ -26,7 +26,7 @@ def _():
             "tweet_id": tweet_id, 
             "tweet_title": tweet_title, 
             "tweet_description":tweet_description,
-            "tweet_created_at": item_created_at_date,
+            "tweet_created_at": tweet_created_at,
             "tweet_updated_at": tweet_updated_at,
             "tweet_user_email": tweet_user_email
             }
@@ -34,9 +34,9 @@ def _():
 
 ###################### VALIDATION #######################################
         if len(tweet_title) < 1:
-            return redirect(f"tweets?error=tweet_title_create&tweet_description={tweet_description}&tweet_title={tweet_title}")
+            return redirect(f"index?error=tweet_title_create&tweet_description={tweet_description}&tweet_title={tweet_title}")
         if len(tweet_description) < 1:
-            return redirect(f"tweets?error=tweet_description_create&tweet_title={tweet_title}&tweet_description={tweet_description}")
+            return redirect(f"index?error=tweet_description_create&tweet_title={tweet_title}&tweet_description={tweet_description}")
 
 ###################### CONNECTING TO THE DATABASE ########################
         db_config = {

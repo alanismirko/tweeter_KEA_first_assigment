@@ -88,7 +88,8 @@
           <div class="w-full pl-4 text-white">
             
 
-
+            <form action="/delete_tweet/<tweet_id_update>" method="post">
+              <input  class="hidden" name="tweet_id_update" type="text" value="{{tweet[0]}}">
               <div class="flex">
                 <p class="">
                   {{tweet[5]}}
@@ -111,8 +112,19 @@
               <div id="tweet_description_update" class="pt-2 ">
                 {{tweet[1]}}
               </div>
+              <button class="cursor-pointer"><i  class="fa-solid fa-trash"></i></button>
+            </form>
               
-
+              
+              <div class="error">
+                % if error == "tweet_title":
+                <p>Please enter longer title</p>
+                % end
+    
+                % if error == "tweet_description":
+                    <p>Please enter longer description</p>
+                % end
+            </div>
             <form id="update_form" class="hidden" action="/tweet_update/<tweet_id_update>" method="post" > 
                 <input class="hidden" name="tweet_created_at_update" type="text" value="{{tweet[3]}}">
                 <input class="hidden"  name="tweet_updated_at_update" type="text" value="{{tweet[4]}}">
@@ -120,6 +132,7 @@
                 <input  class="mt-2 font-bold text-white bg-black" name="tweet_title_update" type="text" value="{{tweet[2]}}">
                 <input class="block mt-2 text-white bg-black" name="tweet_description_update" type="text" value="{{tweet[1]}}">
               <button class="flex float-right mb-2">Save</button>
+
             </form>  
             <button id="discard_update" class="flex hidden float-right mb-2 mr-5 border-solid" onclick="updateTweet()">Discard</button>
             
@@ -130,8 +143,10 @@
                 <i class="fa-solid fa-heart"></i>
                 <i class="fa-solid fa-retweet"></i>
                 <i class="fa-solid fa-share-nodes"></i>
-                <button id="update_pencil" onclick="updateTweet()"><i class="fa-solid fa-pencil"></i>
+                <button id="update_pencil" class="cursor-pointer" onclick="updateTweet()"><i class="fa-solid fa-pencil"></i>
                 </button>
+
+
             </div>
           </div>
         </div>

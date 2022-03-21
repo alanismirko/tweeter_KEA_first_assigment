@@ -25,6 +25,14 @@ def _(tweet_id_update):
             "tweet_user_email": tweet_user_email
             }
 
+        if len(tweet_title_update) < 1:
+            return redirect(f"/index?error=tweet_title&tweet_description={tweet_description_update}")
+        if len(tweet_description_update) < 1:
+            return redirect(f"/index?error=tweet_description&tweet_title={tweet_title_update}")
+
+        if user_session_id not in g.SESSIONS:
+             return redirect("/login")
+             
         db_config = {
         "host": "localhost",
         "user":"root",
@@ -32,7 +40,7 @@ def _(tweet_id_update):
         "password": "1234"
         }
         db = mysql.connector.connect(**db_config)
-        cursor = db.cursor(buffered=True)
+        cursor = db.cursor()
         sql = """SELECT * FROM tweets  WHERE tweet_id =%s """
         cursor.execute(sql, (tweet_id_update,))
 
@@ -53,14 +61,7 @@ def _(tweet_id_update):
     finally:
         db.close()
 
-    # if len(tweet_title_update) < 1:
-    #     return redirect(f"/index?error=tweet_title&tweet_description={tweet_description_update}")
-    # if len(tweet_description_update) < 1:
-    #     return redirect(f"/index?error=tweet_description&tweet_title={tweet_title_update}")
-
-
-    # if user_session_id not in g.SESSIONS:
-    #     return redirect("/login")
+    
     return redirect("/index")
 
 
