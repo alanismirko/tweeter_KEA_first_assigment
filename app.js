@@ -8,7 +8,6 @@ function updateTweet(){
     document.getElementById("tweet_description_update").classList.toggle("hidden");
     document.getElementById("update_form").classList.toggle("hidden");
     document.getElementById("discard_update").classList.toggle("hidden");
-    document.getElementById("delete_tweet").classList.toggle("hidden");
 }
 
         
