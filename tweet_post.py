@@ -36,10 +36,6 @@ def _():
         if len(tweet_description) < 1:
             return redirect(f"tweets?error=tweet_description_create&tweet_title={tweet_title}&tweet_description={tweet_description}")
 
-###################### USER LOGGED IN #######################################
-        # if user_session_id not in g.SESSIONS:
-        #     return redirect("/login")
-
 ###################### CONNECTING TO THE DATABASE ########################
         db_config = {
             "host": "localhost",
@@ -62,9 +58,13 @@ def _():
         print(ex)
     finally:
         db.close()
-    
 
-    return redirect("/index")
+###################### RETURN ########################
+
+    if user_session_id not in g.SESSIONS:
+            return redirect("/login")
+    else:
+        return redirect("/index")
 
 
 

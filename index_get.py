@@ -9,6 +9,7 @@ import mysql.connector
 @view("index")
 def _():
     try:
+###################### DEFINING THE VARIABLES ########################
         error = request.forms.get("error")
         user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET)
         user_first_name = request.get_cookie("user_first_name", secret=g.COOKIE_SECRET)
@@ -17,6 +18,7 @@ def _():
         tweet_description = request.forms.get("tweet_description")
         tweet_title = request.forms.get("tweet_title")
 
+###################### CONNECTING TO THE DATABASE ########################
         db_config = {
         "host": "localhost",
         "user":"root",
@@ -37,6 +39,8 @@ def _():
         print(ex)
     finally:
         db.close()
+
+###################### RETURN - DICTIONARY ########################
     return dict( error = error, tweet_description=tweet_description, 
                     user_first_name=user_first_name, user_last_name=user_last_name, 
                     tweet_title=tweet_title, user_email=user_email, tweets = tweets)

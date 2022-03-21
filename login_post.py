@@ -45,8 +45,11 @@ def _login():
         print(ex)
     finally:
         db.close()
+
+###################### RETURN ########################
     if not user: 
             return redirect(f"/login?error=wrong_credentials") 
-    return redirect(f"/index")  
+    else:
+        return redirect(f"/index")  
     
     
