@@ -4,7 +4,8 @@ import mysql.connector
 
 @get("/tweets")
 @get("/")
-@view("index_tweets")
+@get("/index")
+@view("index")
 def _():
     try:
 ###################### DEFINING THE VARIABLES ########################
