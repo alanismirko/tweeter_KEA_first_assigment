@@ -26,7 +26,6 @@ def _():
             "user_email": user_email,
             "user_password": user_password,
             "user_created_at": user_created_at,
-            "user_updated_at": user_updated_at
         }
 
 
@@ -61,7 +60,7 @@ def _():
         db = mysql.connector.connect(**db_config)
         cursor = db.cursor()
         sql = """INSERT INTO users (user_id, user_first_name, user_last_name, user_email, user_password, user_created_at) VALUES (%s, %s, %s, %s, %s, %s)"""
-        val = (user_id,user_first_name,user_last_name, user_email, user_password, user_created_at)
+        val = (user_id,user_first_name,user_last_name, user_email, user_password, user_created_at, )
         
         cursor.execute(sql, val)
         db.commit()
@@ -71,6 +70,7 @@ def _():
         print(ex)
     finally:
         db.close()
-
-
     return redirect("/login")
+
+
+

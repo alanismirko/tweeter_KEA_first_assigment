@@ -10,7 +10,6 @@ import index_get
 import login_get   #GET
 import signup_get  #GET
 import logout_get  #GET
-import profile_get  #GET
 import tweet_get_all #GET
 
 
@@ -19,7 +18,6 @@ import login_post     #POST
 import tweet_post     #POST
 import tweet_delete_by_id   #POST
 import tweet_update   #POST
-import profile_update  #POST
 
 #########  CSS #################
 
