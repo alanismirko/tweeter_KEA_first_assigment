@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/c884ab5724.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="app.css">
+  <script src="app.js" defer></script>
+  <title>Tweeter</title>
+</head>
+<body class="flex w-full h-full bg-black">
+
+
+
+  <div class="w-1/4">
+    <div class="relative h-screen p-4">
+      <div class="mt-2 text-xl">
+        <a href="/" onclick="return false" class="flex items-center gap-2 px-8 py-2 text-white rounded-full hover:bg-blue-200" href="/explore">
+          <svg class="w-8 h-8 fill-slate-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M575.8 255.5C575.8 273.5 560.8 287.6 543.8 287.6H511.8L512.5 447.7C512.5 450.5 512.3 453.1 512 455.8V472C512 494.1 494.1 512 472 512H456C454.9 512 453.8 511.1 452.7 511.9C451.3 511.1 449.9 512 448.5 512H392C369.9 512 352 494.1 352 472V384C352 366.3 337.7 352 320 352H256C238.3 352 224 366.3 224 384V472C224 494.1 206.1 512 184 512H128.1C126.6 512 125.1 511.9 123.6 511.8C122.4 511.9 121.2 512 120 512H104C81.91 512 64 494.1 64 472V360C64 359.1 64.03 358.1 64.09 357.2V287.6H32.05C14.02 287.6 0 273.5 0 255.5C0 246.5 3.004 238.5 10.01 231.5L266.4 8.016C273.4 1.002 281.4 0 288.4 0C295.4 0 303.4 2.004 309.5 7.014L564.8 231.5C572.8 238.5 576.9 246.5 575.8 255.5L575.8 255.5z"/></svg>
+          Home
+        </a>
+      </div>  
+ 
+
+      <a href="/login"><button class="w-full py-2 mt-8 text-lg text-white bg-blue-300 rounded-full">
+        Login
+      </button>
+  </a>
+    </div>
+  </div>
+
+
+
+  <div class="w-2/4 border-x border-slate-200">
+    <div class="p-4">
+      <form onsubmit="return false">
+        <input class="w-full h-12 px-4 rounded bg-slate-500 text-slate-200 placeholder:text-slate-200" 
+        type="text" placeholder="What are you interested in ?">
+      </form>
+    </div>
+    <div class="px-4 py-4 pt-0">
+      <form class="relative flex p-4 border rounded border-blue" onsubmit="return false">
+        <input class="w-full h-12 rounded outline-none text-slate-800" 
+        type="text" placeholder="What is in your mind ?">
+        <button class="absolute px-8 py-2 text-white bg-blue-500 rounded-full bottom-2 right-2">
+          Voice it
+        </button>
+      </form>
+    </div>
+    <div class="mt-4">
+      % for tweet in tweets:
+      <div class="p-4 border-t border-slate-200">
+        <div class="flex">
+          <div class="w-full pl-4 text-white">
+            
+
+              <input  class="hidden" name="tweet_id_update" type="text" value="{{tweet[0]}}">
+              <div class="flex">
+                <p class="">
+                  {{tweet[5]}}
+                </p>   
+                <div class="">
+                  <i class="ml-3 fa-solid fa-circle"></i>
+                  Created: {{tweet[3]}} 
+                </div>  
+                <div  class="">
+                  <i class="ml-3 fa-solid fa-circle"></i>
+                  Updated: {{tweet[4]}}
+                </div>
+
+              </div>  
+              <div   class="hidden pt-2 font-bold tweet_id_update" >
+                {{tweet[0]}}
+              </div>
+              <div id="tweet_title_update"  class="pt-2 font-bold " >
+                {{tweet[2]}}
+              </div>
+              <div id="tweet_description_update" class="pt-2 ">
+                {{tweet[1]}}
+              </div>
+              
+              
+              <div class="error">
+                % if error == "tweet_title":
+                <p>Please enter longer title</p>
+                % end
+    
+                % if error == "tweet_description":
+                    <p>Please enter longer description</p>
+                % end
+            </div>
+
+            
+            
+
+            <div class="flex w-full gap-12 mt-4 text-lg">
+                <i class="ml-auto fa-solid fa-message"></i>
+                <i class="fa-solid fa-heart"></i>
+                <i class="fa-solid fa-retweet"></i>
+                <i class="fa-solid fa-share-nodes"></i>
+                </button>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      % end           
+    </div>
+  </div>
+  
+
+
+  <div class="w-1/4">
+    <div class="fixed p-4">
+      right
+    </div>
+  </div>
+
+  
+</body>
+</html>
