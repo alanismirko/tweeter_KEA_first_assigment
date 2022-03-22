@@ -3,7 +3,8 @@ import json
 import mysql.connector
 
 #########  IMPORTS VIEWS ##############
-import g      
+import g    
+import sessions  
 
 import index_get
 import login_get   #GET
@@ -11,6 +12,7 @@ import signup_get  #GET
 import logout_get  #GET
 import profile_get  #GET
 import tweet_get_all #GET
+
 
 import signup_post    #POST
 import login_post     #POST
