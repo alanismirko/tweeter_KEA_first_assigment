@@ -45,13 +45,14 @@ def _(tweet_id_update):
                 SET tweet_description =%s,
                 tweet_title =%s,
                 tweet_created_at =%s,
-                tweet_updated_at =%s,
                 tweet_user_email =%s
         WHERE tweet_id=%s"""
-        var = (tweet_description_update, tweet_title_update, tweet_created_at_update, tweet_updated_at_update, tweet_user_email, tweet_id_update,)
+
+        var = (tweet_description_update, tweet_title_update, tweet_created_at_update, tweet_user_email, tweet_id_update,)
         cursor.execute(sql, var)
         db.commit()
-        print("tweet is deleted", tweet_id_update)
+        print("tweet is updated", tweet_id_update)
+        print(tweet_updated_at_update)
 
     except Exception as ex:
         print(ex)

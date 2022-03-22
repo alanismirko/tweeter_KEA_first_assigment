@@ -27,7 +27,7 @@
                 <p>Please enter longer description</p>
             % end
         </div>
-        <form action="/create_tweet" method="post">
+        <form action="/create_tweet" method="post" >
           <div class="block">
             <input name="tweet_id" type="hidden" >
             <input class="w-full h-8 mb-5" name="tweet_title" type="text" placeholder="Title" value="{{ tweet_title or '' }}" >
@@ -88,7 +88,7 @@
           <div class="w-full pl-4 text-white">
             
 
-            <form action="/delete_tweet/<tweet_id_update>" method="post">
+            <form action="/delete_tweet/<tweet_id_update>" method="post" >
               <input  class="hidden" name="tweet_id_update" type="text" value="{{tweet[0]}}">
               <div class="flex">
                 <p class="">
@@ -126,7 +126,7 @@
                     <p>Please enter longer description</p>
                 % end
             </div>
-            <form id="update_form" class="hidden" action="/tweet_update/<tweet_id_update>" method="post" > 
+            <form id="update_form" class="hidden" action="/tweet_update/<tweet_id_update>" method="post"  > 
                 <input class="hidden" name="tweet_created_at_update" type="text" value="{{tweet[3]}}">
                 <input class="hidden"  name="tweet_updated_at_update" type="text" value="{{tweet[4]}}">
                 <input  class="hidden" name="tweet_id_update" type="text" value="{{tweet[0]}}">
