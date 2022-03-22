@@ -52,14 +52,19 @@ def _(tweet_id_update):
         cursor.execute(sql, var)
         db.commit()
         print("tweet is updated", tweet_id_update)
-        print(tweet_updated_at_update)
+        print(tweet)
 
     except Exception as ex:
         print(ex)
     finally:
         db.close()
 
-    return redirect("/index")
+###################### RETURN ########################
+
+    if user_session_id not in g.SESSIONS:
+            return redirect("/login")
+    else:
+        return redirect("/index")
 
 
 
