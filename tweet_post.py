@@ -56,6 +56,14 @@ def _():
         db.commit()
         print("tweet is created", tweet)
 
+        sql = """SELECT * FROM sessions  WHERE session_id =%s """
+        cursor.execute(sql, (user_session_id,))
+        session = cursor.fetchone() 
+        db.commit()
+
+
+        print("All the tweets are listed")
+
     except Exception as ex:
         print(ex)
     finally:
@@ -63,10 +71,8 @@ def _():
 
 ###################### RETURN ########################
 
-    if user_session_id not in g.SESSIONS:
-            return redirect("/login")
-    else:
-        return redirect("/index")
+
+        
 
 
 

@@ -44,7 +44,7 @@ def _login():
         user = cursor.fetchone()
         print("User is logged in")
 
-        sql_session= """ INSERT INTO sessions (session_id, session_user_email, created_at) VALUES (%s,%s,%s)  """
+        sql_session= """ INSERT INTO sessions (session_id, session_user_email, session_created_at) VALUES (%s,%s,%s)  """
         val_session = (user_session_id, user_email,user_created_at )
         cursor.execute(sql_session, val_session)
         print("Session is added")

@@ -39,10 +39,8 @@ def _(tweet_id_update):
 
 ###################### RETURN ########################
 
-    if user_session_id not in g.SESSIONS:
-            return redirect("/login")
-    else:
-        return redirect("/index")
+
+        return redirect("/index_tweets")
 
 
 

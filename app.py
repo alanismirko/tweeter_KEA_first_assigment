@@ -4,7 +4,6 @@ import mysql.connector
 
 #########  IMPORTS VIEWS ##############
 import g    
-import sessions  
 
 import index_get
 import login_get   #GET

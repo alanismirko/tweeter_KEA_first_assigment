@@ -71,17 +71,7 @@
                   Updated: {{tweet[4]}}
                 </div>
                 <button id="delete_tweet" class="ml-10 cursor-pointer"><i  class="fa-solid fa-trash"></i></button>
-
               </div>  
-              <div   class="hidden pt-2 font-bold tweet_id_update" >
-                {{tweet[0]}}
-              </div>
-              <div id="tweet_title_update"  class="pt-2 font-bold " >
-                {{tweet[2]}}
-              </div>
-              <div id="tweet_description_update" class="pt-2 ">
-                {{tweet[1]}}
-              </div>
             </form>
               
               
@@ -94,22 +84,14 @@
                     <p>Please enter longer description</p>
                 % end
             </div>
-            <form id="update_form" class="hidden" action="/tweet_update/<tweet_id_update>" method="post"  > 
+            <form id="update_form" action="/tweet_update/<tweet_id_update>" method="post"  > 
                 <input class="hidden" name="tweet_created_at_update" type="text" value="{{tweet[3]}}">
                 <input class="hidden"  name="tweet_updated_at_update" type="text" value="{{tweet[4]}}">
                 <input  class="hidden" name="tweet_id_update" type="text" value="{{tweet[0]}}">
                 <input  class="mt-2 font-bold text-white bg-black" name="tweet_title_update" type="text" value="{{tweet[2]}}">
                 <input class="block mt-2 text-white bg-black" name="tweet_description_update" type="text" value="{{tweet[1]}}">
-              <button type="submit" class="flex float-right mb-2">Save</button>
-            </form>  
-            <button id="discard_update" class="flex hidden float-right mb-2 mr-5 border-solid" onclick="updateTweet()">Discard</button>
-            
-            
-
-            <div class="flex w-full gap-12 mt-4 text-lg">
-                <button id="update_pencil" class="cursor-pointer" onclick="updateTweet()"><i class="fa-solid fa-pencil"></i>
-                </button>
-            </div>
+              <button type="submit" class="flex float-left mb-2"><i class="fa-solid fa-pencil"></i></button>
+            </form>              
           </div>
         </div>
       </div>

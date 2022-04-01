@@ -30,12 +30,21 @@ def _():
 
         db = mysql.connector.connect(**db_config)
         cursor = db.cursor(buffered=True)
+
+        
+
         sql = """SELECT * FROM tweets  WHERE tweet_user_email =%s """
         cursor.execute(sql, (user_email,))
         tweets = cursor.fetchall() 
-        db.commit()
         print("All the tweets are listed")
 
+        sql_sessions=""" SELECT * FROM sessions WHERE session_id =%s"""
+        cursor.execute(sql_sessions, (user_session_id,))
+        session = cursor.fetchone()
+        print(session)
+
+
+        db.commit()
 
     except Exception as ex:
         print(ex)
@@ -43,7 +52,9 @@ def _():
         db.close()
 
 ###################### RETURN - DICTIONARY ########################
+    if session is None:
+        return redirect("/login")
+        
     return dict( error = error, tweet_description=tweet_description, 
                     user_first_name=user_first_name, user_last_name=user_last_name, 
                     tweet_title=tweet_title, user_email=user_email, tweets = tweets)
-        

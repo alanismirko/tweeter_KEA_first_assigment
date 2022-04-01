@@ -13,8 +13,6 @@ def _():
     user_session_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET)
 
 ###################### USERS LOGGED IN #######################################
-    # if user_session_id not in g.SESSIONS:
-    #     return redirect("/login")
 
 
     return dict(error=error, user_email=user_email,tweet_title=tweet_title, tweet_description=tweet_description,  user_session_email = user_session_email)
