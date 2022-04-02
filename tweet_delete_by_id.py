@@ -29,8 +29,15 @@ def _(tweet_id_update):
         sql = """ DELETE FROM tweets WHERE tweet_id=%s"""
 
         cursor.execute(sql, (tweet_id_update,))
-        db.commit()
         print("tweet is deleted", tweet_id_update)
+
+        sql_sessions=""" SELECT * FROM sessions WHERE session_id =%s"""
+        cursor.execute(sql_sessions, (user_session_id,))
+        session = cursor.fetchone()
+        print(session)
+
+        db.commit()
+
 
     except Exception as ex:
         print(ex)
@@ -38,9 +45,11 @@ def _(tweet_id_update):
         db.close()
 
 ###################### RETURN ########################
+    if session is None:
+            return redirect("/login")
 
 
-        return redirect("/index_tweets")
+    return redirect("/index_tweets")
 
 
 

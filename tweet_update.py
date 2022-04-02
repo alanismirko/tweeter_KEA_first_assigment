@@ -54,14 +54,20 @@ def _(tweet_id_update):
         print("tweet is updated", tweet_id_update)
         print(tweet)
 
+        sql = """SELECT * FROM sessions  WHERE session_id =%s """
+        cursor.execute(sql, (user_session_id,))
+        session = cursor.fetchone() 
+        db.commit()
+
     except Exception as ex:
         print(ex)
     finally:
         db.close()
 
 ###################### RETURN ########################
-
-        return redirect("/myprofile")
+    if session is None:
+            return redirect("/login")
+    return redirect("/myprofile")
 
 
 

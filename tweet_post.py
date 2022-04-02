@@ -70,6 +70,8 @@ def _():
         db.close()
 
 ###################### RETURN ########################
+    if session is None:
+            return redirect("/login")
 
 
         
