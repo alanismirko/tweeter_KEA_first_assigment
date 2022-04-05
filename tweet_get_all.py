@@ -36,6 +36,7 @@ def _():
         sql_sessions=""" SELECT * FROM sessions WHERE session_id =%s"""
         cursor.execute(sql_sessions, (user_session_id,))
         session = cursor.fetchone()
+        print(session)
 
         db.commit()
 

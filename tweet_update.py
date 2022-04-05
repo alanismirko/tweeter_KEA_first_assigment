@@ -67,7 +67,7 @@ def _(tweet_id_update):
 ###################### RETURN ########################
     if session is None:
             return redirect("/login")
-    return redirect("/myprofile")
+    return redirect("/mytweets")
 
 
 

@@ -5,8 +5,8 @@ import mysql.connector
 
 
 
-@get("/myprofile")
-@view("myprofile")
+@get("/mytweets")
+@view("mytweets")
 def _():
     try:
 ###################### DEFINING THE VARIABLES ########################

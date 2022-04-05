@@ -3,6 +3,7 @@ import g
 
 @get("/create_tweet")
 @view("index")
+@view("mytweets")
 def _():
 ###################### VARIABLES #######################################
     error = request.params.get("error")

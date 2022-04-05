@@ -6,7 +6,7 @@ from datetime import datetime
 import mysql.connector
 
 @post("/delete_tweet/<tweet_id_update>")
-@view("index")
+@view("/mytweets")
 def _(tweet_id_update):
     
     try:
@@ -49,7 +49,7 @@ def _(tweet_id_update):
             return redirect("/login")
 
 
-    return redirect("/index_tweets")
+    return redirect("/mytweets")
 
 
 

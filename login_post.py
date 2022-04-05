@@ -6,6 +6,7 @@ import jwt
 import mysql.connector
 import time
 from datetime import datetime
+import bcrypt
 
 
 @post("/login")
@@ -14,11 +15,15 @@ def _login():
     try:
 ###################### VARIABLES #######################################
         user_email = request.forms.get("user_email")
-        user_password = request.forms.get("user_password")
         user_session_id = str(uuid.uuid4())
         encoded_jwt = jwt.encode({"uuid4": user_session_id, "user_email":user_email}, "secret key", algorithm="HS256")
         user_created_at = str(int(time.time()))
 
+        user_password = request.forms.get("user_password").encode("utf-8")
+
+
+        salt = bcrypt.gensalt()
+        password_hashed = bcrypt.checkpw(user_password, salt)
 
 ###################### SETTING THE COOKIE ##############################
 
@@ -39,7 +44,7 @@ def _login():
         db = mysql.connector.connect(**db_config)
         cursor = db.cursor()
         sql_login = """SELECT * FROM users WHERE user_email =%s AND user_password=%s """
-        var = (user_email, user_password)
+        var = (user_email, password_hashed)
         cursor.execute(sql_login, var)
         user = cursor.fetchone()
         print("User is logged in")
