@@ -41,6 +41,7 @@ def _login():
         "password": "1234"
         }
 
+
         db = mysql.connector.connect(**db_config)
         cursor = db.cursor()
         sql_login = """SELECT * FROM users WHERE user_email =%s AND user_password=%s """

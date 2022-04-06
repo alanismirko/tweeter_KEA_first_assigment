@@ -1,9 +1,6 @@
-from bottle import  get, view, request, redirect
+from bottle import  get, view, request, redirect, post
 import g
-import mysql.connector
-
-
-
+import mysql
 
 @get("/mytweets")
 @view("mytweets")

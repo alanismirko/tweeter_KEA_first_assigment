@@ -77,13 +77,17 @@ def _():
         val = (user_id,user_first_name,user_last_name, user_email, password_hashed, user_created_at, user_address_id, )
         cursor.execute(sql, val)
 
+
         db.commit()
         
     except Exception as ex:
         print(ex)
         db.rollback()
     finally:
-        db.close()
+         if db.is_connected():
+            cursor.close()
+            db.close()
+            print("connnection is closed")
     return redirect("/login")
 
 

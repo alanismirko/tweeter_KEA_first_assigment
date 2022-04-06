@@ -5,13 +5,11 @@ import mysql.connector
 #########  IMPORTS VIEWS ##############
 import g    
 
-import index_get
 import login_get   #GET
 import signup_get  #GET
 import logout_get  #GET
 import tweet_get_all #GET
-import tweet_get
-import myprofile_get
+import mytweet_get
 import search_tweet
 
 

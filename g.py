@@ -5,6 +5,5 @@ REGEX_EMAIL = '^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[
 
 COOKIE_SECRET = "secret key"
 
-
 USER_NAME_MIN_MAX  = '^[a-zA-Z]{2,50}$'
 

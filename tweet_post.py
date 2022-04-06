@@ -52,12 +52,17 @@ def _():
         val = (tweet_id,tweet_description,tweet_title, tweet_created_at, user_email)
         
         cursor.execute(sql, val)
-        db.commit()
         print("tweet is created", tweet)
 
         sql = """SELECT * FROM sessions  WHERE session_id =%s """
         cursor.execute(sql, (user_session_id,))
         session = cursor.fetchone() 
+
+        sql = """SELECT * FROM tweets  WHERE tweet_user_email =%s """
+        cursor.execute(sql, (user_email,))
+        tweets = cursor.fetchall() 
+        print("All the tweets are listed")
+        
         db.commit()
 
 
@@ -69,6 +74,8 @@ def _():
         db.close()
 
 ###################### RETURN ########################
-    return dict(error=error, user_email=user_email,tweet_title=tweet_title, tweet_description=tweet_description)
+    if session is None:
+            return redirect("/login")
+    return dict(error=error, user_email=user_email,tweet_title=tweet_title, tweet_description=tweet_description, tweets=tweets)
 
 
