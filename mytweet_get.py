@@ -1,4 +1,4 @@
-from bottle import  get, view, request, redirect, post
+from bottle import  get, view, request, redirect, post, template
 import g
 import mysql
 
@@ -14,6 +14,9 @@ def _():
         user_session_id = request.get_cookie("uuid4")
         tweet_description = request.forms.get("tweet_description")
         tweet_title = request.forms.get("tweet_title")
+        image_tweet = request.files.get("image_tweet")
+
+
 
 
 
@@ -51,7 +54,8 @@ def _():
 ###################### RETURN - DICTIONARY ########################
     if session is None:
         return redirect("/login")
+    
         
     return dict( error = error, tweet_description=tweet_description, 
                     user_first_name=user_first_name, user_last_name=user_last_name, 
-                    tweet_title=tweet_title, user_email=user_email, tweets = tweets)
+                    tweet_title=tweet_title, user_email=user_email, tweets = tweets, image_tweet = image_tweet)

@@ -38,7 +38,10 @@ def _():
 def _():
   return static_file("app.js", root=".")
 
-
+#############  IMAGES  #################
+@get("/images/<filepath:re:.*\.(jpg|png|gif|ico|svg)>")
+def img(filepath):
+    return static_file(filepath, root="./images")
 #################################
 
 try:
