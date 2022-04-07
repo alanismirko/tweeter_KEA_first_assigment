@@ -1,4 +1,4 @@
-from bottle import default_app, run, get, static_file, view
+from bottle import default_app, run, get, static_file, view, request
 import json
 import mysql.connector
 
@@ -43,6 +43,7 @@ def _():
 @get("/images/<filepath:re:.*\.(jpg|png|gif|ico|svg)>")
 def img(filepath):
     return static_file(filepath, root="./images")
+
 #################################
 
 try:

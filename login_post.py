@@ -10,14 +10,14 @@ import bcrypt
 
 
 @post("/login")
-def _login():
+def _():
 
     try:
 ###################### VARIABLES #######################################
         user_email = request.forms.get("user_email")
         user_session_id = str(uuid.uuid4())
         encoded_jwt = jwt.encode({"uuid4": user_session_id, "user_email":user_email}, "secret key", algorithm="HS256")
-        user_created_at = str(int(time.time()))
+        session_created_at = ""
 
         user_password = request.forms.get("user_password").encode("utf-8")
 
@@ -30,6 +30,8 @@ def _login():
         response.set_cookie("user_email", user_email, secret=g.COOKIE_SECRET)
         response.set_cookie("encoded_jwt", encoded_jwt)
         response.set_cookie("uuid4", user_session_id)
+        response.set_cookie("session_created_at", session_created_at)
+
 
 
 ###################### CONNECTING TO THE DATABASE AND TRANSACTIONS ########################
@@ -50,8 +52,8 @@ def _login():
         user = cursor.fetchone()
         print("User is logged in")
 
-        sql_session= """ INSERT INTO sessions (session_id, session_user_email, session_created_at) VALUES (%s,%s,%s)  """
-        val_session = (user_session_id, user_email,user_created_at )
+        sql_session= """ INSERT INTO sessions (session_id, session_user_email) VALUES (%s,%s)  """
+        val_session = (user_session_id, user_email, )
         cursor.execute(sql_session, val_session)
         print("Session is added")
 
