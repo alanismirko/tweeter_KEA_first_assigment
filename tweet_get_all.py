@@ -3,7 +3,6 @@ import g
 import mysql.connector
 
 @get("/tweets")
-@get("/")
 @get("/index")
 @view("index")
 def _():

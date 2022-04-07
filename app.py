@@ -11,6 +11,7 @@ import logout_get  #GET
 import tweet_get_all #GET
 import mytweet_get
 import search_tweet
+import index_no_login_get
 
 
 import signup_post    #POST
