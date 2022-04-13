@@ -5,8 +5,8 @@ import mysql
 @view("index_tweets")
 def _():
     try:
-        tweet_description = request.forms.get("tweet_description")
-        tweet_title = request.forms.get("tweet_title")
+        tweet_description = request.params.get("tweet_description")
+        tweet_title = request.params.get("tweet_title")
         image_tweet = request.files.get("image_tweet")
         
 ###################### CONNECTING TO THE DATABASE ########################

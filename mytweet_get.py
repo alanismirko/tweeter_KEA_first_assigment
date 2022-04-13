@@ -7,13 +7,13 @@ import mysql
 def _():
     try:
 ###################### DEFINING THE VARIABLES ########################
-        error = request.forms.get("error")
+        error = request.params.get("error")
         user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET)
         user_first_name = request.get_cookie("user_first_name", secret=g.COOKIE_SECRET)
         user_last_name = request.get_cookie("user_last_name", secret=g.COOKIE_SECRET)
         user_session_id = request.get_cookie("uuid4")
-        tweet_description = request.forms.get("tweet_description")
-        tweet_title = request.forms.get("tweet_title")
+        tweet_description = request.params.get("tweet_description")
+        tweet_title = request.params.get("tweet_title")
         image_tweet = request.files.get("image_tweet")
 
 

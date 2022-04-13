@@ -1,4 +1,4 @@
-from bottle import  post, request, redirect
+from bottle import  post, request, redirect, get
 import g
 import re
 import uuid
@@ -6,6 +6,9 @@ import time
 from datetime import datetime
 import mysql.connector
 import bcrypt
+import smtplib, ssl
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 
 @post("/signup")
@@ -29,6 +32,51 @@ def _():
         salt = bcrypt.gensalt()
         password_hashed = bcrypt.hashpw(user_password, salt)
         user_created_at = str(int(time.time()))
+
+    # sender_email = "keatest.2022@gmail.com"
+    # receiver_email = user_email
+    # password = "Alanis123+"
+
+    # message = MIMEMultipart("alternative")
+    # message["Subject"] = "tweeter"
+    # message["From"] = sender_email
+    # message["To"] = receiver_email
+
+    # # Create the plain-text and HTML version of your message
+    # text = """\
+    # Hi,
+    # Thank you.
+    # """
+
+    # html = """\
+    # <html>
+    #     <body>
+    #     <p>
+    #         Hi,<br>
+    #         <b style="color: blue;">How are you?</b><br>
+    #     </p>
+    #     </body>
+    # </html>
+    # """
+
+    # # Turn these into plain/html MIMEText objects
+    # part1 = MIMEText(text, "plain")
+    # part2 = MIMEText(html, "html")
+
+    # # Add HTML/plain-text parts to MIMEMultipart message
+    # # The email client will try to render the last part first
+    # message.attach(part1)
+    # message.attach(part2)
+
+    # # Create secure connection with server and send email
+    # context = ssl.create_default_context()
+    # with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+    #     try:
+    #         server.login(sender_email, password)
+    #         server.sendmail(sender_email, receiver_email, message.as_string())
+    #         return "yes, email sent"
+    #     except Exception as ex:
+    #         print("cannot send the email")
     
 
 ############### VALIDATION #######################################
