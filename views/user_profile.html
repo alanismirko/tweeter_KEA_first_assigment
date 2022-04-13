@@ -1,35 +1,6 @@
 % include("header", title="Profile")
 
-<section id="tweetModal" class="fixed z-10 hidden w-screen h-screen">
-    <div class="absolute w-full h-full bg-black bg-opacity-50" onclick="toggleTweetModal()">
-
-    </div>
-    <div class="relative z-10 w-1/3 h-64 p-10 mx-auto mt-20 rounded-lg bg-slate-700">
-      <span class="float-right text-2xl text-white cursor-pointer"><a onclick="toggleTweetModal()" href="#">&times;</a></span>   
-      <h1 class="mb-1 text-xl text-white">Create a tweet</h1>
-        <div class="error">
-            % if error == "tweet_title":
-            <p>Please enter longer title</p>
-            % end
-
-            % if error == "tweet_description":
-                <p>Please enter longer description</p>
-            % end
-        </div>
-        <form action="/create_tweet" method="post" >
-          <div class="block">
-            <input name="tweet_id" type="hidden" >
-            <input class="w-full h-8 mb-5" name="tweet_title" type="text" placeholder="Title" value="{{ tweet_title or '' }}" >
-            <input class="w-full h-8 mb-5" name="tweet_description" type="text" placeholder="Description" value="{{ tweet_description or ''}}">
-          </div>    
-            <button class="w-full py-2 mt-1 text-lg text-white bg-blue-300 rounded-full" >Create</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-
-  <div  class="w-3/4 border-x border-slate-200 ">
+  <div class="w-3/4 border-x border-slate-200 ">
     <div class="mt-4 text-white">
      % for user in users:
        {{user[1]}}
