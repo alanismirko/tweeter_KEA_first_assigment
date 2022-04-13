@@ -19,6 +19,7 @@ def _():
 
 
 
+
 ###################### CONNECTING TO THE DATABASE ########################
         db_config = {
         "host": "localhost",
