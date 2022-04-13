@@ -30,6 +30,13 @@ def _():
         cursor.execute(sql, (user_profile_email,))
         users = cursor.fetchall() 
 
+        sql = """SELECT * FROM tweets  WHERE tweet_user_email =%s """
+        cursor.execute(sql, (user_profile_email,))
+        tweets = cursor.fetchall() 
+        print("All the tweets are listed")
+
+        db.commit()
+
 
         
 
@@ -39,10 +46,10 @@ def _():
         db.close()
 
     if user_email == user_profile_email:
-        return redirect("/myprofile")
+            return redirect("/myprofile")
 
     return dict( error = error, tweet_description=tweet_description, 
-                    tweet_title=tweet_title, user_email=user_email, users=users, user_profile_email= user_profile_email)
+                    tweet_title=tweet_title, user_email=user_email, users=users, user_profile_email= user_profile_email, tweets=tweets)
 
 
 
