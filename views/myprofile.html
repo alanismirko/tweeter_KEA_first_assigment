@@ -29,17 +29,17 @@
   </section>
 
 
-  <div  class="w-1/4 border-x border-slate-200">
+  <div  class="w-3/4 border-x border-slate-200 ">
+    <div class="mt-4 text-white">
+     % for user in users:
+       {{user[1]}}
+       {{user[2]}}
+       {{user[3]}}
 
-
-    <div class="mt-4">
-     jxksjk
-    </div>
-  </div>
-   
-  <div  class="w-3/4 ">
-    <div class="mt-4">
-     jxksjk
+       <div id="image_tweet_id" class="pt-2 ">
+        <img src="../images/user_image/{{user[8]}}">
+      </div>
+     % end
     </div>
   </div>
 

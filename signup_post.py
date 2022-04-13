@@ -6,9 +6,9 @@ import time
 from datetime import datetime
 import mysql.connector
 import bcrypt
-import smtplib, ssl
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import os
+import imghdr
+
 
 
 @post("/signup")
@@ -27,57 +27,28 @@ def _():
         zipcode = request.params.get("zipcode")
         city = request.params.get("city")
         user_address_id = str(uuid.uuid4())
+        image_id = str(uuid.uuid4())
+        image_user = request.files.get("image_user")
+        file_name, file_extension = os.path.splitext(image_user.filename)
+        print(image_user)
 
         user_password = request.forms.get("user_password").encode("utf-8")
         salt = bcrypt.gensalt()
         password_hashed = bcrypt.hashpw(user_password, salt)
         user_created_at = str(int(time.time()))
 
-    # sender_email = "keatest.2022@gmail.com"
-    # receiver_email = user_email
-    # password = "Alanis123+"
+        if file_extension not in (".png", ".jpeg", ".jpg"):
+            return "image not allowed"
+        if file_extension == ".jpg": file_extension = ".jpeg"
 
-    # message = MIMEMultipart("alternative")
-    # message["Subject"] = "tweeter"
-    # message["From"] = sender_email
-    # message["To"] = receiver_email
+        image_name =f"{image_id}{file_extension}"
+        image_user.save(f"images/user_image/{image_name}")
 
-    # # Create the plain-text and HTML version of your message
-    # text = """\
-    # Hi,
-    # Thank you.
-    # """
-
-    # html = """\
-    # <html>
-    #     <body>
-    #     <p>
-    #         Hi,<br>
-    #         <b style="color: blue;">How are you?</b><br>
-    #     </p>
-    #     </body>
-    # </html>
-    # """
-
-    # # Turn these into plain/html MIMEText objects
-    # part1 = MIMEText(text, "plain")
-    # part2 = MIMEText(html, "html")
-
-    # # Add HTML/plain-text parts to MIMEMultipart message
-    # # The email client will try to render the last part first
-    # message.attach(part1)
-    # message.attach(part2)
-
-    # # Create secure connection with server and send email
-    # context = ssl.create_default_context()
-    # with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-    #     try:
-    #         server.login(sender_email, password)
-    #         server.sendmail(sender_email, receiver_email, message.as_string())
-    #         return "yes, email sent"
-    #     except Exception as ex:
-    #         print("cannot send the email")
-    
+        imghdr_extension = imghdr.what(f"images/user_image/{image_name}")
+        if file_extension != f".{imghdr_extension}":
+            print("not an image")
+            os.remove(f"images/user_image/{image_name}")
+            return "removing the suspicious file..."
 
 ############### VALIDATION #######################################
 
@@ -121,8 +92,8 @@ def _():
         val = (user_address_id,street_name,street_number,country, region, zipcode, )
         cursor.execute(sql, val)
 
-        sql = """INSERT INTO users (user_id, user_first_name, user_last_name, user_email, user_password, user_created_at, user_address_id) VALUES (%s, %s, %s, %s, %s, %s, %s)"""
-        val = (user_id,user_first_name,user_last_name, user_email, password_hashed, user_created_at, user_address_id, )
+        sql = """INSERT INTO users (user_id, user_first_name, user_last_name, user_email, user_password, user_created_at, user_address_id, user_image_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
+        val = (user_id,user_first_name,user_last_name, user_email, password_hashed, user_created_at, user_address_id,image_name, )
         cursor.execute(sql, val)
 
 
@@ -132,10 +103,7 @@ def _():
         print(ex)
         db.rollback()
     finally:
-         if db.is_connected():
-            cursor.close()
             db.close()
-            print("connnection is closed")
     return redirect("/login")
 
 

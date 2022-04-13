@@ -52,7 +52,7 @@ body{
 
 
 input{
-    width: 300px;
+    width: 200px;
     height: 35px;
     background-color: #F5F8FA;
     border: 1px solid #828282;
@@ -60,7 +60,7 @@ input{
     padding-left: 10px;
     font-weight: bold;
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
     font-size: 15px;

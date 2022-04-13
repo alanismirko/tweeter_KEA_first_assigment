@@ -26,6 +26,7 @@ def _():
         image_tweet = request.files.get("image_tweet")
         file_name, file_extension = os.path.splitext(image_tweet.filename)
 
+
         tweet = {
             "tweet_id": tweet_id, 
             "tweet_title": tweet_title, 
