@@ -31,5 +31,5 @@ def _():
         print(ex)
     finally:
         db.close()
-    return redirect("/index")
+    return redirect("/following")
     
