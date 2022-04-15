@@ -21,6 +21,7 @@ import login_post     #POST
 import tweet_post     #POST
 import tweet_delete_by_id   #POST
 import tweet_update   #POST
+import follow_user_post
 
 #########  CSS #################
 

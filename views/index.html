@@ -41,22 +41,25 @@
                 </div>
 
               </div>  
-              <div   class="hidden pt-2 font-bold tweet_id_update" >
-                {{tweet[0]}}
+              <form action="/like" method="POST">
+                <div   class="hidden pt-2 font-bold tweet_id_update" >
+                  {{tweet[0]}}
+                </div>
+                <div id="tweet_title_update"  class="pt-2 font-bold " >
+                  {{tweet[2]}}
+                </div>
+                <div id="tweet_description_update" class="pt-2 ">
+                  {{tweet[1]}}
+                </div>
+                <div id="image_tweet_id" class="pt-2 ">
+                    <img src="../images/{{tweet[6]}}">
+                </div>
+                <div class="flex w-full gap-12 mt-4 text-lg">
+                    <i onclick="tweet_like()" class="fa-solid fa-thumbs-up"></i>
+                    <p id="like">0</p>
               </div>
-              <div id="tweet_title_update"  class="pt-2 font-bold " >
-                {{tweet[2]}}
-              </div>
-              <div id="tweet_description_update" class="pt-2 ">
-                {{tweet[1]}}
-              </div>
-              <div id="image_tweet_id" class="pt-2 ">
-                  <img src="../images/{{tweet[6]}}">
-              </div>
-              <div class="flex w-full gap-12 mt-4 text-lg">
-                <i class="fa-solid fa-thumbs-up"></i>
-                <i class="fa-solid fa-thumbs-down "></i>
-            </div>
+              </form>
+
               
 
           </div>
