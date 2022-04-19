@@ -12,17 +12,16 @@ import smtplib, ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-
-
 @post("/signup")
 def _():
     try:
-
 ############### DEFINING THE USER, ADDRESS AND ZIPCODE #######################################
         user_id = str(uuid.uuid4())
         user_first_name = request.forms.get("user_first_name")
         user_last_name = request.forms.get("user_last_name")
         user_email = request.forms.get("user_email")
+        user_created_at = str(int(time.time()))
+
         street_name = request.params.get("street_name")
         street_number = request.params.get("street_number")
         country = request.params.get("country")
@@ -30,18 +29,17 @@ def _():
         zipcode = request.params.get("zipcode")
         city = request.params.get("city")
         user_address_id = str(uuid.uuid4())
+
         image_id = str(uuid.uuid4())
         image_user = request.files.get("image_user")
         file_name, file_extension = os.path.splitext(image_user.filename)
-        print(image_user)
-
+        
         user_password = request.forms.get("user_password").encode("utf-8")
         salt = bcrypt.gensalt()
         password_hashed = bcrypt.hashpw(user_password, salt)
-        user_created_at = str(int(time.time()))
 
-        if file_extension not in (".png", ".jpeg", ".jpg"):
-            return "image not allowed"
+############### IMAGE #######################################
+
         if file_extension == ".jpg": file_extension = ".jpeg"
 
         image_name =f"{image_id}{file_extension}"
@@ -53,26 +51,8 @@ def _():
             os.remove(f"images/user_image/{image_name}")
             return "removing the suspicious file..."
 
-############### VALIDATION #######################################
-
-        if not request.forms.get("user_email"):
-            return redirect(f"/signup?error=user_email&user_first_name={user_first_name}&user_last_name={user_last_name}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
-        if not re.match(g.REGEX_EMAIL,user_email):
-            return redirect(f"/signup?error=user_email&user_first_name={user_first_name}&user_last_name={user_last_name}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
-
-        if not user_password:
-            return redirect(f"/signup?error=user_password&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
-        if len(user_password) < 6:
-            return redirect(f"/signup?error=user_password&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
-        if len(user_password) > 50:
-            return redirect(f"/signup?error=user_password&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
-
-        if len(user_first_name) < 2:
-            return redirect(f"/signup?error=user_first_name&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
-        if len(user_last_name) < 2:
-            return redirect(f"/signup?error=user_last_name&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
-
 ########## EMAIL ####################
+
         sender_email = "keatest.2022@gmail.com"
         receiver_email = user_email
         password = "Alanis123+"
@@ -119,6 +99,29 @@ def _():
                 print("ex")
                 print("uppps... could not send the email")
 
+############### VALIDATION #######################################
+
+        if not request.forms.get("user_email"):
+            return redirect(f"/signup?error=user_email&user_first_name={user_first_name}&user_last_name={user_last_name}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+        if not re.match(g.REGEX_EMAIL,user_email):
+            return redirect(f"/signup?error=user_email&user_first_name={user_first_name}&user_last_name={user_last_name}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+
+        if not user_password:
+            return redirect(f"/signup?error=user_password&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+        if len(user_password) < 6:
+            return redirect(f"/signup?error=user_password&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+        if len(user_password) > 50:
+            return redirect(f"/signup?error=user_password&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+
+        if len(user_first_name) < 2:
+            return redirect(f"/signup?error=user_first_name&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+        if len(user_last_name) < 2:
+            return redirect(f"/signup?error=user_last_name&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+
+        if file_extension not in (".png", ".jpeg", ".jpg"):
+                return redirect(f"signup?error=image_user&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+  
+
 ############### DB CONNECTION AND TRSANSACTION #####################
 
         db_config = {
@@ -145,7 +148,7 @@ def _():
         val = (user_id,user_first_name,user_last_name, user_email, password_hashed, user_created_at, user_address_id,image_name, )
         cursor.execute(sql, val)
 
-
+        print("user created")
         db.commit()
         
     except Exception as ex:
@@ -153,7 +156,13 @@ def _():
         db.rollback()
     finally:
         db.close()
-    return redirect("/login")
+
+    
+
+        
+            
+    
+
 
 
 

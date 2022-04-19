@@ -15,6 +15,7 @@ import index_no_login_get
 import myprofile_get
 import user_profile_get
 import user_following_get
+import admin_get
 
 
 

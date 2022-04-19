@@ -49,13 +49,19 @@ def _():
         sql_login = """SELECT * FROM users WHERE user_email =%s AND user_password=%s """
         var = (user_email, password_hashed)
         cursor.execute(sql_login, var)
-        user = cursor.fetchone()
+        users = cursor.fetchone()
         print("User is logged in")
 
         sql_session= """ INSERT INTO sessions (session_id, session_user_email) VALUES (%s,%s)  """
         val_session = (user_session_id, user_email, )
         cursor.execute(sql_session, val_session)
         print("Session is added")
+
+        sql_login = """SELECT * FROM users WHERE user_email =%s AND user_password=%s """
+        var = ("admin@gmail.com", "admin")
+        cursor.execute(sql_login, var)
+        admin = cursor.fetchone()
+        print("User is logged in")
 
         db.commit()
         
@@ -69,8 +75,10 @@ def _():
             print("connnection is closed")
 
 ###################### RETURN ########################
-    if not user: 
+    if not users: 
             return redirect(f"/login?error=wrong_credentials") 
+    if admin:
+        return redirect(f"/admin")
     else:
         return redirect(f"/index")  
     
