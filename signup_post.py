@@ -8,6 +8,9 @@ import mysql.connector
 import bcrypt
 import os
 import imghdr
+import smtplib, ssl
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 
 
@@ -69,6 +72,52 @@ def _():
         if len(user_last_name) < 2:
             return redirect(f"/signup?error=user_last_name&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
 
+########## EMAIL ####################
+        sender_email = "keatest.2022@gmail.com"
+        receiver_email = user_email
+        password = "Alanis123+"
+
+
+        message = MIMEMultipart("alternative")
+        message["Subject"] = "Tweeter account"
+        message["From"] = sender_email
+        message["To"] = receiver_email
+
+        text = """\
+        Hi,
+        Thank you.
+        """
+
+        html = """\
+        <html>
+            <body>
+            <p>
+                Hi,<br>
+                Thank you for creating an account on Twitter.
+
+                <h2>Enjoy!</h2>
+
+                <em>Twitter</em>
+            </p>
+            </body>
+        </html>
+        """
+
+        part1 = MIMEText(text, "plain")
+        part2 = MIMEText(html, "html")
+
+        message.attach(part1)
+        message.attach(part2)
+
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+            try:
+                server.login(sender_email, password)
+                server.sendmail(sender_email, receiver_email, message.as_string())
+                print( "yes, email sent")
+            except Exception as ex:
+                print("ex")
+                print("uppps... could not send the email")
 
 ############### DB CONNECTION AND TRSANSACTION #####################
 
@@ -103,7 +152,7 @@ def _():
         print(ex)
         db.rollback()
     finally:
-            db.close()
+        db.close()
     return redirect("/login")
 
 

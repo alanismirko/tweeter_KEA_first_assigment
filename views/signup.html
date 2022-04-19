@@ -35,8 +35,8 @@
         <h1>Signup</h1>
         
         <form action="/signup" method="post" enctype="multipart/form-data"> 
-            
-            <label for="user_first_name">First name:</label>
+            <div class="left">
+                <label for="user_first_name">First name:</label>
             <input id="user_first_name" name="user_first_name" type="text" placeholder="First name" value="{{user_first_name or ''}}" required>            
             <label for="user_last_name">Last name:</label>
             <input id="user_last_name" name="user_last_name" type="text" placeholder="Last name"  value="{{user_last_name or ''}}"  required>
@@ -46,18 +46,19 @@
             <input id="user_password" name="user_password" type="password" placeholder="Password"  required>
             <label for="street_name">Street name:</label> 
             <input id="street_name" name="street_name" type="text" placeholder="street_name" value="{{street_name or ''}}"   required>
-            <label for="street_number">Street number:</label> 
-            <input id="street_number" name="street_number" type="number" placeholder="street_number" value="{{street_number or ''}}"   required>
-            <label for="country">Country:</label> 
-            <input id="country" name="country" type="text" placeholder="country" value="{{country or ''}}"   required>
-            <label for="region"> Region:</label> 
-            <input id="region" name="region" type="text" placeholder="region" value="{{region or ''}}"   required>
-            <label for="zipcode">Zipcode:</label> 
-            <input id="zipcode" name="zipcode" type="number" placeholder="zipcode" value="{{zipcode or ''}}"   required>
-            <label for="city">City:</label> 
-            <input id="city" name="city" type="text" placeholder="city" value="{{city or ''}}"   required>
-            
-
+            </div>
+            <div class="right">
+                <label for="country">Country:</label> 
+                <input id="country" name="country" type="text" placeholder="country" value="{{country or ''}}"   required>
+                <label for="region"> Region:</label> 
+                <input id="region" name="region" type="text" placeholder="region" value="{{region or ''}}"   required>
+                <label for="zipcode">Zipcode:</label> 
+                <input id="zipcode" name="zipcode" type="number" placeholder="zipcode" value="{{zipcode or ''}}"   required>
+                <label for="city">City:</label> 
+                <input id="city" name="city" type="text" placeholder="city" value="{{city or ''}}"   required>
+                <label for="street_number">Street number:</label> 
+                <input id="street_number" name="street_number" type="number" placeholder="street_number" value="{{street_number or ''}}"   required>
+            </div>
             <label for="image_user">Select image:</label>
             <input type="file" id="image_user" name="image_user" accept="image/*">
             <button>Sign up</button>

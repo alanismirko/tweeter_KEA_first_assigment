@@ -61,6 +61,7 @@ def _():
         cursor.execute(sql, val)
 
         follows = cursor.fetchall()
+        db.commit()
 
     except Exception as ex:
         print(ex)
