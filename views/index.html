@@ -55,9 +55,7 @@
 
               </div>  
               <form action="/like" method="POST">
-                <div   class="hidden pt-2 font-bold tweet_id_update" >
-                  {{tweet[0]}}
-                </div>
+                <input   name="tweet_id_update" type="text" class="hidden pt-2 font-bold tweet_id_update" value="{{tweet[0]}}">
                 <div id="tweet_title_update"  class="pt-2 font-bold " >
                   {{tweet[2]}}
                 </div>
@@ -68,7 +66,7 @@
                     <img src="../images/{{tweet[6]}}">
                 </div>
                 <div class="flex w-full gap-12 mt-4 text-lg">
-                    <i onclick="tweet_like()" class="fa-solid fa-thumbs-up"></i>
+                    <button><i  class="fa-solid fa-thumbs-up"></i></button>
                     <p id="like">0</p>
               </div>
               </form>

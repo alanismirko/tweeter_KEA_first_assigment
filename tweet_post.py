@@ -6,7 +6,6 @@ from datetime import datetime
 import mysql.connector
 import os
 import imghdr
-import x
 
 
 @post("/create_tweet")
@@ -36,7 +35,7 @@ def _():
                 os.remove(f"images/{image_name}")
                 return "removing the suspicious file..."
     if image_tweet is None:
-        image_name = "nothing"
+        image_name = "No image added"
 
     if len(tweet_title) < 2 or len(tweet_title) > 100:
         response.status = 400
