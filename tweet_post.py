@@ -66,8 +66,7 @@ def _():
         cursor.execute(sql, val)
         print("tweet is created")
 
-
-        
+   
         db.commit()
 
     except Exception as ex:
