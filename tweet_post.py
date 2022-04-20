@@ -41,6 +41,7 @@ def _():
         response.status = 400
         return redirect(f"/index?error=tweet_title&tweet_title={tweet_title}&tweet_description={tweet_description}")
     if len(tweet_description) < 2 or len(tweet_description)>100:
+        response.status = 400
         return redirect(f"/index?error=tweet_description&tweet_title={tweet_title}&tweet_description={tweet_description}")
 
     try:

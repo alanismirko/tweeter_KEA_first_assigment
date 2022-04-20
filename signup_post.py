@@ -1,4 +1,4 @@
-from bottle import  post, request, redirect, get
+from bottle import  post, request, redirect, get, response
 import g
 import re
 import uuid
@@ -16,44 +16,65 @@ from email.mime.multipart import MIMEMultipart
 def _():
 
     
-    try:
 ############### DEFINING THE USER, ADDRESS AND ZIPCODE #######################################
-        user_id = str(uuid.uuid4())
-        user_first_name = request.forms.get("user_first_name")
-        user_last_name = request.forms.get("user_last_name")
-        user_email = request.forms.get("user_email")
-        user_created_at = str(int(time.time()))
+    user_id = str(uuid.uuid4())
+    user_first_name = request.forms.get("user_first_name")
+    user_last_name = request.forms.get("user_last_name")
+    user_email = request.forms.get("user_email")
+    user_created_at = str(int(time.time()))
 
-        street_name = request.params.get("street_name")
-        street_number = request.params.get("street_number")
-        country = request.params.get("country")
-        region = request.params.get("region")
-        zipcode = request.params.get("zipcode")
-        city = request.params.get("city")
-        user_address_id = str(uuid.uuid4())
+    street_name = request.params.get("street_name")
+    street_number = request.params.get("street_number")
+    country = request.params.get("country")
+    region = request.params.get("region")
+    zipcode = request.params.get("zipcode")
+    city = request.params.get("city")
+    user_address_id = str(uuid.uuid4())
 
-        image_id = str(uuid.uuid4())
-        image_user = request.files.get("image_user")
-        file_name, file_extension = os.path.splitext(image_user.filename)
+    image_id = str(uuid.uuid4())
+    image_user = request.files.get("image_user")
+    file_name, file_extension = os.path.splitext(image_user.filename)
         
-        user_password = request.forms.get("user_password").encode("utf-8")
-        salt = bcrypt.gensalt()
-        password_hashed = bcrypt.hashpw(user_password, salt)
+    user_password = request.forms.get("user_password").encode("utf-8")
+    salt = bcrypt.gensalt()
+    password_hashed = bcrypt.hashpw(user_password, salt)
 
 
-        if file_extension == ".jpg": file_extension = ".jpeg"
+    if file_extension == ".jpg": file_extension = ".jpeg"
 
-        image_name =f"{image_id}{file_extension}"
-        image_user.save(f"images/user_image/{image_name}")
+    image_name =f"{image_id}{file_extension}"
+    image_user.save(f"images/user_image/{image_name}")
 
-        imghdr_extension = imghdr.what(f"images/user_image/{image_name}")
-        if file_extension != f".{imghdr_extension}":
-            print("not an image")
-            os.remove(f"images/user_image/{image_name}")
-            return "removing the suspicious file..."
+    imghdr_extension = imghdr.what(f"images/user_image/{image_name}")
+    if file_extension != f".{imghdr_extension}":
+        print("not an image")
+        os.remove(f"images/user_image/{image_name}")
+        return "removing the suspicious file..."
+    
+    if len(user_first_name) < 2 or len(user_first_name) > 100:
+        response.status = 400
+        return redirect(f"/signup?error=user_name&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+    if len(user_last_name) < 2 or len(user_last_name) > 100:
+        response.status = 400
+        return redirect(f"/signup?error=user_name&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+    if len(user_email) < 2 or len(user_email) > 100:
+        response.status = 400
+        return redirect(f"/signup?error=user_email&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+    if len(street_name) < 2 or len(street_name) > 100:
+        response.status = 400
+        return redirect(f"/signup?error=street_name&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+    if len(country) < 2 or len(country) > 100:
+        response.status = 400
+        return redirect(f"/signup?error=country&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+    if len(region) < 2 or len(region) > 100:
+        response.status = 400
+        return redirect(f"/signup?error=region&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+    if len(city) < 2 or len(city) > 100:
+        response.status = 400
+        return redirect(f"/signup?error=city&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
 
+    try:
 ############### DB CONNECTION AND TRSANSACTION #####################
-
         db_config = {
         "host": "localhost",
         "user":"root",
@@ -134,7 +155,7 @@ def _():
         db.rollback()
     finally:
         db.close()
-
+    return redirect("/login")
     
 
         
