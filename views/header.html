@@ -80,9 +80,8 @@
             <form action="/create_tweet" method="post" enctype="multipart/form-data" onsubmit="validate()">
               <div class="block">
                 <input name="tweet_id" type="hidden" >
-                <input class="w-full h-8 mb-5" name="tweet_title" type="text" placeholder="Title" value="{{ tweet_title or '' }}"
-                  data-validate="str" data-min="1" data-max="100" >
-                <input class="w-full h-8 mb-5" name="tweet_description" type="text" placeholder="Description" value="{{ tweet_description or ''}}"  data-validate="str" data-min="1" data-max="100">
+                <input class="w-full h-12 p-4 text-gray-800 rounded outline-none placeholder:text-gray-800"  name="tweet_title" type="text" placeholder="Title" value="{{ tweet_title or '' }}"  data-validate="str" data-min="2" data-max="100" >
+                <input class="w-full h-12 p-4 text-gray-800 rounded outline-none placeholder:text-gray-800"  name="tweet_description" type="text" placeholder="Description" value="{{ tweet_description or ''}}"  data-validate="str" data-min="2" data-max="100">
                 <label for="image_tweet">Select image:</label>
                 <input type="file" id="image_tweet" name="image_tweet" accept="image/*">
               </div>    
