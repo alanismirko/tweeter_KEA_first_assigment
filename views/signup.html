@@ -68,27 +68,27 @@
         <form action="/signup" method="post" enctype="multipart/form-data"> 
             <div class="left">
                 <label for="user_first_name">First name:</label>
-                <input id="user_first_name" name="user_first_name" type="text" placeholder="First name" value="{{user_first_name or ''}}" required>            
+                <input id="user_first_name" name="user_first_name" type="text" placeholder="First name" value="{{user_first_name or ''}}" required data-validate="str" data-min="1" data-max="100">            
                 <label for="user_last_name">Last name:</label>
-                <input id="user_last_name" name="user_last_name" type="text" placeholder="Last name"  value="{{user_last_name or ''}}"  required>
+                <input id="user_last_name" name="user_last_name" type="text" placeholder="Last name"  value="{{user_last_name or ''}}"  required ata-validate="str" data-min="1" data-max="100">
                 <label for="user_email">Email:</label> 
-                <input id="user_email" name="user_email" type="text" placeholder="Email"  value="{{user_email or ''}}"  required>
+                <input id="user_email" name="user_email" type="text" placeholder="Email"  value="{{user_email or ''}}"  required data-validate="email">
                 <label for="user_password">Password (6-50 characters):</label> 
                 <input id="user_password" name="user_password" type="password" placeholder="Password"  required>
                 <label for="street_name">Street name:</label> 
-                <input id="street_name" name="street_name" type="text" placeholder="Street name" value="{{street_name or ''}}"   required>
+                <input id="street_name" name="street_name" type="text" placeholder="Street name" value="{{street_name or ''}}"   required ata-validate="str" data-min="1" data-max="100">
             </div>
             <div class="right">
                 <label for="country">Country:</label> 
-                <input id="country" name="country" type="text" placeholder="Country" value="{{country or ''}}"   required>
+                <input id="country" name="country" type="text" placeholder="Country" value="{{country or ''}}"   required ata-validate="str" data-min="1" data-max="100">
                 <label for="region"> Region:</label> 
-                <input id="region" name="region" type="text" placeholder="Region" value="{{region or ''}}"   required>
+                <input id="region" name="region" type="text" placeholder="Region" value="{{region or ''}}"   required ata-validate="str" data-min="1" data-max="100">
                 <label for="zipcode">Zipcode:</label> 
-                <input id="zipcode" name="zipcode" type="number" placeholder="Zipcode" value="{{zipcode or ''}}"   required>
+                <input id="zipcode" name="zipcode" type="number" placeholder="Zipcode" value="{{zipcode or ''}}"   required data-validate="int" >
                 <label for="city">City:</label> 
-                <input id="city" name="city" type="text" placeholder="City" value="{{city or ''}}"   required>
+                <input id="city" name="city" type="text" placeholder="City" value="{{city or ''}}"   required ata-validate="str" data-min="1" data-max="100">
                 <label for="street_number">Street number:</label> 
-                <input id="street_number" name="street_number" type="number" placeholder="street number" value="{{street_number or ''}}"   required>
+                <input id="street_number" name="street_number" type="number" placeholder="street number" value="{{street_number or ''}}"   required data-validate="int">
             </div>
             <label for="image_user">Select image:</label>
             <input type="file" id="image_user" name="image_user" accept="image/*" required>

@@ -4,6 +4,7 @@ import mysql.connector
 
 #########  IMPORTS VIEWS ##############
 import g    
+import x
 
 import login_get   #GET
 import signup_get  #GET
@@ -44,6 +45,10 @@ def _():
 @get("/app.js")
 def _():
   return static_file("app.js", root=".")
+
+@get("/validator.js")
+def _():
+  return static_file("validator.js", root=".")
 
 #############  IMAGES  #################
 @get("/images/<filepath:re:.*\.(jpg|png|gif|ico|svg)>")

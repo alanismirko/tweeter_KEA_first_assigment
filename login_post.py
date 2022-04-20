@@ -11,7 +11,6 @@ import bcrypt
 
 @post("/login")
 def _():
-
     try:
 ###################### VARIABLES #######################################
         user_email = request.forms.get("user_email")
@@ -20,8 +19,6 @@ def _():
         session_created_at = ""
 
         user_password = request.forms.get("user_password").encode("utf-8")
-
-
         salt = bcrypt.gensalt()
         password_hashed = bcrypt.checkpw(user_password, salt)
 
@@ -32,8 +29,6 @@ def _():
         response.set_cookie("uuid4", user_session_id)
         response.set_cookie("session_created_at", session_created_at)
 
-
-
 ###################### CONNECTING TO THE DATABASE AND TRANSACTIONS ########################
 
         db_config = {
@@ -42,7 +37,6 @@ def _():
         "database": "tweeterdb",
         "password": "1234"
         }
-
 
         db = mysql.connector.connect(**db_config)
         cursor = db.cursor()
@@ -67,7 +61,6 @@ def _():
         
     except Exception as ex:
         print(ex)
-        db.rollback()
     finally:
         if db.is_connected():
             cursor.close()

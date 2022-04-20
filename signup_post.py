@@ -14,6 +14,8 @@ from email.mime.multipart import MIMEMultipart
 
 @post("/signup")
 def _():
+
+    
     try:
 ############### DEFINING THE USER, ADDRESS AND ZIPCODE #######################################
         user_id = str(uuid.uuid4())
@@ -38,7 +40,6 @@ def _():
         salt = bcrypt.gensalt()
         password_hashed = bcrypt.hashpw(user_password, salt)
 
-############### IMAGE #######################################
 
         if file_extension == ".jpg": file_extension = ".jpeg"
 
@@ -50,6 +51,35 @@ def _():
             print("not an image")
             os.remove(f"images/user_image/{image_name}")
             return "removing the suspicious file..."
+
+############### DB CONNECTION AND TRSANSACTION #####################
+
+        db_config = {
+        "host": "localhost",
+        "user":"root",
+        "database": "tweeterdb",
+        "password": "1234"
+        }
+
+
+        db = mysql.connector.connect(**db_config)
+        db.autocommit = False
+        cursor = db.cursor()
+
+        sql = """INSERT INTO zipcodes (zipcode,city) VALUES (%s, %s)"""
+        val = (zipcode, city )
+        cursor.execute(sql, val)
+
+        sql = """INSERT INTO addresses (address_id,street_name,street_number, country, region, zipcode) VALUES (%s,%s, %s, %s, %s, %s)"""
+        val = (user_address_id,street_name,street_number,country, region, zipcode, )
+        cursor.execute(sql, val)
+
+        sql = """INSERT INTO users (user_id, user_first_name, user_last_name, user_email, user_password, user_created_at, user_address_id, user_image_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
+        val = (user_id,user_first_name,user_last_name, user_email, password_hashed, user_created_at, user_address_id,image_name, )
+        cursor.execute(sql, val)
+
+        print("user created")
+        db.commit()
 
 ########## EMAIL ####################
 
@@ -98,58 +128,6 @@ def _():
             except Exception as ex:
                 print("ex")
                 print("uppps... could not send the email")
-
-############### VALIDATION #######################################
-
-        if not request.forms.get("user_email"):
-            return redirect(f"/signup?error=user_email&user_first_name={user_first_name}&user_last_name={user_last_name}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
-        if not re.match(g.REGEX_EMAIL,user_email):
-            return redirect(f"/signup?error=user_email&user_first_name={user_first_name}&user_last_name={user_last_name}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
-
-        if not user_password:
-            return redirect(f"/signup?error=user_password&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
-        if len(user_password) < 6:
-            return redirect(f"/signup?error=user_password&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
-        if len(user_password) > 50:
-            return redirect(f"/signup?error=user_password&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
-
-        if len(user_first_name) < 2:
-            return redirect(f"/signup?error=user_first_name&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
-        if len(user_last_name) < 2:
-            return redirect(f"/signup?error=user_last_name&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
-
-        if file_extension not in (".png", ".jpeg", ".jpg"):
-                return redirect(f"signup?error=image_user&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
-  
-
-############### DB CONNECTION AND TRSANSACTION #####################
-
-        db_config = {
-        "host": "localhost",
-        "user":"root",
-        "database": "tweeterdb",
-        "password": "1234"
-        }
-
-
-        db = mysql.connector.connect(**db_config)
-        db.autocommit = False
-        cursor = db.cursor()
-
-        sql = """INSERT INTO zipcodes (zipcode,city) VALUES (%s, %s)"""
-        val = (zipcode, city )
-        cursor.execute(sql, val)
-
-        sql = """INSERT INTO addresses (address_id,street_name,street_number, country, region, zipcode) VALUES (%s,%s, %s, %s, %s, %s)"""
-        val = (user_address_id,street_name,street_number,country, region, zipcode, )
-        cursor.execute(sql, val)
-
-        sql = """INSERT INTO users (user_id, user_first_name, user_last_name, user_email, user_password, user_created_at, user_address_id, user_image_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
-        val = (user_id,user_first_name,user_last_name, user_email, password_hashed, user_created_at, user_address_id,image_name, )
-        cursor.execute(sql, val)
-
-        print("user created")
-        db.commit()
         
     except Exception as ex:
         print(ex)
