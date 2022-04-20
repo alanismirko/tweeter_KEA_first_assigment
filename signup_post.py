@@ -23,17 +23,17 @@ def _():
     user_email = request.forms.get("user_email")
     user_created_at = str(int(time.time()))
 
-    street_name = request.params.get("street_name")
-    street_number = request.params.get("street_number")
-    country = request.params.get("country")
-    region = request.params.get("region")
-    zipcode = request.params.get("zipcode")
-    city = request.params.get("city")
+    street_name = request.forms.get("street_name")
+    street_number = request.forms.get("street_number")
+    country = request.forms.get("country")
+    region = request.forms.get("region")
+    zipcode = request.forms.get("zipcode")
+    city = request.forms.get("city")
     user_address_id = str(uuid.uuid4())
 
     image_id = str(uuid.uuid4())
     image_user = request.files.get("image_user")
-    file_name, file_extension = os.path.splitext(image_user.filename)
+    file_name,file_extension = os.path.splitext(image_user.filename)
         
     user_password = request.forms.get("user_password").encode("utf-8")
     salt = bcrypt.gensalt()
@@ -49,7 +49,7 @@ def _():
     if file_extension != f".{imghdr_extension}":
         print("not an image")
         os.remove(f"images/user_image/{image_name}")
-        return "removing the suspicious file..."
+        return redirect("/signup?error=image")
     
     if len(user_first_name) < 2 or len(user_first_name) > 100:
         response.status = 400
@@ -87,6 +87,10 @@ def _():
         db.autocommit = False
         cursor = db.cursor()
 
+        sql = """ SELECT * FROM users WHERE user_email = %s"""
+        cursor.execute(sql, (user_email,))
+        user_exist = cursor.fetchone()
+
         sql = """INSERT INTO zipcodes (zipcode,city) VALUES (%s, %s)"""
         val = (zipcode, city )
         cursor.execute(sql, val)
@@ -98,6 +102,8 @@ def _():
         sql = """INSERT INTO users (user_id, user_first_name, user_last_name, user_email, user_password, user_created_at, user_address_id, user_image_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
         val = (user_id,user_first_name,user_last_name, user_email, password_hashed, user_created_at, user_address_id,image_name, )
         cursor.execute(sql, val)
+
+
 
         print("user created")
         db.commit()
@@ -155,7 +161,14 @@ def _():
         db.rollback()
     finally:
         db.close()
-    return redirect("/login")
+
+    if user_exist is not None:
+        return redirect(f"/signup?error=user_exist&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+    else:
+        return redirect("/login")
+
+
+
     
 
         

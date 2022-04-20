@@ -50,18 +50,16 @@ def _(tweet_id_update):
 
         var = (tweet_description_update, tweet_title_update, tweet_created_at_update, tweet_user_email, tweet_id_update,)
         cursor.execute(sql, var)
-        db.commit()
-        print("tweet is updated", tweet_id_update)
-        print(tweet)
 
         sql = """SELECT * FROM sessions  WHERE session_id =%s """
         cursor.execute(sql, (user_session_id,))
         session = cursor.fetchone() 
-        db.commit()
 
         sql = """DELETE FROM sessions WHERE TIMESTAMPDIFF(MINUTE,session_created_at,NOW()) > 30; """
         cursor.execute(sql)
-        print("User session is deleted")
+
+        db.commit()
+
 
     except Exception as ex:
         print(ex)

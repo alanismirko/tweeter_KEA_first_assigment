@@ -54,7 +54,19 @@
             </div>
             % end
 
+            % if error == "user_exist":
+            <div class="error">
+                <p>User with this email already exist</p>
+            </div>
+            % end
 
+            % if error == "image":
+            <div class="error">
+                <p>Removing the suspicious file
+                </p>
+            </div>
+            % end
+            
             <i class="fa fa-twitter" aria-hidden="true"></i>
 
 
