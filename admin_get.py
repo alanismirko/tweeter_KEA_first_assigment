@@ -44,8 +44,6 @@ def _():
         cursor.execute(sql)
         print("User session is deleted")
 
-
-
         db.commit()
 
     except Exception as ex:
@@ -55,7 +53,9 @@ def _():
 
 ###################### RETURN - DICTIONARY ########################
     if session is None:
-        return redirect(f"/login")
+        return redirect("/login")
+    if user_email != "admin@gmail.com":
+        return redirect("/login")
     return dict( error = error, tweet_description=tweet_description, 
                     user_first_name=user_first_name, user_last_name=user_last_name, 
                     tweet_title=tweet_title, user_email=user_email, tweets = tweets, image_tweet = image_tweet)
