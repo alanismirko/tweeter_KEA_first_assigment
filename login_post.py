@@ -17,6 +17,7 @@ def _():
         user_session_id = str(uuid.uuid4())
         encoded_jwt = jwt.encode({"uuid4": user_session_id, "user_email":user_email}, "secret key", algorithm="HS256")
         session_created_at = ""
+        user_password_admin = request.forms.get("user_password")
 
         user_password = request.forms.get("user_password").encode("utf-8")
         salt = bcrypt.gensalt()
@@ -51,11 +52,7 @@ def _():
         cursor.execute(sql_session, val_session)
         print("Session is added")
 
-        sql_login = """SELECT * FROM users WHERE user_email =%s AND user_password=%s """
-        var = ("admin@gmail.com", "admin")
-        cursor.execute(sql_login, var)
-        admin = cursor.fetchone()
-        print("User is logged in")
+
 
         db.commit()
         
@@ -65,14 +62,13 @@ def _():
         if db.is_connected():
             cursor.close()
             db.close()
-            print("connnection is closed")
 
 ###################### RETURN ########################
     if not users: 
             return redirect(f"/login?error=wrong_credentials") 
-    if admin:
-        return redirect(f"/admin")
+    if user_email == "admin@gmail.com" and user_password_admin=="admin":
+        return redirect("/admin")
     else:
-        return redirect(f"/index")  
+        return redirect("/index")  
     
     

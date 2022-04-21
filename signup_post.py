@@ -151,10 +151,9 @@ def _():
             try:
                 server.login(sender_email, password)
                 server.sendmail(sender_email, receiver_email, message.as_string())
-                print( "yes, email sent")
+                return redirect("/login?error=email_success")
             except Exception as ex:
-                print("ex")
-                print("uppps... could not send the email")
+                return redirect("/signup?error=email_error")
         
     except Exception as ex:
         print(ex)
