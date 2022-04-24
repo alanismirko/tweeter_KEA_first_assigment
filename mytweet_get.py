@@ -19,9 +19,10 @@ def _():
 
 ###################### CONNECTING TO THE DATABASE ########################
     try:
+        import production
         db_config = g.PRODUCTION_CONN
     except Exception as ex:
-        print("ex")
+        print(ex)
         db_config = g.DEVELOPMENT_CONN
 
     try:

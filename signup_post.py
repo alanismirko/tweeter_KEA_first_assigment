@@ -74,9 +74,10 @@ def _():
         return redirect(f"/signup?error=city&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
 
     try:
+        import production
         db_config = g.PRODUCTION_CONN
     except Exception as ex:
-        print("ex")
+        print(ex)
         db_config = g.DEVELOPMENT_CONN
 
     try:

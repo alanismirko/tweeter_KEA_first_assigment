@@ -7,6 +7,13 @@ COOKIE_SECRET = "secret key"
 
 USER_NAME_MIN_MAX  = '^[a-zA-Z]{2,50}$'
 
+DEVELOPMENT_CONN = {
+        "host": "localhost",
+        "user":"root",
+        "database": "tweeterdb",
+        "password": "1234",
+        }
+
 PRODUCTION_CONN = {
             "host":"keatest2020web.mysql.eu.pythonanywhere-services.com",
             "user": "keatest2020web",
@@ -18,5 +25,5 @@ DEVELOPMENT_CONN = {
         "host": "localhost",
         "user":"root",
         "database": "tweeterdb",
-        "password": "1234"
+        "password": "1234",
         }

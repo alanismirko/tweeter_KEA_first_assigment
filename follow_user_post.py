@@ -8,9 +8,10 @@ def _():
     user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET)
 
     try:
+        import production
         db_config = g.PRODUCTION_CONN
     except Exception as ex:
-        print("ex")
+        print(ex)
         db_config = g.DEVELOPMENT_CONN
 
     try:
