@@ -25,16 +25,13 @@ def _(tweet_id_update):
         return redirect(f"/index?error=tweet_description&tweet_title={tweet_title_update}&tweet_description={tweet_description_update}")
 
 ###################### CONNECTING TO THE DATABASE ########################
- 
     try:
-        import production
-        db_config = {
-                "host":"keatest2020web.mysql.eu.pythonanywhere-services.com",
-                "user": "keatest2020web",
-                "password": "MySqLpassword",
-                "database": "keatest2020web$tweeterdb",
-        }
+        db_config = g.PRODUCTION_CONN
+    except Exception as ex:
+        print("ex")
+        db_config = g.DEVELOPMENT_CONN
 
+    try:
         db = mysql.connector.connect(**db_config)
         db.autocommit = False          
         cursor = db.cursor(buffered=True)
@@ -61,36 +58,6 @@ def _(tweet_id_update):
     except Exception as ex:
         print(ex)
         db.rollback()
-
-        db_config = {
-            "host": "localhost",
-            "user":"root",
-            "database": "tweeterdb",
-            "password": "1234"
-            }
-
-        db = mysql.connector.connect(**db_config)
-        db.autocommit = False          
-        cursor = db.cursor(buffered=True)
-
-        sql = """ UPDATE  tweets 
-                SET tweet_description =%s,
-                tweet_title =%s,
-                tweet_created_at =%s,
-                tweet_user_email =%s
-        WHERE tweet_id=%s"""
-
-        var = (tweet_description_update, tweet_title_update, tweet_created_at_update, tweet_user_email, tweet_id_update,)
-        cursor.execute(sql, var)
-
-        sql = """SELECT * FROM sessions  WHERE session_id =%s """
-        cursor.execute(sql, (user_session_id,))
-        session = cursor.fetchone() 
-
-        sql = """DELETE FROM sessions WHERE TIMESTAMPDIFF(MINUTE,session_created_at,NOW()) > 30; """
-        cursor.execute(sql)
-
-        db.commit()
 
     finally:
         db.close()

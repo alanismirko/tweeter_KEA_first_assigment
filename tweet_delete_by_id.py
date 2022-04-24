@@ -19,16 +19,18 @@ def _(tweet_id_update):
 
 ###################### CONNECTING TO THE DATABASE ########################
     try:
-        import production
-        db_config = {
-                "host":"keatest2020web.mysql.eu.pythonanywhere-services.com",
-                "user": "keatest2020web",
-                "password": "MySqLpassword",
-                "database": "keatest2020web$tweeterdb",
-        }
+        db_config = g.PRODUCTION_CONN
+    except Exception as ex:
+        print("ex")
+        db_config = g.DEVELOPMENT_CONN
+
+    try:
+
         db = mysql.connector.connect(**db_config)
             
         cursor = db.cursor(buffered=True)
+        db.autocommit = False
+
         sql = """ DELETE FROM tweets WHERE tweet_id=%s"""
         cursor.execute(sql, (tweet_id_update,))
         print("tweet is deleted", tweet_id_update)
@@ -49,34 +51,7 @@ def _(tweet_id_update):
 
     except Exception as ex:
         print(ex)
-        db_config = {
-            "host": "localhost",
-            "user":"root",
-            "database": "tweeterdb",
-            "password": "1234"
-            }
-
-        db = mysql.connector.connect(**db_config)
-            
-        cursor = db.cursor(buffered=True)
-        sql = """ DELETE FROM tweets WHERE tweet_id=%s"""
-        cursor.execute(sql, (tweet_id_update,))
-        print("tweet is deleted", tweet_id_update)
-
-        sql_sessions=""" SELECT * FROM sessions WHERE session_id =%s"""
-        cursor.execute(sql_sessions, (user_session_id,))
-        session = cursor.fetchone()
-        print(session)
-
-        sql = """DELETE FROM sessions WHERE TIMESTAMPDIFF(MINUTE,session_created_at,NOW()) > 30; """
-        cursor.execute(sql)
-        print("User session is deleted")
-
-        if  image_id is not None:
-            os.remove(f"images/{image_id}")
-
-        db.commit()
-
+        db.rollback()
     finally:
         db.close()
 
@@ -104,15 +79,15 @@ def _(tweet_id_update):
 
 ###################### CONNECTING TO THE DATABASE ########################
     try:
-        import production
-        db_config = {
-                "host":"keatest2020web.mysql.eu.pythonanywhere-services.com",
-                "user": "keatest2020web",
-                "password": "MySqLpassword",
-                "database": "keatest2020web$tweeterdb",
-        }
+        db_config = g.PRODUCTION_CONN
+    except Exception as ex:
+        print("ex")
+        db_config = g.DEVELOPMENT_CONN
+
+    try:
 
         db = mysql.connector.connect(**db_config)
+        db.autocommit = False
         cursor = db.cursor(buffered=True)
 
         
@@ -137,42 +112,11 @@ def _(tweet_id_update):
 
     except Exception as ex:
         print(ex)
-
-        db_config = {
-        "host": "localhost",
-        "user":"root",
-        "database": "tweeterdb",
-        "password": "1234"
-        }
-
-        db = mysql.connector.connect(**db_config)
-        cursor = db.cursor(buffered=True)
-
-        
-        sql = """SELECT * FROM tweets  """
-        cursor.execute(sql,)
-        tweets = cursor.fetchall() 
-
-        sql_sessions=""" SELECT * FROM sessions WHERE session_id =%s"""
-        cursor.execute(sql_sessions, (user_session_id,))
-        session = cursor.fetchone()
-        print(session)
-
-        sql = """ DELETE FROM tweets WHERE tweet_id=%s"""
-        cursor.execute(sql, (tweet_id_update,))
-        print("tweet is deleted", tweet_id_update)
-
-        
-        sql = """DELETE FROM sessions WHERE TIMESTAMPDIFF(MINUTE,session_created_at,NOW()) > 30; """
-        cursor.execute(sql)
-        print("User session is deleted")
-        db.commit()
-
-
+        db.rollback()
     finally:
         db.close()
 
-###################### RETURN - DICTIONARY ########################
+###################### RETURN  ########################
     if session is None:
         return redirect(f"/login")
     return redirect(f"/admin")

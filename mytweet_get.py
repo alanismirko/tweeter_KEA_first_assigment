@@ -18,20 +18,15 @@ def _():
 
 
 ###################### CONNECTING TO THE DATABASE ########################
+    try:
+        db_config = g.PRODUCTION_CONN
+    except Exception as ex:
+        print("ex")
+        db_config = g.DEVELOPMENT_CONN
 
     try:
-        import production
-        db_config = {
-                "host":"keatest2020web.mysql.eu.pythonanywhere-services.com",
-                "user": "keatest2020web",
-                "password": "MySqLpassword",
-                "database": "keatest2020web$tweeterdb",
-        }
-
         db = mysql.connector.connect(**db_config)
         cursor = db.cursor(buffered=True)
-
-        
 
         sql = """SELECT * FROM tweets  WHERE tweet_user_email =%s """
         cursor.execute(sql, (user_email,))
@@ -53,13 +48,6 @@ def _():
 
     except Exception as ex:
         print(ex)
-
-        db_config = {
-        "host": "localhost",
-        "user":"root",
-        "database": "tweeterdb",
-        "password": "1234"
-        }
 
     finally:
         db.close()

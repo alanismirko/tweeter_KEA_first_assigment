@@ -74,14 +74,12 @@ def _():
         return redirect(f"/signup?error=city&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
 
     try:
-############### DB CONNECTION AND TRSANSACTION #####################
-        db_config = {
-        "host": "localhost",
-        "user":"root",
-        "database": "tweeterdb",
-        "password": "1234"
-        }
+        db_config = g.PRODUCTION_CONN
+    except Exception as ex:
+        print("ex")
+        db_config = g.DEVELOPMENT_CONN
 
+    try:
 
         db = mysql.connector.connect(**db_config)
         db.autocommit = False
@@ -102,8 +100,6 @@ def _():
         sql = """INSERT INTO users (user_id, user_first_name, user_last_name, user_email, user_password, user_created_at, user_address_id, user_image_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
         val = (user_id,user_first_name,user_last_name, user_email, password_hashed, user_created_at, user_address_id,image_name, )
         cursor.execute(sql, val)
-
-
 
         print("user created")
         db.commit()
@@ -155,9 +151,11 @@ def _():
             except Exception as ex:
                 return redirect("/signup?error=email_error")
         
+
     except Exception as ex:
         print(ex)
         db.rollback()
+
     finally:
         db.close()
 

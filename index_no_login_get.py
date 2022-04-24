@@ -1,5 +1,6 @@
 from bottle import get, view, request
 import mysql
+import g
 
 @get("/")
 @view("index_tweets")
@@ -10,13 +11,13 @@ def _():
         
 ###################### CONNECTING TO THE DATABASE ########################
     try:
-        import production
-        db_config = {
-                "host":"keatest2020web.mysql.eu.pythonanywhere-services.com",
-                "user": "keatest2020web",
-                "password": "MySqLpassword",
-                "database": "keatest2020web$tweeterdb",
-        }
+        db_config = g.PRODUCTION_CONN
+    except Exception as ex:
+        print("ex")
+        db_config = g.DEVELOPMENT_CONN
+
+    try:
+
         db = mysql.connector.connect(**db_config)
         cursor = db.cursor(buffered=True)
         cursor.execute("""SELECT * FROM tweets """)
@@ -25,20 +26,6 @@ def _():
         db.commit()
     except Exception as ex:
         print(ex)
-        db_config = {
-        "host": "localhost",
-        "user":"root",
-        "database": "tweeterdb",
-        "password": "1234"
-        }
-
-        db = mysql.connector.connect(**db_config)
-        cursor = db.cursor(buffered=True)
-        cursor.execute("""SELECT * FROM tweets """)
-        tweets = cursor.fetchall() 
-
-        db.commit()
-
     finally:
         db.close()
     return dict(  tweet_description=tweet_description, tweet_title=tweet_title,  image_tweet = image_tweet, tweets= tweets)

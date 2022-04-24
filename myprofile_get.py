@@ -12,14 +12,12 @@ def _():
     tweet_title = request.params.get("tweet_title")
 
     try:
-        import production
-        db_config = {
-                "host":"keatest2020web.mysql.eu.pythonanywhere-services.com",
-                "user": "keatest2020web",
-                "password": "MySqLpassword",
-                "database": "keatest2020web$tweeterdb",
-        }
+        db_config = g.PRODUCTION_CONN
+    except Exception as ex:
+        print("ex")
+        db_config = g.DEVELOPMENT_CONN
 
+    try:
         db = mysql.connector.connect(**db_config)
         cursor = db.cursor(buffered=True)
 
@@ -31,26 +29,9 @@ def _():
         db.commit()
     except Exception as ex:
         print(ex)
-        db_config = {
-        "host": "localhost",
-        "user":"root",
-        "database": "tweeterdb",
-        "password": "1234"
-        }
-
-        db = mysql.connector.connect(**db_config)
-        cursor = db.cursor(buffered=True)
-
-        sql = """SELECT * FROM users  WHERE user_email =%s """
-        cursor.execute(sql, (user_email,))
-        users = cursor.fetchall() 
-        print(users)
-
-        db.commit()
-
     finally:
         db.close()
 
 
-        return dict( error = error, tweet_description=tweet_description, 
+    return dict( error = error, tweet_description=tweet_description, 
                     tweet_title=tweet_title, user_email=user_email, users=users)

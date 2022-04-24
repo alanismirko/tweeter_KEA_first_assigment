@@ -31,13 +31,12 @@ def _():
 
 ###################### CONNECTING TO THE DATABASE ########################
     try:
-        import production
-        db_config = {
-            "host":"keatest2020web.mysql.eu.pythonanywhere-services.com",
-            "user": "keatest2020web",
-            "password": "MySqLpassword",
-            "database": "keatest2020web$tweeterdb",
-        }
+        db_config = g.PRODUCTION_CONN
+    except Exception as ex:
+        print("ex")
+        db_config = g.DEVELOPMENT_CONN
+
+    try:
         db = mysql.connector.connect(**db_config)
         cursor = db.cursor()
         sql_login = """SELECT * FROM users WHERE user_email =%s AND user_password=%s """
@@ -54,31 +53,8 @@ def _():
         db.commit()
     except Exception as ex:
         print(ex)
-        db_config = {
-        "host": "localhost",
-        "user":"root",
-        "database": "tweeterdb",
-        "password": "1234"
-        }
-
-        db = mysql.connector.connect(**db_config)
-        cursor = db.cursor()
-        sql_login = """SELECT * FROM users WHERE user_email =%s AND user_password=%s """
-        var = (user_email, password_hashed)
-        cursor.execute(sql_login, var)
-        users = cursor.fetchone()
-        print("User is logged in")
-
-        sql_session= """ INSERT INTO sessions (session_id, session_user_email) VALUES (%s,%s)  """
-        val_session = (user_session_id, user_email, )
-        cursor.execute(sql_session, val_session)
-        print("Session is added")
-
-        db.commit()
     finally:
-        if db.is_connected():
-            cursor.close()
-            db.close()
+        db.close()
 
 
         

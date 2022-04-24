@@ -11,15 +11,12 @@ def _():
     tweet_title = request.params.get("tweet_title")
 
     try:
-        import production
-        db_config = {
-                "host":"keatest2020web.mysql.eu.pythonanywhere-services.com",
-                "user": "keatest2020web",
-                "password": "MySqLpassword",
-                "database": "keatest2020web$tweeterdb",
-        }
+        db_config = g.PRODUCTION_CONN
+    except Exception as ex:
+        print("ex")
+        db_config = g.DEVELOPMENT_CONN
 
-
+    try:
         db = mysql.connector.connect(**db_config)
         cursor = db.cursor(buffered=True)
     
@@ -32,24 +29,6 @@ def _():
         db.commit()
     except Exception as ex:
         print(ex)
-
-        db_config = {
-        "host": "localhost",
-        "user":"root",
-        "database": "tweeterdb",
-        "password": "1234"
-        }
-
-        db = mysql.connector.connect(**db_config)
-        cursor = db.cursor(buffered=True)
-    
-        sql = """SELECT * FROM follows WHERE user_email_initiator = %s"""
-        val = (user_email, )
-        
-        cursor.execute(sql, val)
-
-        follows = cursor.fetchall()
-        db.commit()
 
     finally:
         db.close()
@@ -66,14 +45,11 @@ def _():
     tweet_title = request.params.get("tweet_title")
 
     try:
-        import production
-        db_config = {
-                "host":"keatest2020web.mysql.eu.pythonanywhere-services.com",
-                "user": "keatest2020web",
-                "password": "MySqLpassword",
-                "database": "keatest2020web$tweeterdb",
-        }
-
+        db_config = g.PRODUCTION_CONN
+    except Exception as ex:
+        print("ex")
+        db_config = g.DEVELOPMENT_CONN
+    try:
         db = mysql.connector.connect(**db_config)
         cursor = db.cursor(buffered=True)
     
@@ -87,24 +63,6 @@ def _():
 
     except Exception as ex:
         print(ex)
-
-        db_config = {
-        "host": "localhost",
-        "user":"root",
-        "database": "tweeterdb",
-        "password": "1234"
-        }
-
-        db = mysql.connector.connect(**db_config)
-        cursor = db.cursor(buffered=True)
-    
-        sql = """SELECT * FROM follows WHERE user_email_receiver = %s"""
-        val = (user_email, )
-        
-        cursor.execute(sql, val)
-
-        follows = cursor.fetchall()
-        db.commit()
 
     finally:
         db.close()

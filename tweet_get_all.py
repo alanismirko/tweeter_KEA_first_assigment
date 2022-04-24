@@ -17,14 +17,12 @@ def _():
 
 ###################### CONNECTING TO THE DATABASE ########################
     try:
-        import production
-        db_config = {
-                "host":"keatest2020web.mysql.eu.pythonanywhere-services.com",
-                "user": "keatest2020web",
-                "password": "MySqLpassword",
-                "database": "keatest2020web$tweeterdb",
-        }
+        db_config = g.PRODUCTION_CONN
+    except Exception as ex:
+        print("ex")
+        db_config = g.DEVELOPMENT_CONN
 
+    try:
         db = mysql.connector.connect(**db_config)
         cursor = db.cursor(buffered=True)
         cursor.execute("""SELECT * FROM tweets """)
@@ -42,29 +40,6 @@ def _():
         db.commit()
     except Exception as ex:
         print(ex)
-
-        db_config = {
-        "host": "localhost",
-        "user":"root",
-        "database": "tweeterdb",
-        "password": "1234"
-        }
-
-        db = mysql.connector.connect(**db_config)
-        cursor = db.cursor(buffered=True)
-        cursor.execute("""SELECT * FROM tweets """)
-        tweets = cursor.fetchall() 
-
-        sql_sessions=""" SELECT * FROM sessions WHERE session_id =%s"""
-        cursor.execute(sql_sessions, (user_session_id,))
-        session = cursor.fetchone()
-        print(session)
-
-        sql = """DELETE FROM sessions WHERE TIMESTAMPDIFF(MINUTE,session_created_at,NOW()) > 30; """
-        cursor.execute(sql)
-        print("User session is deleted")
-
-        db.commit()
     finally:
         db.close()
 
