@@ -4,6 +4,7 @@ import uuid
 import time
 from datetime import datetime
 import mysql.connector
+import mysql
 
 @get("/logout")
 def _():
@@ -13,11 +14,12 @@ def _():
 
 ###################### CONNECTING TO THE DATABASE ########################
     try:
-        import production
-        db_config = g.PRODUCTION_CONN
+        # import production
+        # db_config = g.PRODUCTION_CONN
+        db_config = g.DEVELOPMENT_CONN
+
     except Exception as ex:
         print(ex)
-        db_config = g.DEVELOPMENT_CONN
 
     try:
 

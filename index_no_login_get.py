@@ -1,5 +1,6 @@
 from bottle import get, view, request
 import mysql
+import mysql.connector
 import g
 
 @get("/")
@@ -11,11 +12,12 @@ def _():
         
 ###################### CONNECTING TO THE DATABASE ########################
     try:
-        import production
-        db_config = g.PRODUCTION_CONN
+        # import production
+        # db_config = g.PRODUCTION_CONN
+        db_config = g.DEVELOPMENT_CONN
+
     except Exception as ex:
         print(ex)
-        db_config = g.DEVELOPMENT_CONN
 
     try:
 

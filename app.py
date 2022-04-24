@@ -61,6 +61,6 @@ try:
     application = default_app()
 except Exception as ex:
     print(ex)
-run ( host="127.0.0.1", port=8888, debug=True, reloader=True )
+run ( host="127.0.0.1", port=8888, debug=True, reloader=True, server="paste" )
 
 #################################

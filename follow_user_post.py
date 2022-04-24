@@ -1,6 +1,8 @@
-from bottle import post, request, view, redirect
+from bottle import post, request, view, redirect, response
 import g
 import mysql
+import mysql.connector
+
 
 @post("/follow_user")
 def _():
@@ -8,11 +10,12 @@ def _():
     user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET)
 
     try:
-        import production
-        db_config = g.PRODUCTION_CONN
+        # import production
+        # db_config = g.PRODUCTION_CONN
+        db_config = g.DEVELOPMENT_CONN
+
     except Exception as ex:
         print(ex)
-        db_config = g.DEVELOPMENT_CONN
 
     try:
         db = mysql.connector.connect(**db_config)
@@ -28,7 +31,9 @@ def _():
 
     except Exception as ex:
         print(ex)
+        response.status= 500
+
     finally:
         db.close()
-    return redirect("/following")
+        return redirect("/following")
     

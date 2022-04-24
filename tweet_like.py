@@ -8,11 +8,12 @@ def _():
     tweet_id_update = request.forms.get("tweet_id_update")
 
     try:
-        import production
-        db_config = g.PRODUCTION_CONN
+        # import production
+        # db_config = g.PRODUCTION_CONN
+        db_config = g.DEVELOPMENT_CONN
+
     except Exception as ex:
         print(ex)
-        db_config = g.DEVELOPMENT_CONN
 
     try:
         db = mysql.connector.connect(**db_config)

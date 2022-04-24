@@ -7,6 +7,7 @@ import mysql.connector
 import time
 from datetime import datetime
 import bcrypt
+import mysql
 
 
 @post("/login")
@@ -31,11 +32,14 @@ def _():
 
 ###################### CONNECTING TO THE DATABASE ########################
     try:
-        import production
-        db_config = g.PRODUCTION_CONN
+        # import production
+        # db_config = g.PRODUCTION_CONN
+        db_config = g.DEVELOPMENT_CONN
+
     except Exception as ex:
         print(ex)
-        db_config = g.DEVELOPMENT_CONN
+
+
 
     try:
         db = mysql.connector.connect(**db_config)
@@ -53,12 +57,11 @@ def _():
 
         db.commit()
     except Exception as ex:
+        response.status= 500
         print(ex)
     finally:
         db.close()
 
-
-        
 ###################### RETURN ########################
     if not users: 
             return redirect(f"/login?error=wrong_credentials") 
