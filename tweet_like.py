@@ -1,4 +1,4 @@
-from bottle import get, view, request, route, redirect, post
+from bottle import get, view, request, route, redirect, post, response
 import g
 import mysql
 
@@ -32,6 +32,8 @@ def _():
 
     except Exception as ex:
         print(ex)
+        response.status = 500
+
     finally:
         db.close()
     return redirect("/index")

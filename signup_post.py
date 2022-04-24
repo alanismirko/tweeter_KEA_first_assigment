@@ -157,6 +157,8 @@ def _():
     except Exception as ex:
         print(ex)
         db.rollback()
+        response.status = 500
+
 
     finally:
         db.close()

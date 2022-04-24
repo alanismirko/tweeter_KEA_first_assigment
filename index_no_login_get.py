@@ -1,4 +1,4 @@
-from bottle import get, view, request
+from bottle import get, view, request, response
 import mysql
 import mysql.connector
 import g
@@ -29,6 +29,8 @@ def _():
         db.commit()
     except Exception as ex:
         print(ex)
+        response.status = 500
+
     finally:
         db.close()
     return dict(  tweet_description=tweet_description, tweet_title=tweet_title,  image_tweet = image_tweet, tweets= tweets)

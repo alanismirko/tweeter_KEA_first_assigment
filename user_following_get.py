@@ -1,4 +1,4 @@
-from bottle import view, get, request
+from bottle import view, get, request, response
 import g
 import mysql
 
@@ -31,6 +31,7 @@ def _():
         db.commit()
     except Exception as ex:
         print(ex)
+        response.status = 500
 
     finally:
         db.close()
@@ -67,6 +68,8 @@ def _():
 
     except Exception as ex:
         print(ex)
+        response.status = 500
+
 
     finally:
         db.close()

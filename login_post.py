@@ -59,6 +59,7 @@ def _():
     except Exception as ex:
         response.status= 500
         print(ex)
+        
     finally:
         db.close()
 

@@ -1,4 +1,4 @@
-from bottle import  get, view, request, redirect, post, template
+from bottle import  get, view, request, redirect, post, template, response
 import g
 import mysql.connector
 
@@ -49,6 +49,7 @@ def _():
 
     except Exception as ex:
         print(ex)
+        response.status = 500
 
     finally:
         db.close()

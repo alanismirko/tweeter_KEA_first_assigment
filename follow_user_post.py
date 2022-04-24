@@ -9,6 +9,8 @@ def _():
     user_profile_email = request.params.get("user_profile_email")
     user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET)
 
+###################### CONNECTING TO THE DATABASE ########################
+
     try:
         # import production
         # db_config = g.PRODUCTION_CONN

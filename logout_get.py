@@ -1,4 +1,4 @@
-from bottle import post, request, redirect, get, view
+from bottle import post, request, redirect, get, view, response
 import g
 import uuid
 import time
@@ -33,6 +33,8 @@ def _():
         db.commit()
     except Exception as ex:
         print(ex)
+        response.status = 500
+
     finally:
         db.close()
 
