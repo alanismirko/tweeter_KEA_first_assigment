@@ -16,6 +16,17 @@
         % if error == "tweet_description":
             <p  class="text-red">Please enter longer description</p>
         % end
+
+        % if error == "image_error":
+        <p  class="text-red">Image not allowed</p>
+        % end
+
+        % if error == "image_error_file":
+        <p  class="text-red">Removing the suspicious file...
+        </p>
+        % end
+
+
     </div>
         <form action="/create_tweet" method="post" enctype="multipart/form-data" onsubmit="validate()">
           <div class="block">

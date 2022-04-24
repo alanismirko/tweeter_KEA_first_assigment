@@ -84,7 +84,7 @@
         <form action="/signup" method="post" enctype="multipart/form-data"> 
             <div class="left">
                 <label for="user_first_name">First name:</label>
-                <input id="user_first_name" name="user_first_name" type="text" placeholder="First name" value="{{user_first_name or ''}}"  data-validate="str" data-min="1" data-max="100" required>            
+                <input id="user_first_name" name="user_first_name" type="text" placeholder="First name" value="{{user_first_name or ''}}"  data-validate="str" data-min="1" data-max="100" required maxlength="60" >            
                 <label for="user_last_name">Last name:</label>
                 <input id="user_last_name" name="user_last_name" type="text" placeholder="Last name"  value="{{user_last_name or ''}}"   data-validate="str" data-min="1" data-max="100"required>
                 <label for="user_email">Email:</label> 
