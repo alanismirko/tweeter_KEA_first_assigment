@@ -3,17 +3,19 @@ import g
 import mysql
 
 @post("/like")
+@view("/index")
 def _():
     user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET)
     tweet_id_update = request.forms.get("tweet_id_update")
 
     try:
-        # import production
-        # db_config = g.PRODUCTION_CONN
-        db_config = g.DEVELOPMENT_CONN
+        import production
+        db_config = g.PRODUCTION_CONN
 
     except Exception as ex:
         print(ex)
+        db_config = g.DEVELOPMENT_CONN
+
 
     try:
         db = mysql.connector.connect(**db_config)
@@ -25,10 +27,13 @@ def _():
         cursor.execute(sql,val)
 
         sql =""" SELECT COUNT(*) FROM tweets_liked WHERE tweet_id=%s """
-        cursor.execute(sql, tweet_id_update,)
+        cursor.execute(sql, (tweet_id_update,))
         all = cursor.fetchall()
-        print("the count is", all)
+        print("the count is", all, "tweet id", tweet_id_update)
+
         db.commit()
+        return dict(all = all)
+
 
     except Exception as ex:
         print(ex)
@@ -36,5 +41,5 @@ def _():
 
     finally:
         db.close()
-    return redirect("/index")
+        return redirect("/index")
 

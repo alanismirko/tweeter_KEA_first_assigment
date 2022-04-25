@@ -15,14 +15,15 @@ def _():
     tweet_title = request.params.get("tweet_title")
     user_session_id = request.get_cookie("uuid4")
 
+
 ###################### CONNECTING TO THE DATABASE ########################
     try:
-        # import production
-        # db_config = g.PRODUCTION_CONN
-        db_config = g.DEVELOPMENT_CONN
+        import production
+        db_config = g.PRODUCTION_CONN
 
     except Exception as ex:
         print(ex)
+        db_config = g.DEVELOPMENT_CONN
 
 
 
@@ -36,6 +37,8 @@ def _():
         cursor.execute(sql_sessions, (user_session_id,))
         session = cursor.fetchone()
         print(session)
+
+
 
         sql = """DELETE FROM sessions WHERE TIMESTAMPDIFF(MINUTE,session_created_at,NOW()) > 30; """
         cursor.execute(sql)

@@ -17,9 +17,9 @@ DEVELOPMENT_CONN = {
         "password": "1234"
         }
 
-# PRODUCTION_CONN = {
-#             "host":"keatest2020web.mysql.eu.pythonanywhere-services.com",
-#             "user": "keatest2020web",
-#             "password": "MySqLpassword",
-#             "database": "keatest2020web$tweeterdb"
-#             }
+PRODUCTION_CONN = {
+            "host":"keatest2020web.mysql.eu.pythonanywhere-services.com",
+            "user": "keatest2020web",
+            "password": "MySqLpassword",
+            "database": "keatest2020web$tweeterdb"
+            }
