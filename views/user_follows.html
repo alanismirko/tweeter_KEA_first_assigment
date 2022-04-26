@@ -1,0 +1,48 @@
+% include("header", title="Following")
+
+  <div class="w-2/4 border-x border-slate-200 ">
+    % for user in users:
+
+    <div class="flex flex-row py-5 pl-5 text-white">
+      <a class="px-2 py-2 hover:rounded-full hover:bg-gray-800" href="/myprofile"><i class=" fa fa-arrow-left fa-fw"></i></a>
+      <p class="pl-5 text-2xl"><strong>{{user[1]}} {{user[2]}}</strong></p>
+    </div>
+    % end
+    <div class="mx-10">
+      % for follow in follows:
+
+      <div class="w-full text-white tab">
+        <div class="float-left">
+          <button class="text-xl tablinks" onclick="openTab(event, 'Following')">Following</button>
+        </div>
+        <div class="float-right ">
+          <button class="text-xl tablinks" onclick="openTab(event, 'Followers')">Followers</button>
+        </div>
+        
+          <div id="Following" class="text-white  tabcontent">
+            <p class="text-white">{{follow[1]}}</p>
+          </div>
+          
+          <div id="Followers" class="text-white  tabcontent">
+            <p class="text-white">{{follow[0]}}</p>
+        
+        </div>
+
+
+      </div>
+  
+
+
+  
+      % end
+    </div>
+  </div>
+
+  <div class="w-1/4">
+    <div class="fixed p-4">
+      <h1 class="text-white">My tweets</h1>
+    </div>
+  </div>
+
+  
+  % include("footer")

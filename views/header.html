@@ -22,7 +22,7 @@
         % for tab in tabs:
         <div class="mt-5">
           <a class="" href="{{tab['href']}}">
-            <div class="px-8 py-2 hover:rounded-lg hover:bg-gray-800 ">
+            <div class="px-8 py-2 hover:rounded-full hover:bg-gray-800 ">
               <i class=" text-3xl {{tab['icon']}}"></i>
               <span class="ml-3 text-3xl">{{tab['title']}}</span>
             </div>
@@ -50,7 +50,7 @@
       <div class="fixed bottom-0 w-1/4 mt-auto">
         % for user in users:
         <a class="flex justify-center mb-4" href="/myprofile">  
-          <div class="flex items-center justify-center px-2 py-2 hover:rounded-lg hover:bg-gray-800">
+          <div class="flex items-center justify-center px-2 py-2 hover:rounded-full hover:bg-gray-800">
             <div  class="mx-2 my-2 ">
               <img class="w-8 h-8 rounded-full" src="../images/user_image/{{user[8]}}">
             </div>
