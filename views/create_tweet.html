@@ -1,11 +1,40 @@
 
-        <form action="/create_tweet" method="post" enctype="multipart/form-data" onsubmit="validate()">
-          <div class="block">
-            <input name="tweet_id" type="hidden" >
-            <input class="w-full h-8 mb-5" name="tweet_title" type="text" placeholder="Title" value="{{ tweet_title or '' }}" required data-validate="str" data-min="1" data-max="100" >
-            <input class="w-full h-8 mb-5" name="tweet_description" type="text" placeholder="Description" value="{{ tweet_description or ''}}" required data-validate="str" data-min="1" data-max="100">
-            <label for="image_tweet">Select image:</label>
-            <input type="file" id="image_tweet" name="image_tweet" accept="image/*">
-          </div>    
-            <button class="w-full py-2 mt-1 text-lg text-white bg-blue-300 rounded-full" >Create</button>
-        </form>
+            <div >
+              % if error == "tweet_title":
+              <p class="text-white">Please enter longer title</p>
+              % end
+      
+              % if error == "tweet_description":
+                  <p  class="text-white">Please enter longer description</p>
+              % end
+      
+              % if error == "image_error":
+              <p  class="text-white">Image not allowed</p>
+              % end
+      
+              % if error == "image":
+              <p  class="text-white">Removing the suspicious file...
+              </p>
+              % end
+            </div>
+
+<div class="flex flex-col px-6 py-6">
+  <h1 class="text-2xl text-gray-500 ">What's happening?</h1>
+  <form class="mt-4" action="/create_tweet" method="post" enctype="multipart/form-data" onsubmit="validate()">
+    <div class="block">
+      <input name="tweet_id" type="hidden" >
+      <input class="w-1/2 h-8 mb-5 text-white bg-black" name="tweet_title" type="text" placeholder="Title" value="{{ tweet_title or '' }}" required data-validate="str" data-min="1" data-max="100" >
+      <input class="w-1/2 h-8 mb-5 text-white bg-black" name="tweet_description" type="text" placeholder="Description" value="{{ tweet_description or ''}}" required data-validate="str" data-min="1" data-max="100">
+      <hr class="mb-2 text-white">
+      <label class="cursor-pointer" for="image_tweet">
+        <i class="text-blue-100 fa-solid fa-image icon-4x"></i> 
+        <input class="hidden" type="file" id="image_tweet" name="image_tweet" accept="image/*">
+      </label>
+      <button class="float-right py-2 mt-1 text-lg text-white bg-blue-300 rounded-full w-28" >Tweet</button>
+
+    </div>    
+  </form>
+</div>
+
+            
+

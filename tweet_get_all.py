@@ -13,17 +13,7 @@ def _():
     tweet_title = request.params.get("tweet_title")
     user_session_id = request.get_cookie("uuid4")
 
-    tabs = [
-    {"icon": "fas fa-home fa-fw", "title": "Home", "id":"home", "href": "/index"},
-    {"icon": "fas fa-hashtag fa-fw", "title": "Explore", "id": "explore", "href":"/index"},
-    {"icon": "far fa-bell fa-fw", "title": "Notifications", "id": "notifications", "href":"/index"},
-    {"icon": "far fa-envelope fa-fw", "title": "Messages", "id": "messages", "href":"/index"},
-    {"icon": "far fa-bookmark fa-fw", "title": "Bookmarks", "id": "bookmarks", "href":"/index"},
-    {"icon": "fas fa-clipboard-list fa-fw", "title": "Lists", "id": "lists", "href":"/index"},
-    {"icon": "far fa-user fa-fw", "title": "Profile", "id": "profile", "href":"/myprofile"},
-    {"icon": "fas fa-ellipsis-h fa-fw", "title": "More", "id": "more", "href":"/index"},
-    {"icon": "fa fa-sign-out fa-fw", "title": "Logout", "id": "logout", "href":"/logout"}
-    ]
+    tabs = g.TABS
 
 
 ###################### CONNECTING TO THE DATABASE ########################
@@ -51,8 +41,6 @@ def _():
         sql = """SELECT * FROM users  WHERE user_email =%s """
         cursor.execute(sql, (user_email,))
         users = cursor.fetchall() 
-
-
 
         sql = """DELETE FROM sessions WHERE TIMESTAMPDIFF(MINUTE,session_created_at,NOW()) > 30; """
         cursor.execute(sql)

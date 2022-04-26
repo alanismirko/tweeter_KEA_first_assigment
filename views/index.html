@@ -5,24 +5,7 @@
       % include("create_tweet")
 
     </div>
-      <div >
-        % if error == "tweet_title":
-        <p class="text-red">Please enter longer title</p>
-        % end
 
-        % if error == "tweet_description":
-            <p  class="text-red">Please enter longer description</p>
-        % end
-
-        % if error == "image_error":
-        <p  class="text-red">Image not allowed</p>
-        % end
-
-        % if error == "image":
-        <p  class="text-red">Removing the suspicious file...
-        </p>
-        % end
-      </div>
     <div class="mt-4">
       % for tweet in tweets:
       <div class="p-4 border-t border-slate-200">

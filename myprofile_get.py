@@ -11,6 +11,8 @@ def _():
     tweet_description = request.params.get("tweet_description")
     tweet_title = request.params.get("tweet_title")
 
+    tabs = g.TABS
+    
     try:
         import production
         db_config = g.PRODUCTION_CONN
@@ -39,4 +41,4 @@ def _():
 
 
     return dict( error = error, tweet_description=tweet_description, 
-                    tweet_title=tweet_title, user_email=user_email, users=users)
+                    tweet_title=tweet_title, user_email=user_email, users=users, tabs=tabs)

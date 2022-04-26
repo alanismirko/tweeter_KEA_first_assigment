@@ -14,16 +14,19 @@
 <body class="flex w-full h-screen bg-black">
 
   <div class="w-1/4">
-    <div class="fixed flex flex-col h-screen py-5 ml-10">
-      <div class="text-white">
+    <div class="fixed flex flex-col h-screen py-5 ml-10 ">
+      <div class="justify-center text-white">
         <div class="pl-4">
           <i class="pl-5 text-4xl fa-brands fa-twitter fa-fw text-blue1"></i>
         </div>
         % for tab in tabs:
         <div class="mt-5">
-          <a class="px-6 py-3 rounded-full hover:bg-lighter" href="{{tab['href']}}">
-            <i class="{{tab['icon']}}"></i>
-            <span class="text-xl">{{tab['title']}}</span>
+          <a class="" href="{{tab['href']}}">
+            <div class="px-8 py-2 hover:rounded-lg hover:bg-gray-800 ">
+              <i class=" text-3xl {{tab['icon']}}"></i>
+              <span class="ml-3 text-3xl">{{tab['title']}}</span>
+            </div>
+
           </a>
         </div>
         % end 
@@ -33,10 +36,10 @@
       </button>
 
       <section id="tweetModal" class="fixed z-10 hidden w-screen h-screen">
-        <div class="absolute w-full h-full bg-black bg-opacity-50" onclick="toggleTweetModal()">
+        <div class="absolute w-full h-full bg-opacity-50 bg-slate-700" onclick="toggleTweetModal()">
     
         </div>
-        <div class="relative z-10 w-1/3 h-64 p-10 mx-auto mt-20 rounded-lg bg-slate-700">
+        <div class="relative z-10 w-1/3 p-10 mx-auto mt-20 bg-black rounded-lg h-1/2">
           <span class="float-right text-2xl text-white cursor-pointer"><a onclick="toggleTweetModal()" href="#">&times;</a></span>   
           % include("create_tweet")
     
@@ -49,7 +52,7 @@
         <a class="flex justify-center mb-4" href="/myprofile">  
           <div class="flex items-center justify-center px-2 py-2 hover:rounded-lg hover:bg-gray-800">
             <div  class="mx-2 my-2 ">
-              <img class="w-8 h-8 rounded-full" src="../images/user_image/07630a6a-f913-47d2-9579-51774d448f1e.png">
+              <img class="w-8 h-8 rounded-full" src="../images/user_image/{{user[8]}}">
             </div>
             <div class="pl-1">
               <p class="text-lg text-white"><strong>{{user[1]}} {{user[2]}}</strong></p>
@@ -59,10 +62,9 @@
               <h1>...</h1>
           </div>      
 
-
         </div>
 
-
+        
         % end
 
         </a>
