@@ -6,69 +6,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://kit.fontawesome.com/c884ab5724.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="app.css">
-
   <script src="../app.js" defer></script>
   <script src="validator.js" defer></script>
 
   <title>Tweeter</title>
 </head>
-<body class="flex w-full h-full bg-black">
+<body class="flex w-full h-screen bg-black">
 
-
-    <div class="w-1/4">
-        <div class="relative h-screen p-4">
-          <div class="mt-2 text-xl">
-            <a href="/index"  class="flex items-center gap-2 px-8 py-2 text-white rounded-full hover:bg-blue-200" href="/explore">
-              <svg class="w-8 h-8 fill-slate-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M575.8 255.5C575.8 273.5 560.8 287.6 543.8 287.6H511.8L512.5 447.7C512.5 450.5 512.3 453.1 512 455.8V472C512 494.1 494.1 512 472 512H456C454.9 512 453.8 511.1 452.7 511.9C451.3 511.1 449.9 512 448.5 512H392C369.9 512 352 494.1 352 472V384C352 366.3 337.7 352 320 352H256C238.3 352 224 366.3 224 384V472C224 494.1 206.1 512 184 512H128.1C126.6 512 125.1 511.9 123.6 511.8C122.4 511.9 121.2 512 120 512H104C81.91 512 64 494.1 64 472V360C64 359.1 64.03 358.1 64.09 357.2V287.6H32.05C14.02 287.6 0 273.5 0 255.5C0 246.5 3.004 238.5 10.01 231.5L266.4 8.016C273.4 1.002 281.4 0 288.4 0C295.4 0 303.4 2.004 309.5 7.014L564.8 231.5C572.8 238.5 576.9 246.5 575.8 255.5L575.8 255.5z"/></svg>
-              Home
-            </a>
-          </div> 
-          <div class="mt-2 text-xl">
-            <a class="flex items-center gap-2 px-8 py-2 text-white rounded-full hover:bg-blue-200" href="/mytweets">
-              <svg class="w-8 h-8 fill-slate-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-48.9 158.8c.2 2.8.2 5.7.2 8.5 0 86.7-66 186.6-186.6 186.6-37.2 0-71.7-10.8-100.7-29.4 5.3.6 10.4.8 15.8.8 30.7 0 58.9-10.4 81.4-28-28.8-.6-53-19.5-61.3-45.5 10.1 1.5 19.2 1.5 29.6-1.2-30-6.1-52.5-32.5-52.5-64.4v-.8c8.7 4.9 18.9 7.9 29.6 8.3a65.447 65.447 0 0 1-29.2-54.6c0-12.2 3.2-23.4 8.9-33.1 32.3 39.8 80.8 65.8 135.2 68.6-9.3-44.5 24-80.6 64-80.6 18.9 0 35.9 7.9 47.9 20.7 14.8-2.8 29-8.3 41.6-15.8-4.9 15.2-15.2 28-28.8 36.1 13.2-1.4 26-5.1 37.8-10.2-8.9 13.1-20.1 24.7-32.9 34z"/></svg>              
-              My tweets
-            </a>
-          </div>
-
-          <div class="mt-2 text-xl">
-            <a class="flex items-center gap-2 px-8 py-2 text-white rounded-full hover:bg-blue-200" href="/followers">
-              <svg class="w-8 h-8 fill-slate-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-48.9 158.8c.2 2.8.2 5.7.2 8.5 0 86.7-66 186.6-186.6 186.6-37.2 0-71.7-10.8-100.7-29.4 5.3.6 10.4.8 15.8.8 30.7 0 58.9-10.4 81.4-28-28.8-.6-53-19.5-61.3-45.5 10.1 1.5 19.2 1.5 29.6-1.2-30-6.1-52.5-32.5-52.5-64.4v-.8c8.7 4.9 18.9 7.9 29.6 8.3a65.447 65.447 0 0 1-29.2-54.6c0-12.2 3.2-23.4 8.9-33.1 32.3 39.8 80.8 65.8 135.2 68.6-9.3-44.5 24-80.6 64-80.6 18.9 0 35.9 7.9 47.9 20.7 14.8-2.8 29-8.3 41.6-15.8-4.9 15.2-15.2 28-28.8 36.1 13.2-1.4 26-5.1 37.8-10.2-8.9 13.1-20.1 24.7-32.9 34z"/></svg>              
-              My followers
-            </a>
-          </div>
-
-          <div class="mt-2 text-xl">
-            <a class="flex items-center gap-2 px-8 py-2 text-white rounded-full hover:bg-blue-200" href="/following">
-              <svg class="w-8 h-8 fill-slate-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-48.9 158.8c.2 2.8.2 5.7.2 8.5 0 86.7-66 186.6-186.6 186.6-37.2 0-71.7-10.8-100.7-29.4 5.3.6 10.4.8 15.8.8 30.7 0 58.9-10.4 81.4-28-28.8-.6-53-19.5-61.3-45.5 10.1 1.5 19.2 1.5 29.6-1.2-30-6.1-52.5-32.5-52.5-64.4v-.8c8.7 4.9 18.9 7.9 29.6 8.3a65.447 65.447 0 0 1-29.2-54.6c0-12.2 3.2-23.4 8.9-33.1 32.3 39.8 80.8 65.8 135.2 68.6-9.3-44.5 24-80.6 64-80.6 18.9 0 35.9 7.9 47.9 20.7 14.8-2.8 29-8.3 41.6-15.8-4.9 15.2-15.2 28-28.8 36.1 13.2-1.4 26-5.1 37.8-10.2-8.9 13.1-20.1 24.7-32.9 34z"/></svg>              
-              Following
-            </a>
-          </div>
-
-          <!-- <div class="mt-2 text-xl">
-            <a class="flex items-center gap-2 px-8 py-2 text-white rounded-full hover:bg-blue-200" href="/logout">
-              <svg class="w-8 h-8 fill-slate-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M448 336v-288C448 21.49 426.5 0 400 0H96C42.98 0 0 42.98 0 96v320c0 53.02 42.98 96 96 96h320c17.67 0 32-14.33 32-31.1c0-11.72-6.607-21.52-16-27.1v-81.36C441.8 362.8 448 350.2 448 336zM143.1 128h192C344.8 128 352 135.2 352 144C352 152.8 344.8 160 336 160H143.1C135.2 160 128 152.8 128 144C128 135.2 135.2 128 143.1 128zM143.1 192h192C344.8 192 352 199.2 352 208C352 216.8 344.8 224 336 224H143.1C135.2 224 128 216.8 128 208C128 199.2 135.2 192 143.1 192zM384 448H96c-17.67 0-32-14.33-32-32c0-17.67 14.33-32 32-32h288V448z"/></svg>             
-               <!-- Documentation
-            </a>
-          </div> -->
-          
-          <div class="mt-2 text-xl">
-            <a class="flex items-center gap-2 px-8 py-2 text-white rounded-full hover:bg-blue-200" href="/logout">
-              <svg class="w-8 h-8 fill-slate-700" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M160 416H96c-17.67 0-32-14.33-32-32V128c0-17.67 14.33-32 32-32h64c17.67 0 32-14.33 32-32S177.7 32 160 32H96C42.98 32 0 74.98 0 128v256c0 53.02 42.98 96 96 96h64c17.67 0 32-14.33 32-32S177.7 416 160 416zM502.6 233.4l-128-128c-12.51-12.51-32.76-12.49-45.25 0c-12.5 12.5-12.5 32.75 0 45.25L402.8 224H192C174.3 224 160 238.3 160 256s14.31 32 32 32h210.8l-73.38 73.38c-12.5 12.5-12.5 32.75 0 45.25s32.75 12.5 45.25 0l128-128C515.1 266.1 515.1 245.9 502.6 233.4z"/></svg>
-              Logout
-            </a>
-          </div>
-
-          
-
-          <button onclick="toggleTweetModal()" class="w-full py-2 mt-8 text-lg text-white bg-blue-300 rounded-full">
-            Tweet
-          </button>
-          <div class="absolute bottom-0 mt-auto bg-slate-400">
-            
-            <a href="/myprofile">{{user_email}}</a>
-          </div>   
+  <div class="w-1/4">
+    <div class="fixed flex flex-col h-screen py-5 ml-10">
+      <div class="text-white">
+        <div class="pl-4">
+          <i class="pl-5 text-4xl fa-brands fa-twitter fa-fw text-blue1"></i>
         </div>
+        % for tab in tabs:
+        <div class="mt-5">
+          <a class="px-6 py-3 rounded-full hover:bg-lighter" href="{{tab['href']}}">
+            <i class="{{tab['icon']}}"></i>
+            <span class="text-xl">{{tab['title']}}</span>
+          </a>
+        </div>
+        % end 
       </div>
+      <button onclick="toggleTweetModal()" class="w-full py-2 mt-8 text-lg text-white bg-blue-300 rounded-full">
+        Tweet
+      </button>
 
       <section id="tweetModal" class="fixed z-10 hidden w-screen h-screen">
         <div class="absolute w-full h-full bg-black bg-opacity-50" onclick="toggleTweetModal()">
@@ -76,20 +38,38 @@
         </div>
         <div class="relative z-10 w-1/3 h-64 p-10 mx-auto mt-20 rounded-lg bg-slate-700">
           <span class="float-right text-2xl text-white cursor-pointer"><a onclick="toggleTweetModal()" href="#">&times;</a></span>   
-
-            <form action="/create_tweet" method="post" enctype="multipart/form-data" onsubmit="validate()">
-              <div class="block">
-                <input name="tweet_id" type="hidden" >
-                <input class="w-full h-12 p-4 text-gray-800 rounded outline-none placeholder:text-gray-800"  name="tweet_title" type="text" placeholder="Title" value="{{ tweet_title or '' }}"  data-validate="str" data-min="2" data-max="100" >
-                <input class="w-full h-12 p-4 text-gray-800 rounded outline-none placeholder:text-gray-800"  name="tweet_description" type="text" placeholder="Description" value="{{ tweet_description or ''}}"  data-validate="str" data-min="2" data-max="100">
-                <label for="image_tweet">Select image:</label>
-                <input type="file" id="image_tweet" name="image_tweet" accept="image/*">
-              </div>    
-                <button class="w-full py-2 mt-1 text-lg text-white bg-blue-300 rounded-full" >Create</button>
-            </form>
+          % include("create_tweet")
+    
           </div>
         </div>
       </section>
 
+      <div class="fixed bottom-0 w-1/4 mt-auto">
+        % for user in users:
+        <a class="flex justify-center mb-4" href="/myprofile">  
+          <div class="flex items-center justify-center px-2 py-2 hover:rounded-lg hover:bg-gray-800">
+            <div  class="mx-2 my-2 ">
+              <img class="w-8 h-8 rounded-full" src="../images/user_image/07630a6a-f913-47d2-9579-51774d448f1e.png">
+            </div>
+            <div class="pl-1">
+              <p class="text-lg text-white"><strong>{{user[1]}} {{user[2]}}</strong></p>
+              <p class="text-base text-white">@{{user[2]}}{{user[1]}}</p>
+            </div>
+            <div class="justify-center pl-4 text-white">
+              <h1>...</h1>
+          </div>      
 
-    
+
+        </div>
+
+
+        % end
+
+        </a>
+
+      </div>   
+
+
+    </div>
+
+  </div>

@@ -9,11 +9,21 @@ def _():
 ###################### DEFINING THE VARIABLES ########################
     error = request.params.get("error")
     user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET)
-    user_first_name = request.get_cookie("user_first_name", secret=g.COOKIE_SECRET)
-    user_last_name = request.get_cookie("user_last_name", secret=g.COOKIE_SECRET)
     tweet_description = request.params.get("tweet_description")
     tweet_title = request.params.get("tweet_title")
     user_session_id = request.get_cookie("uuid4")
+
+    tabs = [
+    {"icon": "fas fa-home fa-fw", "title": "Home", "id":"home", "href": "/index"},
+    {"icon": "fas fa-hashtag fa-fw", "title": "Explore", "id": "explore", "href":"/index"},
+    {"icon": "far fa-bell fa-fw", "title": "Notifications", "id": "notifications", "href":"/index"},
+    {"icon": "far fa-envelope fa-fw", "title": "Messages", "id": "messages", "href":"/index"},
+    {"icon": "far fa-bookmark fa-fw", "title": "Bookmarks", "id": "bookmarks", "href":"/index"},
+    {"icon": "fas fa-clipboard-list fa-fw", "title": "Lists", "id": "lists", "href":"/index"},
+    {"icon": "far fa-user fa-fw", "title": "Profile", "id": "profile", "href":"/myprofile"},
+    {"icon": "fas fa-ellipsis-h fa-fw", "title": "More", "id": "more", "href":"/index"},
+    {"icon": "fa fa-sign-out fa-fw", "title": "Logout", "id": "logout", "href":"/logout"}
+    ]
 
 
 ###################### CONNECTING TO THE DATABASE ########################
@@ -38,6 +48,10 @@ def _():
         session = cursor.fetchone()
         print(session)
 
+        sql = """SELECT * FROM users  WHERE user_email =%s """
+        cursor.execute(sql, (user_email,))
+        users = cursor.fetchall() 
+
 
 
         sql = """DELETE FROM sessions WHERE TIMESTAMPDIFF(MINUTE,session_created_at,NOW()) > 30; """
@@ -55,7 +69,6 @@ def _():
 ###################### RETURN - DICTIONARY ########################
         if session is None:
                 return redirect("/login")
-        return dict( error = error, tweet_description=tweet_description, 
-                        user_first_name=user_first_name, user_last_name=user_last_name, 
-                        tweet_title=tweet_title, user_email=user_email, tweets = tweets)
+        return dict( error = error, tweet_description=tweet_description,  
+                        tweet_title=tweet_title, user_email=user_email, tweets = tweets, tabs=tabs, users=users)
 
