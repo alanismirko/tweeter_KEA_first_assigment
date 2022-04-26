@@ -12,7 +12,7 @@ def _():
     tweet_title = request.params.get("tweet_title")
 
     tabs = g.TABS
-    
+
     try:
         import production
         db_config = g.PRODUCTION_CONN
@@ -31,6 +31,15 @@ def _():
         users = cursor.fetchall() 
         print(users)
 
+        sql = """SELECT * FROM tweets  WHERE tweet_user_email =%s """
+        cursor.execute(sql, (user_email,))
+        tweets = cursor.fetchall() 
+        print("All the tweets are listed")
+
+        sql = """DELETE FROM sessions WHERE TIMESTAMPDIFF(MINUTE,session_created_at,NOW()) > 30; """
+        cursor.execute(sql)
+        print("User session is deleted")
+
         db.commit()
     except Exception as ex:
         print(ex)
@@ -41,4 +50,4 @@ def _():
 
 
     return dict( error = error, tweet_description=tweet_description, 
-                    tweet_title=tweet_title, user_email=user_email, users=users, tabs=tabs)
+                    tweet_title=tweet_title, user_email=user_email, users=users, tabs=tabs, tweets= tweets)
