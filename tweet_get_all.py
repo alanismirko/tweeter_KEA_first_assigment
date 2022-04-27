@@ -38,6 +38,9 @@ def _():
         session = cursor.fetchone()
         print(session)
 
+
+
+
         sql = """SELECT * FROM users  WHERE user_email =%s """
         cursor.execute(sql, (user_email,))
         users = cursor.fetchall() 
