@@ -1,0 +1,38 @@
+% # right
+<div class="w-1/4 h-screen">
+  <div class="fixed flex flex-col w-1/5 h-screen gap-4 py-4 pl-4 ">
+    <div class="flex-grow h-32 overflow-hidden bg-gray-800 rounded">
+        <p class="p-2 text-lg font-bold">Trends for you</p>
+      % for trend in trends:
+        <div class="cursor-pointer hover:bg-slate-500">
+          <span class="float-right pr-5">...</span>   
+          <p class="px-2 py-0.5 font-thin">{{trend["category"]}}</p>
+          <p class="px-2 py-0.5 font-bold ">{{trend["title"]}}</p>
+          <p class="px-2 py-0.5 font-thin">{{trend["tweets_counter"]}} tweets</p>
+        </div>
+        <!-- ANOTHER SOLUTION
+
+        -->
+      % end
+    </div>
+    <div class="bg-gray-800 rounded h-1/3">
+      <p class="p-2 text-lg font-bold">You might like</p>
+      % for reccomendation in reccomendations:
+        <div class="flex justify-between">
+          <img class="flex-none w-12 h-12 m-2 rounded-full" src="/images/{{reccomendation['src']}}" alt="">
+          <div class="inline-block w-full">
+            <p class="flex-none">{{reccomendation["user_first_name"]}} {{reccomendation["user_last_name"]}}</p>
+            <p class="">@{{reccomendation["user_name"]}}</p>
+          </div>
+          <button class="w-6/12 h-10 my-1 mt-3 mr-2 text-base text-black bg-white rounded-full ">Follow</button>
+        </div>
+      % end
+      <p class="w-full pl-4 align-bottom text-blue1">Show more</p>
+
+    </div>
+    <p>&copy; Alanis Mirko 2022.</p>
+
+
+  </div>
+</div>
+% # end right  

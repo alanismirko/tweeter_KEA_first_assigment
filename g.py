@@ -19,6 +19,21 @@ TABS =  [
     {"icon": "fa fa-sign-out fa-fw", "title": "Logout", "id": "logout", "href":"/logout"}
     ]
 
+TRENDS = [
+  {"category": "Music", "title": "We Won", "tweets_counter": "135K"},
+  {"category": "Pop", "title": "Blue Ivy", "tweets_counter": "40k"},
+  {"category": "Trending in US", "title": "Denim Day", "tweets_counter": "40k"},
+  {"category": "Trending in UK", "title": "Football cup", "tweets_counter": "300k"},
+  {"category": "Croatia summer", "title": "Sunny days", "tweets_counter": "150k"},
+  {"category": "Trending in DK", "title": "Lakrids", "tweets_counter": "150k"}
+]
+
+RECOMMENDATIONS =[
+  {"src":"../images/right_images/3.jpg", "user_first_name":"Elon", "user_last_name":"Musk", "user_name":"elonmusk"},
+  {"src":"../images/right_images/2.jpg", "user_first_name":"Joe", "user_last_name":"Biden", "user_name":"joebiden"},
+  {"src":"../images/right_images/6.jpg", "user_first_name":"Barack", "user_last_name":"Obama", "user_name":"baracobama"}
+]
+
 
 DEVELOPMENT_CONN = {
         "host": "localhost",

@@ -14,6 +14,8 @@ def _():
     user_session_id = request.get_cookie("uuid4")
 
     tabs = g.TABS
+    reccomendations = g.RECOMMENDATIONS
+    trends = g.TRENDS
 
 
 ###################### CONNECTING TO THE DATABASE ########################
@@ -61,5 +63,5 @@ def _():
         if session is None:
                 return redirect("/login")
         return dict( error = error, tweet_description=tweet_description,  
-                        tweet_title=tweet_title, user_email=user_email, tweets = tweets, tabs=tabs, users=users)
+                        tweet_title=tweet_title, user_email=user_email, tweets = tweets, tabs=tabs, users=users, reccomendations=reccomendations, trends = trends)
 
