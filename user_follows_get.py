@@ -10,6 +10,8 @@ def _():
     tweet_description = request.params.get("tweet_description")
     tweet_title = request.params.get("tweet_title")
     tabs = g.TABS
+    reccomendations = g.RECOMMENDATIONS
+    trends = g.TRENDS
 
     try:
         # import production
@@ -39,4 +41,4 @@ def _():
     finally:
         db.close()
 
-    return dict(users= users, user_email = user_email, error=error, tweet_description=tweet_description,follows=follows, tweet_title=tweet_title, tabs=tabs)
+    return dict(users= users, user_email = user_email, error=error, tweet_description=tweet_description,follows=follows, tweet_title=tweet_title, tabs=tabs, reccomendations=reccomendations, trends=trends)

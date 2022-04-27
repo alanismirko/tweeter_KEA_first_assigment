@@ -11,6 +11,10 @@ def _():
     tweet_description = request.params.get("tweet_description")
     tweet_title = request.params.get("tweet_title")
 
+    tabs = g.TABS
+    trends = g.TRENDS
+    reccomendations = g.RECOMMENDATIONS
+
     try:
         import production
         db_config = g.PRODUCTION_CONN
@@ -50,7 +54,8 @@ def _():
             return redirect("/myprofile")
 
     return dict( error = error, tweet_description=tweet_description, 
-                    tweet_title=tweet_title, user_email=user_email, users=users, user_profile_email= user_profile_email, tweets=tweets)
+                    tweet_title=tweet_title, user_email=user_email, users=users, user_profile_email= user_profile_email, tweets=tweets,
+                    tabs=tabs, reccomendations=reccomendations, trends=trends)
 
 
 
