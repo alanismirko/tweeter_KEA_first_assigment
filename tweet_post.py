@@ -11,7 +11,7 @@ import imghdr
 @post("/create_tweet")
 def _():
 
-    ###################### VARIABLES #######################################
+###################### VARIABLES #######################################
     tweet_id = str(uuid.uuid4())
     tweet_title = request.forms.get("tweet_title")
     tweet_description = request.forms.get("tweet_description")
@@ -41,6 +41,14 @@ def _():
     if image_tweet is None:
         image_name = "nothing"
 
+###################### VALIDATION #######################################
+
+    if not request.forms.get("tweet_title"):
+        response.status = 400
+        return redirect(f"/index?error=missing_variable&tweet_title={tweet_title}&tweet_description={tweet_description}")
+    if not request.forms.get("tweet_description"):
+        response.status = 400
+        return redirect(f"/index?error=missing_variable&tweet_title={tweet_title}&tweet_description={tweet_description}")
 
     if len(tweet_title) < 2 or len(tweet_title) > 100:
         response.status = 400
@@ -49,9 +57,6 @@ def _():
         response.status = 400
         return redirect(f"/index?error=tweet_description&tweet_title={tweet_title}&tweet_description={tweet_description}")
     
-
-
-
 
 ###################### CONNECTING TO THE DATABASE ########################
     try:
@@ -89,7 +94,9 @@ def _():
         if db.is_connected():
             cursor.close()
             db.close()
-    
+
+###################### RETURN ########################
+
     if session is None:
         return redirect("/login")
     return redirect("/mytweets")

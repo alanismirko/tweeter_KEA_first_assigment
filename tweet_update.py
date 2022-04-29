@@ -8,6 +8,8 @@ import mysql.connector
 @post("/tweet_update/<tweet_id_update>")
 def _(tweet_id_update):
 
+###################### DEFINING VARIABLES ########################
+
     user_session_id = request.get_cookie("uuid4")
     tweet_user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET)
 
@@ -16,6 +18,14 @@ def _(tweet_id_update):
     tweet_description_update = request.forms.get("tweet_description_update")
     tweet_created_at_update = request.forms.get("tweet_created_at_update")
     tweet_updated_at_update = request.forms.get("tweet_updated_at_update")
+
+###################### VALIDATION ########################
+    if not request.forms.get("tweet_title_update"):
+        response.status = 400
+        return redirect(f"/index?error=missing_variable&tweet_title={tweet_title_update}&tweet_description={tweet_description_update}")
+    if not request.forms.get("tweet_description_update"):
+        response.status = 400
+        return redirect(f"/index?error=missing_variable&tweet_title={tweet_title_update}&tweet_description={tweet_description_update}")
 
     if len(tweet_title_update) < 2 or len(tweet_title_update) > 100:
         response.status = 400
@@ -71,7 +81,7 @@ def _(tweet_id_update):
     if session is None:
             return redirect("/login")
     else:
-        return redirect("/mytweets")
+        return redirect("/myprofile")
 
 
 

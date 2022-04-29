@@ -50,7 +50,34 @@ def _():
         print("not an image")
         os.remove(f"images/user_image/{image_name}")
         return redirect("/signup?error=image")
-    
+
+############### VALIDATION #######################################
+
+    if not request.forms.get("user_first_name"):
+        response.status = 400
+        return redirect(f"/signup?error=missing_variable&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+    if not request.forms.get("user_last_name"):
+        response.status = 400
+        return redirect(f"/signup?error=missing_variable&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+    if not request.forms.get("user_email"):
+        response.status = 400
+        return redirect(f"/signup?error=missing_variable&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+    if not request.forms.get("street_name"):
+        response.status = 400
+        return redirect(f"/signup?error=missing_variable&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+    if not request.forms.get("country"):
+        response.status = 400
+        return redirect(f"/signup?error=missing_variable&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+    if not request.forms.get("region"):
+        response.status = 400
+        return redirect(f"/signup?error=missing_variable&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+    if not request.forms.get("zipcode"):
+        response.status = 400
+        return redirect(f"/signup?error=missing_variable&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+    if not request.forms.get("city"):
+        response.status = 400
+        return redirect(f"/signup?error=missing_variable&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+
     if len(user_first_name) < 2 or len(user_first_name) > 100:
         response.status = 400
         return redirect(f"/signup?error=user_name&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
@@ -72,6 +99,8 @@ def _():
     if len(city) < 2 or len(city) > 100:
         response.status = 400
         return redirect(f"/signup?error=city&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+
+############### CONNECTING TO DATABASE #######################################
 
     try:
         import production
@@ -163,6 +192,8 @@ def _():
 
     finally:
         db.close()
+        
+###################### RETURN ########################
 
     if user_exist is not None:
         return redirect(f"/signup?error=user_exist&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")

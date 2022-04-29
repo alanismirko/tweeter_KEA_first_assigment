@@ -16,6 +16,11 @@
               <p  class="text-white">Removing the suspicious file...
               </p>
               % end
+
+              % if error == "missing_variable":
+              <p  class="text-white">Not all data in the form is filled out
+              </p>
+              % end
             </div>
 
 <div class="flex flex-col px-6 py-6">
