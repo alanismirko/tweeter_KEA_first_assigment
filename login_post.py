@@ -13,6 +13,8 @@ import mysql
 @post("/login")
 def _():
 ###################### VARIABLES #######################################
+    response.set_header("Cache-Control", "no-cache, no-store, must-revalidate")
+
     user_email = request.forms.get("user_email")
     user_session_id = str(uuid.uuid4())
     encoded_jwt = jwt.encode({"uuid4": user_session_id, "user_email":user_email}, "secret key", algorithm="HS256")

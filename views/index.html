@@ -31,8 +31,9 @@
                 </div>
 
               </div>  
-              <form action="/like" method="POST">
-                <input   name="tweet_id_update" type="text" class="hidden pt-2 font-bold tweet_id_update" value="{{tweet[0]}}">
+
+              <form action="/like/<tweet_id_update>" method="POST">
+                <input name="tweet_id_update" type="text" class="hidden pt-2 font-bold tweet_id_update" value="{{tweet[0]}}">
                 <div id="tweet_title_update"  class="pt-2 font-bold " >
                   {{tweet[2]}}
                 </div>
@@ -47,9 +48,6 @@
                     <p id="like">{{all}}</p>
               </div>
               </form>
-
-              
-
           </div>
         </div>
       </div>

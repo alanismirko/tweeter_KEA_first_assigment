@@ -1,9 +1,11 @@
-from bottle import  get, view, request
+from bottle import  get, view, request, response
 
 
 @get("/signup")
 @view("signup")
 def _():
+    response.set_header("Cache-Control", "no-cache, no-store, must-revalidate")
+
     error = request.params.get("error")
     user_first_name = request.params.get("user_first_name")
     user_last_name = request.params.get("user_last_name")

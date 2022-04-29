@@ -1,12 +1,14 @@
 from bottle import post, request, redirect, get, view, response
 import g
 import mysql.connector
+import tweet_like
 
-@get("/tweets")
 @get("/index")
+@get("/tweets")
 @view("index")
 def _():
 ###################### DEFINING THE VARIABLES ########################
+    response.set_header("Cache-Control", "no-cache, no-store, must-revalidate")
     error = request.params.get("error")
     user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET)
     tweet_description = request.params.get("tweet_description")

@@ -17,6 +17,9 @@ def _():
     image_tweet = request.files.get("image_tweet")
     tweet_id_update = request.forms.get("tweet_id_update")
 
+    response.set_header("Cache-Control", "no-cache, no-store, must-revalidate")
+
+
 ###################### CONNECTING TO THE DATABASE ########################
     try:
         # import production

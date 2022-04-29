@@ -2,9 +2,10 @@ from bottle import get, view, request, route, redirect, post, response
 import g
 import mysql
 
-@post("/like")
-@view("/index")
-def _():
+@post("/like/<tweet_id_update>")
+def _(tweet_id_update):
+    response.set_header("Cache-Control", "no-cache, no-store, must-revalidate")
+
     user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET)
     tweet_id_update = request.forms.get("tweet_id_update")
 
@@ -32,7 +33,6 @@ def _():
         print("the count is", all, "tweet id", tweet_id_update)
 
         db.commit()
-        return dict(all = all)
 
 
     except Exception as ex:
@@ -41,5 +41,5 @@ def _():
 
     finally:
         db.close()
-        return redirect("/index")
+
 

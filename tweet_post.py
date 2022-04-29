@@ -10,6 +10,7 @@ import imghdr
 
 @post("/create_tweet")
 def _():
+    response.set_header("Cache-Control", "no-cache, no-store, must-revalidate")
 
 ###################### VARIABLES #######################################
     tweet_id = str(uuid.uuid4())
@@ -99,7 +100,7 @@ def _():
 
     if session is None:
         return redirect("/login")
-    return redirect("/mytweets")
+    return redirect("/index")
 
 
 

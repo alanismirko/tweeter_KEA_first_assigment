@@ -6,6 +6,8 @@ import g
 @get("/")
 @view("index_tweets")
 def _():
+    response.set_header("Cache-Control", "no-cache, no-store, must-revalidate")
+
     tweet_description = request.params.get("tweet_description")
     tweet_title = request.params.get("tweet_title")
     image_tweet = request.files.get("image_tweet")

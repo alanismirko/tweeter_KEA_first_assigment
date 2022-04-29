@@ -5,6 +5,8 @@ import mysql
 @get("/user_profile")
 @view("user_profile")
 def _():
+    response.set_header("Cache-Control", "no-cache, no-store, must-revalidate")
+
     user_profile_email = request.params.get("user_profile_email")
     user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET)
     error = request.params.get("error")

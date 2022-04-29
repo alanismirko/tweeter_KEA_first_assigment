@@ -5,6 +5,8 @@ import mysql
 @get("/following")
 @view("user_follows")
 def _():
+    response.set_header("Cache-Control", "no-cache, no-store, must-revalidate")
+
     user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET)
     error = request.params.get("error")
     tweet_description = request.params.get("tweet_description")

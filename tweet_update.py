@@ -7,6 +7,8 @@ import mysql.connector
 
 @post("/tweet_update/<tweet_id_update>")
 def _(tweet_id_update):
+    response.set_header("Cache-Control", "no-cache, no-store, must-revalidate")
+
 
 ###################### DEFINING VARIABLES ########################
 

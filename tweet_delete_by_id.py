@@ -59,7 +59,7 @@ def _(tweet_id_update):
 
     if session is None:
             return redirect("/login")
-    return redirect("/mytweets")
+    return redirect("/myprofile")
 
 
 
@@ -67,6 +67,8 @@ def _(tweet_id_update):
 
 @post("/delete_tweet_admin/<tweet_id_update>")
 def _(tweet_id_update):
+    response.set_header("Cache-Control", "no-cache, no-store, must-revalidate")
+
 ###################### DEFINING THE VARIABLES ########################
     error = request.params.get("error")
     user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET)

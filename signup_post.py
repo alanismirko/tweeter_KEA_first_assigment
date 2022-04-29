@@ -15,7 +15,8 @@ from email.mime.multipart import MIMEMultipart
 @post("/signup")
 def _():
 
-    
+    response.set_header("Cache-Control", "no-cache, no-store, must-revalidate")
+
 ############### DEFINING THE USER, ADDRESS AND ZIPCODE #######################################
     user_id = str(uuid.uuid4())
     user_first_name = request.forms.get("user_first_name")
