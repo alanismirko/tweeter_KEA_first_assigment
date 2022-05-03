@@ -85,6 +85,7 @@ def _():
         print("tweet is created")
         db.commit()
 
+        response.status = 200
 
     except Exception as ex:
         print(ex)

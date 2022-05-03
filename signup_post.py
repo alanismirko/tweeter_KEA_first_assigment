@@ -136,6 +136,8 @@ def _():
 
         print("user created")
         db.commit()
+        response.status = 200
+
 
 ########## EMAIL ####################
 

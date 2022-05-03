@@ -30,6 +30,8 @@ def _():
         tweets = cursor.fetchall() 
 
         db.commit()
+        response.status = 200
+
     except Exception as ex:
         print(ex)
         response.status = 500

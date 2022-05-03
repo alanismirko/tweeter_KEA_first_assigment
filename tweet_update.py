@@ -69,6 +69,8 @@ def _(tweet_id_update):
         cursor.execute(sql)
 
         db.commit()
+        response.status = 200
+
 
     except Exception as ex:
         print(ex)

@@ -54,6 +54,8 @@ def _():
 
 
         db.commit()
+        response.status = 200
+
 
     except Exception as ex:
         print(ex)

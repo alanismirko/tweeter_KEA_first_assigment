@@ -1,6 +1,7 @@
 from bottle import view, get, request, response
 import g
 import mysql
+import json
 
 @get("/following")
 @get("/followers")
@@ -89,6 +90,8 @@ def _():
         cursor.execute(sql, (user_email,))
         users = cursor.fetchall() 
         db.commit()
+        response.status = 200
+
     except Exception as ex:
         print(ex)
         response.status = 500

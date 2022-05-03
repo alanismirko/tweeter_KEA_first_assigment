@@ -59,6 +59,8 @@ def _():
         print("Session is added")
 
         db.commit()
+        response.status = 200
+
     except Exception as ex:
         response.status= 500
         print(ex)

@@ -33,6 +33,8 @@ def _():
         cursor.execute(sql, (user_session_id,))
         print("session is deleted", user_session_id )
         db.commit()
+        response.status = 200
+
     except Exception as ex:
         print(ex)
         response.status = 500

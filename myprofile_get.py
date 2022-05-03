@@ -53,6 +53,8 @@ def _():
         print("User session is deleted")
 
         db.commit()
+        response.status = 200
+
     except Exception as ex:
         print(ex)
         response.status = 500

@@ -3,8 +3,8 @@ import g
 import mysql.connector
 import tweet_like
 
-@get("/index")
 @get("/tweets")
+@get("/index")
 @view("index")
 def _():
 ###################### DEFINING THE VARIABLES ########################
@@ -14,8 +14,6 @@ def _():
     tweet_description = request.params.get("tweet_description")
     tweet_title = request.params.get("tweet_title")
     user_session_id = request.get_cookie("uuid4")
-    tweet_id_update = request.forms.get("tweet_id_update")
-
 
     tabs = g.TABS
     reccomendations = g.RECOMMENDATIONS
@@ -44,6 +42,9 @@ def _():
         session = cursor.fetchone()
         print(session)
 
+
+
+
         sql = """SELECT * FROM users  WHERE user_email =%s """
         cursor.execute(sql, (user_email,))
         users = cursor.fetchall() 
@@ -53,6 +54,8 @@ def _():
         print("User session is deleted")
 
         db.commit()
+        response.status = 200
+
     except Exception as ex:
         print(ex)
         response.status = 500
@@ -64,5 +67,4 @@ def _():
         if session is None:
                 return redirect("/login")
         return dict( error = error, tweet_description=tweet_description,  
-                        all=all, tweet_id_update=tweet_id_update,tweet_title=tweet_title, user_email=user_email, tweets = tweets, tabs=tabs, users=users, reccomendations=reccomendations, trends = trends)
-
+                        tweet_title=tweet_title, user_email=user_email, tweets = tweets, tabs=tabs, users=users, reccomendations=reccomendations, trends = trends)

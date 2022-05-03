@@ -33,6 +33,7 @@ def _():
         print("users are following")
 
         db.commit()
+        response.status = 200
 
     except Exception as ex:
         print(ex)
@@ -40,5 +41,4 @@ def _():
 
     finally:
         db.close()
-        return redirect("/following")
-    
+        return redirect("/index")    

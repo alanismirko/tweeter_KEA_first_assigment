@@ -26,6 +26,8 @@ def _(tweet_id_update):
         sql = """INSERT INTO tweets_liked (tweet_id, user_email ) VALUES (%s, %s)"""
         val = (tweet_id_update, user_email,)
         cursor.execute(sql,val)
+        all = cursor.fetchall()
+        print()
 
         sql = """UPDATE tweets
                 SET tweet_like_count = tweet_like_count + 1
@@ -34,6 +36,7 @@ def _(tweet_id_update):
 
         db.commit()
 
+        response.status = 200
 
     except Exception as ex:
         print(ex)
