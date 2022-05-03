@@ -42,6 +42,17 @@ def _():
         tweets = cursor.fetchall() 
         print("All the tweets are listed")
 
+        sql =""" SELECT COUNT(*) FROM follows WHERE user_email_initiator=%s """
+        cursor.execute(sql, (user_profile_email,))
+        following = cursor.fetchall()
+
+        sql =""" SELECT COUNT(*) FROM follows WHERE user_email_receiver=%s """
+        cursor.execute(sql, (user_profile_email,))
+        follows = cursor.fetchall()
+
+
+
+
         db.commit()
 
     except Exception as ex:
@@ -55,7 +66,7 @@ def _():
     if user_email == user_profile_email:
             return redirect("/myprofile")
 
-    return dict( error = error, tweet_description=tweet_description, 
+    return dict( following=following, follows=follows,error = error, tweet_description=tweet_description, 
                     tweet_title=tweet_title, user_email=user_email, users=users, user_profile_email= user_profile_email, tweets=tweets,
                     tabs=tabs, reccomendations=reccomendations, trends=trends)
 

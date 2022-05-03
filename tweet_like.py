@@ -20,26 +20,33 @@ def _(tweet_id_update):
 
     try:
         db = mysql.connector.connect(**db_config)
-        cursor = db.cursor(buffered=True)
-
+        db.autocommit = False          
+        cursor = db.cursor()
 
         sql = """INSERT INTO tweets_liked (tweet_id, user_email ) VALUES (%s, %s)"""
         val = (tweet_id_update, user_email,)
         cursor.execute(sql,val)
 
-        sql =""" SELECT COUNT(*) FROM tweets_liked WHERE tweet_id=%s """
+        sql = """UPDATE tweets
+                SET tweet_like_count = tweet_like_count + 1
+                WHERE tweet_id = %s"""
         cursor.execute(sql, (tweet_id_update,))
-        all = cursor.fetchall()
-        print("the count is", all, "tweet id", tweet_id_update)
 
         db.commit()
 
 
     except Exception as ex:
         print(ex)
+        db.rollback()
+
         response.status = 500
 
     finally:
         db.close()
+    
+    return redirect("/index")
+
+
+
 
 

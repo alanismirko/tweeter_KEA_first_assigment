@@ -16,29 +16,40 @@
 
   <div class="mt-10 text-white">
     <div class="flex flex-col ml-10">
-      <p class="pb-1 text-2xl"><strong>{{user[1]}} {{user[2]}}</strong></p>
-      <p>@{{user[2]}}{{user[1]}}</p>
-      <p class="pt-1"><i class="far fa-calendar-days fa-fw"></i> Joined {{user[6]}}</p>
+      <span>
+        <form action="/follow_user" method="POST" class="float-right">
+          <input name="user_profile_email" class="hidden" value="{{user[3]}}">
+        <button class="h-6 mt-5 text-white bg-blue-300 rounded-full mr-28 w-28">Follow</button>
+        </form> 
+      </span>
+        <p class="pb-1 text-2xl"><strong>{{user[1]}} {{user[2]}}</strong></p>
+        <p>@{{user[2]}}{{user[1]}}</p>
+        <p class="pt-1"><i class="far fa-calendar-days fa-fw"></i> Joined {{user[6]}}</p>  
+
     </div>
   </div>
 
   <div class="mt-4 text-white">
     <div class="flex flex-row ml-10">
-      <a href="/following" class="pr-5 cursor-pointer">0 Following</a>
-      <a href="/following" class="pr-5 cursor-pointer">0 Followers</a>
-
-    </div>
-
-  </div>
-   <div class="mt-4 text-white">
-      <form action="/follow_user" method="POST">
+      <form action="/following">
         <input name="user_profile_email" class="hidden" value="{{user[3]}}">
-
-      <button class="text-white">Follow</button>
+      <span>{{following}}</span>
+      <button>Following</button>
 
       </form>
-     
+      <form action="/following">
+        <input name="user_profile_email" class="hidden" value="{{user[3]}}">
+      <span>{{follows}}</span>
+      <button>Followers</button>
+
+      </form>
+
     </div>
+
+
+
+  </div>
+
     % end
 
 

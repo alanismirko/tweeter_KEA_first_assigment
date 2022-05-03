@@ -40,6 +40,14 @@ def _():
         tweets = cursor.fetchall() 
         print("All the tweets are listed")
 
+        sql =""" SELECT COUNT(*) FROM follows WHERE user_email_initiator=%s """
+        cursor.execute(sql, (user_email,))
+        following = cursor.fetchall()
+
+        sql =""" SELECT COUNT(*) FROM follows WHERE user_email_receiver=%s """
+        cursor.execute(sql, (user_email,))
+        follows = cursor.fetchall()
+
         sql = """DELETE FROM sessions WHERE TIMESTAMPDIFF(MINUTE,session_created_at,NOW()) > 30; """
         cursor.execute(sql)
         print("User session is deleted")
@@ -53,4 +61,4 @@ def _():
         db.close()
 
 
-    return dict( error = error, tweet_description=tweet_description, tweet_title=tweet_title, user_email=user_email, users=users, tabs=tabs, tweets= tweets, trends=trends, reccomendations=reccomendations)
+    return dict( error = error, tweet_description=tweet_description, tweet_title=tweet_title, user_email=user_email, users=users, tabs=tabs, tweets= tweets, trends=trends, reccomendations=reccomendations, following=following, follows=follows)
