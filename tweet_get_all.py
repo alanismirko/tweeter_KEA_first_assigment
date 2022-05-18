@@ -3,6 +3,7 @@ import g
 import mysql.connector
 import tweet_like
 
+
 @get("/tweets")
 @get("/index")
 @view("index")
@@ -18,6 +19,7 @@ def _():
     tabs = g.TABS
     reccomendations = g.RECOMMENDATIONS
     trends = g.TRENDS
+
 
 
 ###################### CONNECTING TO THE DATABASE ########################
@@ -41,9 +43,6 @@ def _():
         cursor.execute(sql_sessions, (user_session_id,))
         session = cursor.fetchone()
         print(session)
-
-
-
 
         sql = """SELECT * FROM users  WHERE user_email =%s """
         cursor.execute(sql, (user_email,))

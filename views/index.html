@@ -39,11 +39,14 @@
                 <div id="tweet_description_update" class="pt-2 ">
                   {{tweet[1]}}
                 </div>
+                % if tweet[6] != "nothing":
                 <div id="image_tweet_id" class="pt-2 ">
-                    <img src="../images/{{tweet[6]}}">
-                </div>
+                  <img src="../images/{{tweet[6]}}">
+              </div>
+                % end
+
                 <div class="flex w-full gap-12 mt-4 text-lg">
-                    <button><i  class="fa-solid fa-thumbs-up"></i></button>
+                    <button><i  class="fa-solid fas fa-thumbs-up fa-fw"></i></button>
               </div>
 
               </form>

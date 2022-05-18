@@ -78,6 +78,9 @@ def _():
     if not request.forms.get("city"):
         response.status = 400
         return redirect(f"/signup?error=missing_variable&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
+    if not re.match(g.REGEX_EMAIL, user_email):
+        response.status = 400
+        return redirect(f"/signup?error=email&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&street_name={street_name}&street_number={street_number}&country={country}&region={region}&zipcode={zipcode}&city={city}")
 
     if len(user_first_name) < 2 or len(user_first_name) > 100:
         response.status = 400
