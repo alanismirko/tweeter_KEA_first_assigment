@@ -47,10 +47,10 @@ def _():
         sql = """SELECT * FROM users  WHERE user_email =%s """
         cursor.execute(sql, (user_email,))
         users = cursor.fetchall() 
+        print(users)
 
         sql = """DELETE FROM sessions WHERE TIMESTAMPDIFF(MINUTE,session_created_at,NOW()) > 30; """
         cursor.execute(sql)
-        print("User session is deleted")
 
         db.commit()
         response.status = 200

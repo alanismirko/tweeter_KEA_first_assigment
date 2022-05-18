@@ -54,7 +54,7 @@ def _():
         print("User is logged in")
 
         sql_session= """ INSERT INTO sessions (session_id, session_user_email) VALUES (%s,%s)  """
-        val_session = (user_session_id, user_email, )
+        val_session = (user_session_id, user_email,)
         cursor.execute(sql_session, val_session)
         print("Session is added")
 

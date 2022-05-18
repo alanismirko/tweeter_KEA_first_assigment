@@ -79,8 +79,8 @@ def _():
         cursor.execute(sql, (user_session_id,))
         session = cursor.fetchone() 
 
-        sql = """INSERT INTO tweets (tweet_id, tweet_description, tweet_title, tweet_created_at, tweet_user_email, tweet_image_id ) VALUES (%s, %s, %s, %s, %s, %s)"""
-        val = (tweet_id,tweet_description,tweet_title, tweet_created_at, user_email, image_name,)
+        sql = """INSERT INTO tweets (tweet_id,tweet_user_email, tweet_description, tweet_title, tweet_created_at, tweet_image_id ) VALUES (%s, %s, %s, %s, %s, %s)"""
+        val = (tweet_id,user_email, tweet_description,tweet_title, tweet_created_at, image_name,)
         cursor.execute(sql, val)
         print("tweet is created")
         db.commit()

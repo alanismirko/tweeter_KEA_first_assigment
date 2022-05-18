@@ -18,7 +18,6 @@ def _():
     response.set_header("Cache-Control", "no-cache, no-store, must-revalidate")
 
 ############### DEFINING THE USER, ADDRESS AND ZIPCODE #######################################
-    user_id = str(uuid.uuid4())
     user_first_name = request.forms.get("user_first_name")
     user_last_name = request.forms.get("user_last_name")
     user_email = request.forms.get("user_email")
@@ -133,8 +132,8 @@ def _():
         val = (user_address_id,street_name,street_number,country, region, zipcode, )
         cursor.execute(sql, val)
 
-        sql = """INSERT INTO users (user_id, user_first_name, user_last_name, user_email, user_password, user_created_at, user_address_id, user_image_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
-        val = (user_id,user_first_name,user_last_name, user_email, password_hashed, user_created_at, user_address_id,image_name, )
+        sql = """INSERT INTO users (user_email, user_first_name, user_last_name, user_password, user_created_at, user_address_id, user_image_id) VALUES ( %s, %s, %s, %s, %s, %s, %s)"""
+        val = (user_email, user_first_name,user_last_name, password_hashed, user_created_at, user_address_id,image_name, )
         cursor.execute(sql, val)
 
         print("user created")

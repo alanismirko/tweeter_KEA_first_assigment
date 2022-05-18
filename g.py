@@ -38,7 +38,7 @@ RECOMMENDATIONS =[
 DEVELOPMENT_CONN = {
         "host": "localhost",
         "user":"root",
-        "database": "tweeterdb",
+        "database": "tweeterdbexam",
         "password": "1234"
         }
 
