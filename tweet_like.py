@@ -29,10 +29,6 @@ def _(tweet_id_update):
         all = cursor.fetchall()
         print()
 
-        sql = """UPDATE tweets
-                SET tweet_like_count = tweet_like_count + 1
-                WHERE tweet_id = %s"""
-        cursor.execute(sql, (tweet_id_update,))
 
         db.commit()
 

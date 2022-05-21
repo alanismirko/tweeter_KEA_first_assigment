@@ -1,23 +1,25 @@
-from bottle import  get, view, request, redirect, post, template, response
+from bottle import post, request, redirect, get, view, response
 import g
 import mysql.connector
+import tweet_like
 
-@get("/admin")
-@view("admin")
+
+@get("/tweets")
+@get("/explore")
+@view("explore")
 def _():
 ###################### DEFINING THE VARIABLES ########################
+    response.set_header("Cache-Control", "no-cache, no-store, must-revalidate")
     error = request.params.get("error")
     user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET)
-    user_email_admin = request.forms.get("user_email")
-    user_first_name = request.get_cookie("user_first_name", secret=g.COOKIE_SECRET)
-    user_last_name = request.get_cookie("user_last_name", secret=g.COOKIE_SECRET)
-    user_session_id = request.get_cookie("uuid4")
     tweet_description = request.params.get("tweet_description")
     tweet_title = request.params.get("tweet_title")
-    image_tweet = request.files.get("image_tweet")
-    tweet_id_update = request.forms.get("tweet_id_update")
+    user_session_id = request.get_cookie("uuid4")
 
-    response.set_header("Cache-Control", "no-cache, no-store, must-revalidate")
+    tabs = g.TABS
+    reccomendations = g.RECOMMENDATIONS
+    trends = g.TRENDS
+
 
 
 ###################### CONNECTING TO THE DATABASE ########################
@@ -29,12 +31,11 @@ def _():
         print(ex)
         db_config = g.DEVELOPMENT_CONN
 
-        
+
+
     try:
         db = mysql.connector.connect(**db_config)
         cursor = db.cursor(buffered=True)
-
-        
         cursor.callproc('GetAllTweets')
         for result in cursor.stored_results():
             tweets = result.fetchall()
@@ -44,14 +45,16 @@ def _():
         session = cursor.fetchone()
         print(session)
 
-        
+        args = [user_email]
+        cursor.callproc('GetUserByEmail', args)
+        for result in cursor.stored_results():
+            users = result.fetchall()
+
         sql = """DELETE FROM sessions WHERE TIMESTAMPDIFF(MINUTE,session_created_at,NOW()) > 30; """
         cursor.execute(sql)
-        print("User session is deleted")
 
         db.commit()
         response.status = 200
-
 
     except Exception as ex:
         print(ex)
@@ -61,10 +64,7 @@ def _():
         db.close()
 
 ###################### RETURN - DICTIONARY ########################
-    if session is None:
-        return redirect("/login")
-    if user_email != "admin@gmail.com":
-        return redirect("/login")
-    return dict( error = error, tweet_description=tweet_description, 
-                    user_first_name=user_first_name, user_last_name=user_last_name, 
-                    tweet_title=tweet_title, user_email=user_email, tweets = tweets, image_tweet = image_tweet)
+        if session is None:
+                return redirect("/login")
+        return dict( error = error, tweet_description=tweet_description,  
+                        tweet_title=tweet_title, user_email=user_email, tweets = tweets, tabs=tabs, users=users, reccomendations=reccomendations, trends = trends)

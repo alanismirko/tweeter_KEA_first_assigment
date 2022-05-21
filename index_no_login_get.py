@@ -26,8 +26,9 @@ def _():
 
         db = mysql.connector.connect(**db_config)
         cursor = db.cursor(buffered=True)
-        cursor.execute("""SELECT * FROM tweets """)
-        tweets = cursor.fetchall() 
+        cursor.callproc('GetAllTweets')
+        for result in cursor.stored_results():
+            tweets = result.fetchall()
 
         db.commit()
         response.status = 200

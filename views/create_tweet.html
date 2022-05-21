@@ -32,8 +32,7 @@
       <input class="w-1/2 h-8 mb-5 text-white bg-black" name="tweet_description" type="text" placeholder="Description" value="{{ tweet_description or ''}}" required data-validate="str" data-min="1" data-max="100">
       <hr class="mb-2 text-white">
       <label class="cursor-pointer" for="image_tweet">
-        <i class="text-blue-100 fas fa-image icon-4x fa-fw"></i> 
-        <input class="hidden" type="file" id="image_tweet" name="image_tweet" accept="image/*">
+        <input  type="file" id="image_tweet" name="image_tweet" accept="image/*">
       </label>
       <button class="float-right py-2 mt-1 text-lg text-white bg-blue-300 rounded-full w-28" >Tweet</button>
 

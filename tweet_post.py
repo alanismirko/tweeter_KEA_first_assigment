@@ -25,7 +25,6 @@ def _():
     if image_tweet is not None:
         filename,file_extension = os.path.splitext(image_tweet.filename)
 
-        if file_extension == ".jpg": file_extension = ".jpeg"
 
         image_name =f"{image_id}{file_extension}"
         image_tweet.save(f"images/{image_name}")

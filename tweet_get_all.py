@@ -4,6 +4,7 @@ import mysql.connector
 import tweet_like
 
 
+#THIS IS GETTING ONLY THE TWEETS FROM PEOPLE THAT USER FOLLOWS
 @get("/tweets")
 @get("/index")
 @view("index")
@@ -36,18 +37,21 @@ def _():
     try:
         db = mysql.connector.connect(**db_config)
         cursor = db.cursor(buffered=True)
-        cursor.execute("""SELECT * FROM tweets """)
-        tweets = cursor.fetchall() 
+
+        sql_tweets=""" SELECT tweet_id, tweet_user_email, tweet_title, tweet_description, tweet_created_at, tweet_updated_at, tweet_image_id, tweet_like_count FROM tweets
+                    INNER JOIN follows ON tweets.tweet_user_email=%s AND follows.user_email_receiver = %s ORDER BY tweet_created_at DESC;"""
+        cursor.execute(sql_tweets,(user_email,user_email,))
+        tweets = cursor.fetchall()
 
         sql_sessions=""" SELECT * FROM sessions WHERE session_id =%s"""
         cursor.execute(sql_sessions, (user_session_id,))
         session = cursor.fetchone()
         print(session)
 
-        sql = """SELECT * FROM users  WHERE user_email =%s """
-        cursor.execute(sql, (user_email,))
-        users = cursor.fetchall() 
-        print(users)
+        args = [user_email]
+        cursor.callproc('GetUserByEmail', args)
+        for result in cursor.stored_results():
+            users = result.fetchall()
 
         sql = """DELETE FROM sessions WHERE TIMESTAMPDIFF(MINUTE,session_created_at,NOW()) > 30; """
         cursor.execute(sql)

@@ -9,7 +9,7 @@ USER_NAME_MIN_MAX  = '^[a-zA-Z]{2,50}$'
 
 TABS =  [
     {"icon": "fas fa-home fa-fw", "title": "Home", "id":"home", "href": "/index"},
-    {"icon": "fas fa-hashtag fa-fw", "title": "Explore", "id": "explore", "href":"/index"},
+    {"icon": "fas fa-hashtag fa-fw", "title": "Explore", "id": "explore", "href":"/explore"},
     {"icon": "far fa-bell fa-fw", "title": "Notifications", "id": "notifications", "href":"/index"},
     {"icon": "far fa-envelope fa-fw", "title": "Messages", "id": "messages", "href":"/index"},
     {"icon": "far fa-bookmark fa-fw", "title": "Bookmarks", "id": "bookmarks", "href":"/index"},

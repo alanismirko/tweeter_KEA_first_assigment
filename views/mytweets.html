@@ -16,13 +16,13 @@
                 </p>   
                 <div class="">
                   <i class="ml-3 fa-solid fa-circle"></i>
-                  Created: {{tweet[3]}} 
+                  Created: {{tweet[4]}} 
                 </div>  
                 <div  class="">
                   <i class="ml-3 fa-solid fa-circle"></i>
-                  Updated: {{tweet[4]}}
+                  Updated: {{tweet[5]}}
                 </div>
-                <button id="delete_tweet" class="ml-10 cursor-pointer"><i  class="fa-solid fa-trash"></i></button>
+                <button id="delete_tweet" class="ml-10 cursor-pointer"><i  class=" fa-trash"></i></button>
               </div>  
             </form>
               
@@ -37,17 +37,15 @@
                 % end
             </div>
             <form id="update_form" action="/tweet_update/<tweet_id_update>" method="post"  > 
-                <input class="hidden" name="tweet_created_at_update" type="text" value="{{tweet[3]}}">
-                <input class="hidden"  name="tweet_updated_at_update" type="text" value="{{tweet[4]}}">
                 <input  class="hidden" name="tweet_id_update" type="text" value="{{tweet[0]}}">
                 <input  class="mt-2 font-bold text-white bg-black" name="tweet_title_update" type="text" value="{{tweet[2]}}" data-validate="str" data-min="2" data-max="100" >
-                <input class="block mt-2 text-white bg-black" name="tweet_description_update" type="text" value="{{tweet[1]}}" data-validate="str" data-min="2" data-max="100" >
+                <input class="block mt-2 text-white bg-black" name="tweet_description_update" type="text" value="{{tweet[3]}}" data-validate="str" data-min="2" data-max="100" >
                 <input type="text" name="image_id" class="hidden" value="{{tweet[6]}}">
               <button type="submit" class="flex float-left mb-2"><i class="fa-solid fa-pencil"></i></button>
             </form>    
             
             <div id="image_tweet_id" class="pt-2 ">
-              <img src="../images/{{tweet[6]}}">
+              <img src="../images/5d3ac414-38a2-4650-8484-3ca42af6fb25.jpeg">
             </div>
           </div>
         </div>

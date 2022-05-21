@@ -26,8 +26,8 @@ def _():
         db = mysql.connector.connect(**db_config)
         cursor = db.cursor(buffered=True)
     
-        sql = """INSERT INTO follows (user_email_initiator, user_email_receiver ) VALUES (%s, %s)"""
-        val = (user_email, user_profile_email)
+        sql = """INSERT INTO follows (user_email_initiator, user_email_receiver, status_id ) VALUES (%s, %s, %s)"""
+        val = (user_email, user_profile_email, 2)
         
         cursor.execute(sql, val)
         print("users are following")
