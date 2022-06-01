@@ -1,19 +1,27 @@
 % # right
 <div class="w-1/4 h-screen">
   <div class="fixed flex flex-col w-1/5 h-screen gap-4 py-4 pl-4 ">
+
+    <div class="p-4">
+      <form class="relative text-black pl-14" action="/search_users" method="post"  >
+        <input class="w-full h-12 px-4 bg-gray-100 rounded-full outline-none placeholder:text-black" 
+        type="text" name="search_term" placeholder="Search people">
+      </form>
+    </div>
+
     <div class="flex-grow h-32 overflow-hidden bg-gray-800 rounded">
         <p class="p-2 text-lg font-bold">Trends for you</p>
-      % for trend in trends:
+
+
+        % for trend in trends:
         <div class="cursor-pointer hover:bg-slate-500">
           <span class="float-right pr-5">...</span>   
           <p class="px-2 py-0.5 font-thin">{{trend["category"]}}</p>
           <p class="px-2 py-0.5 font-bold ">{{trend["title"]}}</p>
           <p class="px-2 py-0.5 font-thin">{{trend["tweets_counter"]}} tweets</p>
         </div>
-        <!-- ANOTHER SOLUTION
-
-        -->
       % end
+
     </div>
     <div class="bg-gray-800 rounded h-1/3">
       <p class="p-2 text-lg font-bold">You might like</p>

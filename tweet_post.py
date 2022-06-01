@@ -62,35 +62,27 @@ def _():
     try:
         import production
         db_config = g.PRODUCTION_CONN
-
     except Exception as ex:
         print(ex)
         db_config = g.DEVELOPMENT_CONN
-
-
     try:
-
-        db = mysql.connector.connect(**db_config)
-            
+        db = mysql.connector.connect(**db_config)      
         cursor = db.cursor()
 
         sql = """SELECT * FROM sessions  WHERE session_id =%s """
         cursor.execute(sql, (user_session_id,))
         session = cursor.fetchone() 
 
-        sql = """INSERT INTO tweets (tweet_id,tweet_user_email, tweet_description, tweet_title, tweet_created_at, tweet_image_id ) VALUES (%s, %s, %s, %s, %s, %s)"""
-        val = (tweet_id,user_email, tweet_description,tweet_title, tweet_created_at, image_name,)
+        sql = """INSERT INTO tweets (tweet_id,tweet_user_email, tweet_title,tweet_description, tweet_created_at, tweet_image_id )
+                 VALUES (%s, %s, %s, %s, %s, %s)"""
+        val = (tweet_id,user_email,tweet_title,tweet_description, tweet_created_at, image_name,)
         cursor.execute(sql, val)
         print("tweet is created")
         db.commit()
-
         response.status = 200
-
     except Exception as ex:
         print(ex)
         response.status = 500
-
-
     finally:
         if db.is_connected():
             cursor.close()

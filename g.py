@@ -13,7 +13,7 @@ TABS =  [
     {"icon": "far fa-bell fa-fw", "title": "Notifications", "id": "notifications", "href":"/index"},
     {"icon": "far fa-envelope fa-fw", "title": "Messages", "id": "messages", "href":"/index"},
     {"icon": "far fa-bookmark fa-fw", "title": "Bookmarks", "id": "bookmarks", "href":"/index"},
-    {"icon": "fas fa-clipboard-list fa-fw", "title": "Lists", "id": "lists", "href":"/index"},
+    {"icon": "fas fa-clipboard-list fa-fw", "title": "Search", "id": "search", "href":"/search"},
     {"icon": "far fa-user fa-fw", "title": "Profile", "id": "profile", "href":"/myprofile"},
     {"icon": "fas fa-ellipsis-h fa-fw", "title": "More", "id": "more", "href":"/index"},
     {"icon": "fa fa-sign-out fa-fw", "title": "Logout", "id": "logout", "href":"/logout"}

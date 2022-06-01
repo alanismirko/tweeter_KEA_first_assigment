@@ -5,33 +5,37 @@ import time
 from datetime import datetime
 import mysql.connector
 
-@post("/search_tweet")
-@view("/index")
+
+#SEARCH PEOPLE
+@post("/search_users")
+@view("search")
 def _():
     
-    try:
 ###################### VARIABLES #######################################
         
-        search_term = request.forms.get("search_term")
-        user_session_id = request.get_cookie("uuid4")
+    search_term = request.forms.get("search_term")
+    user_session_id = request.get_cookie("uuid4")
+    print(search_term)
 
 
 ###################### CONNECTING TO THE DATABASE ########################
-        db_config = {
-            "host": "localhost",
-            "user":"root",
-            "database": "tweeterdb",
-            "password": "1234"
-            }
+    try:
+        import production
+        db_config = g.PRODUCTION_CONN
 
+    except Exception as ex:
+        print(ex)
+        db_config = g.DEVELOPMENT_CONN
+    
+    try:
         db = mysql.connector.connect(**db_config)
-            
         cursor = db.cursor(buffered=True)
-        sql = """ SELECT * FROM users WHERE MATCH(user_email)
-                AGAINST('search_term' IN BOOLEAN MODE)"""
 
-        cursor.execute(sql, (search_term,))
-        print("result", search_term)
+        sql = """ SELECT  user_first_name,  user_last_name FROM users WHERE user_first_name LIKE %s"""
+        term = [search_term + '%']
+        cursor.execute(sql, term)
+        searchResults = cursor.fetchall()
+        print(searchResults) 
 
         sql_sessions=""" SELECT * FROM sessions WHERE session_id =%s"""
         cursor.execute(sql_sessions, (user_session_id,))
@@ -39,19 +43,17 @@ def _():
         print(session)
 
         db.commit()
-
-
     except Exception as ex:
         print(ex)
     finally:
         db.close()
 
 ###################### RETURN ########################
-    if session is None:
-            return redirect("/login")
+    # if session is None:
+    #         return redirect("/login")
 
 
-    return redirect("/mytweets")
+    return dict(searchResults = searchResults)
 
 
 

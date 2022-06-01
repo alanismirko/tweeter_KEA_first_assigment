@@ -27,19 +27,14 @@ def _(tweet_id_update):
         val = (tweet_id_update, user_email,)
         cursor.execute(sql,val)
         all = cursor.fetchall()
-        print()
-
 
         db.commit()
-
         response.status = 200
 
     except Exception as ex:
         print(ex)
         db.rollback()
-
         response.status = 500
-
     finally:
         db.close()
     

@@ -50,8 +50,7 @@ def _():
         for result in cursor.stored_results():
             users = result.fetchall()
 
-        sql = """DELETE FROM sessions WHERE TIMESTAMPDIFF(MINUTE,session_created_at,NOW()) > 30; """
-        cursor.execute(sql)
+        cursor.callproc('DeleteSession')
 
         db.commit()
         response.status = 200

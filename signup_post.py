@@ -128,11 +128,13 @@ def _():
         val = (zipcode, city )
         cursor.execute(sql, val)
 
-        sql = """INSERT INTO addresses (address_id,street_name,street_number, country, region, zipcode) VALUES (%s,%s, %s, %s, %s, %s)"""
+        sql = """INSERT INTO addresses (address_id,street_name,street_number, country, region, zipcode)
+             VALUES (%s,%s, %s, %s, %s, %s)"""
         val = (user_address_id,street_name,street_number,country, region, zipcode, )
         cursor.execute(sql, val)
 
-        sql = """INSERT INTO users (user_email, user_first_name, user_last_name, user_password, user_created_at, user_address_id, user_image_id) VALUES ( %s, %s, %s, %s, %s, %s, %s)"""
+        sql = """INSERT INTO users (user_email, user_first_name, user_last_name, user_password, user_created_at, 
+                    user_address_id, user_image_id) VALUES ( %s, %s, %s, %s, %s, %s, %s)"""
         val = (user_email, user_first_name,user_last_name, password_hashed, user_created_at, user_address_id,image_name, )
         cursor.execute(sql, val)
 
@@ -193,7 +195,6 @@ def _():
         print(ex)
         db.rollback()
         response.status = 500
-
 
     finally:
         db.close()

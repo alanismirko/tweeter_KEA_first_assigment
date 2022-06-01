@@ -48,9 +48,7 @@ def _():
         cursor.execute(sql, (user_email,))
         follows = cursor.fetchall()
 
-        sql = """DELETE FROM sessions WHERE TIMESTAMPDIFF(MINUTE,session_created_at,NOW()) > 30; """
-        cursor.execute(sql)
-        print("User session is deleted")
+        cursor.callproc('DeleteSession')
 
         db.commit()
         response.status = 200
