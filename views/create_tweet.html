@@ -31,9 +31,8 @@
       <input class="w-1/2 h-8 mb-5 text-white bg-black" name="tweet_title" type="text" placeholder="Title" value="{{ tweet_title or '' }}" required data-validate="str" data-min="1" data-max="100" >
       <input class="w-1/2 h-8 mb-5 text-white bg-black" name="tweet_description" type="text" placeholder="Description" value="{{ tweet_description or ''}}" required data-validate="str" data-min="1" data-max="100">
       <hr class="mb-2 text-white">
-      <label class="cursor-pointer" for="image_tweet">
-        <input  type="file" id="image_tweet" name="image_tweet" accept="image/*">
-      </label>
+
+      <input type="file" id="image_tweet" name="image_tweet" accept="image/*" >
       <button class="float-right py-2 mt-1 text-lg text-white bg-blue-300 rounded-full w-28" >Tweet</button>
 
     </div>    

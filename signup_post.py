@@ -124,8 +124,8 @@ def _():
         cursor.execute(sql, (user_email,))
         user_exist = cursor.fetchone()
 
-        sql = """INSERT INTO zipcodes (zipcode,city) VALUES (%s, %s)"""
-        val = (zipcode, city )
+        sql = """INSERT IGNORE INTO zipcodes (zipcode,city) VALUES (%s, %s)"""
+        val = (zipcode, city, )
         cursor.execute(sql, val)
 
         sql = """INSERT INTO addresses (address_id,street_name,street_number, country, region, zipcode)

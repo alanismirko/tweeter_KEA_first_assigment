@@ -45,7 +45,9 @@
             </form>    
             
             <div id="image_tweet_id" class="pt-2 ">
-              <img src="../images/5d3ac414-38a2-4650-8484-3ca42af6fb25.jpeg">
+              % if tweet[6] != "nothing":
+              <img src="../images/{{tweet[6]}}">
+              % end
             </div>
           </div>
         </div>
