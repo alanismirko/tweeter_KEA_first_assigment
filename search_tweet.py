@@ -46,7 +46,7 @@ def _():
         sql = """ SELECT user_first_name, user_last_name, user_image_id FROM users WHERE 
                     MATCH (user_first_name, user_last_name)
                     AGAINST (%s IN NATURAL LANGUAGE MODE)
-                    ORDER BY user_first_name DESC"""
+                    ORDER BY user_first_name ASC"""
         cursor.execute(sql, (search_term,))
         searchResults = cursor.fetchall()
         print(searchResults) 
