@@ -1,6 +1,43 @@
+% include("header", title="Search results")
 
 
-% for searchResult in searchResults:
-<p class="px-2 py-0.5 font-thin">{{searchResult[0]}}</p>
-<p class="px-2 py-0.5 font-bold ">{{searchResult[1]}}</p>
-% end
+  <div  class="w-2/4 ">
+      <h1 class="mt-24 mt-32 text-2xl font-bold text-center text-white">SEARCH RESULTS FOR {{searchTerm}}</h1>
+
+    <div class="flex flex-col">
+        % for searchResult in searchResults:
+
+        <div class="flex flex-row items-center py-5 pl-5 text-white">
+
+            <img  class="w-32 h-32 ml-10 rounded-full" src="../images/user_image/{{searchResult[2]}}">
+          <p class="pl-5 text-2xl"><strong>{{searchResult[0]}} {{searchResult[1]}}</strong></p>
+          <a class="px-2 py-2 hover:rounded-full hover:bg-gray-800" href="/index"><i class=" fa fa-arrow-right fa-fw"></i></a>
+
+        </div>
+        % end
+
+    </div>
+
+
+
+
+
+    </div>
+
+
+
+
+
+  
+  <div class="w-1/4">
+    <div class="fixed p-4">
+      <div class="w-1/4 text-white">
+        % include("right_side")
+      </div>
+  </div>
+
+
+  
+  % include("footer")
+
+

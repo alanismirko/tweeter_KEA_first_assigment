@@ -15,7 +15,19 @@ def _():
         
     search_term = request.forms.get("search_term")
     user_session_id = request.get_cookie("uuid4")
-    print(search_term)
+    error = request.params.get("error")
+    tweet_description = request.params.get("tweet_description")
+    tweet_title = request.params.get("tweet_title")
+    user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET)
+    user_session_id = request.get_cookie("uuid4")
+
+
+
+
+
+    tabs = g.TABS
+    reccomendations = g.RECOMMENDATIONS
+    trends = g.TRENDS
 
 
 ###################### CONNECTING TO THE DATABASE ########################
@@ -31,11 +43,18 @@ def _():
         db = mysql.connector.connect(**db_config)
         cursor = db.cursor(buffered=True)
 
-        sql = """ SELECT  user_first_name,  user_last_name FROM users WHERE user_first_name LIKE %s"""
-        term = [search_term + '%']
-        cursor.execute(sql, term)
+        sql = """ SELECT user_first_name, user_last_name, user_image_id FROM users WHERE 
+                    MATCH (user_first_name, user_last_name)
+                    AGAINST (%s IN NATURAL LANGUAGE MODE)
+                    ORDER BY user_first_name DESC"""
+        cursor.execute(sql, (search_term,))
         searchResults = cursor.fetchall()
         print(searchResults) 
+
+        sql = """SELECT * FROM users  WHERE user_email =%s """
+        cursor.execute(sql, (user_email,))
+        users = cursor.fetchall() 
+
 
         sql_sessions=""" SELECT * FROM sessions WHERE session_id =%s"""
         cursor.execute(sql_sessions, (user_session_id,))
@@ -49,11 +68,12 @@ def _():
         db.close()
 
 ###################### RETURN ########################
-    # if session is None:
-    #         return redirect("/login")
+    if session is None:
+            return redirect("/login")
 
 
-    return dict(searchResults = searchResults)
+    return dict(searchTerm=search_term,searchResults = searchResults, tabs=tabs, reccomendations = reccomendations, trends = trends, error = error, tweet_description = tweet_description,
+    tweet_title=tweet_title, users=users)
 
 
 
