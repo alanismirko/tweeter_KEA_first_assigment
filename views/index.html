@@ -15,8 +15,8 @@
               <div class="flex">
                 <p class="">
                   <form action="/user_profile" >
-                    <input class="hidden w-full h-8 mb-5" name="user_profile_email" type="text" placeholder="Title" value="{{tweet[2]}}" >
-                    <button type="submit">{{tweet[2]}}</button>
+                    <input class="hidden w-full h-8 mb-5" name="user_profile_email" type="text" placeholder="Title" value="{{tweet[1]}}" >
+                    <button type="submit">{{tweet[1]}}</button>
                   </form>
                 </p>   
                 <div class="">
@@ -30,25 +30,27 @@
 
               </div>  
 
-              <form action="/like/<tweet_id_update>" method="POST">
-                <input name="tweet_id_update" type="text" class="hidden pt-2 font-bold tweet_id_update" value="{{tweet[0]}}">
-                <div id="tweet_title_update"  class="pt-2 font-bold " >
-                  {{tweet[2]}}
+                <form action="/like/<tweet_id_update>" method="POST">
+                  <input name="tweet_id_update" type="text" class="hidden pt-2 font-bold tweet_id_update" value="{{tweet[0]}}">
+                  <div id="tweet_title_update"  class="pt-2 font-bold " >
+                    {{tweet[2]}}
+                  </div>
+                  <div id="tweet_description_update" class="pt-2 ">
+                    {{tweet[3]}}
+                  </div>
+                  % if tweet[6] != "nothing":
+                  <div id="image_tweet_id" class="pt-2 ">
+                    <img src="../images/{{tweet[6]}}">
                 </div>
-                <div id="tweet_description_update" class="pt-2 ">
-                  {{tweet[3]}}
+                  % end
+  
+                  <div class="flex w-full gap-12 mt-4 text-lg">
+                      <button><i  class="fa-solid fas fa-thumbs-up fa-fw"></i></button>
                 </div>
-                % if tweet[6] != "nothing":
-                <div id="image_tweet_id" class="pt-2 ">
-                  <img src="../images/{{tweet[6]}}">
-              </div>
-                % end
+  
+                </form>
+                {{tweet[7]}}
 
-                <div class="flex w-full gap-12 mt-4 text-lg">
-                    <button><i  class="fa-solid fas fa-thumbs-up fa-fw"></i></button>
-              </div>
-
-              </form>
           </div>
         </div>
       </div>

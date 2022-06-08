@@ -45,10 +45,9 @@ def _():
         session = cursor.fetchone()
         print(session)
 
-        args = [user_email]
-        cursor.callproc('GetUserByEmail', args)
-        for result in cursor.stored_results():
-            users = result.fetchall()
+        sql = """SELECT * FROM users  WHERE user_email =%s """
+        cursor.execute(sql, (user_email,))
+        users = cursor.fetchall() 
 
         cursor.callproc('DeleteSession')
 

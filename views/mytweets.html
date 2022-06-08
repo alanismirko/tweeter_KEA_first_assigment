@@ -12,7 +12,7 @@
               <input  class="hidden" name="tweet_id_update" type="text" value="{{tweet[0]}}">
               <div class="flex">
                 <p class="">
-                  <a href="/myprofile">{{tweet[5]}}</a>
+                  <a href="/myprofile">{{tweet[1]}}</a>
                 </p>   
                 <div class="">
                   <i class="ml-3 fa-solid fa-circle"></i>
@@ -49,6 +49,12 @@
               <img src="../images/{{tweet[6]}}">
               % end
             </div>
+            % if tweet[7] > 2 :
+            {{tweet[7]}} likes
+            % end
+            % if tweet[7]  < 2:
+            {{tweet[7]}} like
+            % end
           </div>
         </div>
       </div>

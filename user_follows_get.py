@@ -86,10 +86,9 @@ def _():
         cursor.execute(sql, (user_email,))
         followers = cursor.fetchall()
 
-        args=[user_email]
-        cursor.callproc('GetUserByEmail', args)
-        for result in cursor.stored_results():
-            users = result.fetchall()
+        sql = """SELECT * FROM users  WHERE user_email =%s """
+        cursor.execute(sql, (user_email,))
+        users = cursor.fetchall() 
         db.commit()
         response.status = 200
 
