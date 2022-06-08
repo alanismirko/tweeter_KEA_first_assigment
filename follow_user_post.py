@@ -41,4 +41,4 @@ def _():
 
     finally:
         db.close()
-        return redirect("/index")    
+        return redirect("/explore")    

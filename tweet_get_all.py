@@ -43,9 +43,14 @@ def _():
         print(users)
 
 
-        sql_tweets=""" SELECT tweet_id, tweet_user_email, tweet_title, tweet_description, tweet_created_at, tweet_updated_at, tweet_image_id, tweet_like_count FROM tweets
-                    INNER JOIN follows ON tweets.tweet_user_email=%s AND follows.user_email_receiver = %s ORDER BY tweet_created_at DESC;"""
-        cursor.execute(sql_tweets,(user_email,user_email,))
+
+
+        sql_tweets="""  SELECT tweet_id, tweet_user_email, tweet_title, tweet_description, tweet_created_at, tweet_updated_at, tweet_image_id, 
+                        tweet_like_count FROM tweets
+	                    INNER JOIN follows ON follows.user_email_receiver = tweets.tweet_user_email
+                        WHERE follows.user_email_initiator = %s
+                        ORDER BY tweet_created_at DESC;"""
+        cursor.execute(sql_tweets,(user_email,))
         tweets = cursor.fetchall()
 
         sql_sessions=""" SELECT * FROM sessions WHERE session_id =%s"""
